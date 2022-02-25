@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+/* Navigation Bar */
+.container .navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5%;
+    background-color: #fbd691;
+    font-family: "Playfair Display", serif;
+}
+
+.container .navbar .logo{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container .navbar .logo h1{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+}
+
+.container .navbar .test{
+    display: inline-block;
+    padding: 5px 15px ;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+}
+.container .navbar .test a{
+    padding: 5px 15px ;
+    color: #000000;
+    text-decoration: none;
+    font-size: 2.5vmin;
+}
+
+.container .navbar .test a:hover{
+    color: #ffff;
+}
+
+.container .navbar .navs{
+    margin-left: 10vmin;
+}
+.container .navbar .navs li{
+    display: inline-block;
+    padding: 5px 30px;
+    align-items: center;
+    font-size: 2.5vmin;
+}
+
+.container .navbar .navs a{
+    text-decoration: none;
+    color: #000000;
+    padding: 10 5px;
+    position: relative;
+}
+
+.container .navbar .navs a:hover{
+    color: #ffff;
+}
+
+/* Login/Logout/Signup */
+.logout{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.logout:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    transition: all 0.4s;
+    color: #fbd691;
+}
+
+.signup{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.signup:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    transition: all 0.4s;
+    color: #fbd691;
+}
+
+/* Second Content */
+
+.page{
+    height: 100em;
+    width: auto;
+    font-family: "Playfair Display", serif;
+    list-style: none;
+    text-decoration: none;
+    position: relative;
+}
+
+/* Search CSS*/
+.search {
+    height: 10%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 100px 0 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+.search::before {
+    content: '';
+    background: url('https://cdn.discordapp.com/attachments/845148259889577994/894778455932166144/main.jpeg');
+    position: absolute;
+    top: -150px;
+    right: 0;
+    bottom: 0;
+    left: -10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}  
+
+.search form {
+    position: relative;
+}
+  
+.search input {
+    height: auto;
+    width: 80vmin;
+    font-size: 4vmin;
+    font-family: "Playfair Display", serif;
+    border: none;
+    padding: 10px 30px 15px;
+    color: #010001;
+    outline: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .9);
+    transition: all 0.2s;
+}
+  
+.search input:focus {
+    width: 86vmin;
+}
+
+.search input:focus::placeholder {
+    color: #010001;
+}
+
+.search input::placeholder {
+    font-style: italic;
+    color: #010001;
+    transition: all 0.2s;
+}
+
+.search button {
+    position: absolute;
+    right: 30px;
+    bottom: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search .fa-search {
+    font-size: 3vmin;
+    color: #010001;
+}
+
+/* Recipes Container CSS */
+.recipes_container{
+    padding: 1rem 10vw;
+}
+.recipe_list.active{
+    display:grid;
+}
+/* Category Buttons CSS */
+.btn_container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    font-size: 2.5vmin;
+    text-transform: uppercase;
+    border-radius: 50px;
+    display: block;
+    height: auto;
+    width: 35vmin;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    background: #fbd691;
+    margin: auto;
+    border: none;
+}
+
+.btn.active{
+    background: #de0c19;
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-10px);
+}
+
+/* Recipe Cards */
+
+.recipe{
+    display: block;
+    margin-left: 1rem;
+    background-color: #fbd691;
+    border-radius: 2rem;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+a{
+    text-decoration: none;
+}
+
+.recipe h5{
+    margin-top: -0.5rem;
+    margin-left: 1rem;
+    margin-bottom: 0rem;
+    line-height: 1;
+    color: #010001;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    text-align: left;
+}
+
+.recipe p{
+    font-size: 10px;
+    padding: 5px 15px;
+    position: relative;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
+    text-align: left;
+}
+.seperate {
+    width: 3px;
+    height: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #010001;
+    border-radius: 50%;
+    margin: 0 6px;
+}
+/*
+.recipe-img{
+    height: 15rem;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 1rem;
+}
+*/
+.recipe-img {
+    border-radius: 20px 20px 0 0;
+    display: block;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.recipe:hover img {
+    transform: scale(1.4);
+    transform-origin: center;
+}
+
+.recipeButton{
+    background-color: #fbd691;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.recipe h6 {
+    padding: 5px 15px;
+    position: relative;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
+}
+
+.img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.recipe_list{
+    margin-top: 3rem;
+    width: 80vw;
+    display:none;
+    gap:2rem 1rem;
+    padding-bottom: 3rem;
+}
+
+.recipe_list .recipe .author{
+    font-size: 14px;
+    padding: 14px 16px;
+    position: relative;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
+} 
+
+.recipe_list .recipe:hover .author{
+    opacity: 0;
+}
+
+@media screen and (min-width:776px) {
+    .recipe_list{
+        grid-template-columns: 1fr 1fr;
+    }
+    .recipe-img{
+        height: 10rem;
+    }
+}
+
+
+@media screen and (min-width:1200px) {
+    .recipe_list{
+        grid-template-columns: 1fr 1fr 1fr;    
+        width: 100%;
+    }
+    .recipe h5{
+        font-size: 1.15rem ;
+    }
+}
+
+@media screen and (max-width: 1080px){
+    .recipe_list{
+        margin: 10% auto;
+        grid-template-columns: 1fr;
+        height: auto;
+        width: 70%;
+    }
+
+    .recipe p{
+        font-size: 1rem;
+    }
+    .recipe h5{
+        font-size: 1.3rem;
+    }
+
+    .recipe-img{
+        height: 12rem;
+    }
+}
+.flexStar{
+    margin-top: -10px;
+    margin-bottom: 25px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: left;
+}
+
+.average{
+    margin-top: -0.4px;
+    margin-right: 5px;
+    color: rgb(59, 59, 59);
+    font-size: 13px;
+}

@@ -1,0 +1,23 @@
+- codez by kenneth rada (zenocyfox@gmail.com)
+on 10/13/2021
+
+- A recipe app that uses php, cordova, mysql, html, javascript, jquery and rest api.
+
+- https://tmg-fox.000webhostapp.com/ 	for the live website
+- https://www.phpmyadmin.co/		for the live mysql database
+
+SQL credentials
+Server: sql6.freemysqlhosting.net
+Name: sql6441525
+Username: sql6441525
+Password: xeLY63b24D
+Port number: 3306
+
+- the main page is index.php 
+
+- to run this application locally and not live, you must have xampp installed and have APACHE and MySQL running and setup.
+- Apache for running the index.php
+- MySQL for running the MySQL database
+
+- you must import the recipebooks.sql into the mysql myphpadmin database for data to be saved and for the app to work, just import recipebooks.sql from admin.
+

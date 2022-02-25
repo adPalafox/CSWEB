@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* .formbg{
+    background: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: inherit;
+} */
+
+.formcontainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow-y: inherit;
+}
+
+.addrecipe{
+    height: 50px;
+    width: 95%;
+}
+
+.labels{
+    font-family: Roboto, Sans-serif;
+    width: 100px;
+    display: inline-block;
+}
+
+.input_box{
+    margin: 1rem 0.2rem;
+}
+
+.input_style{
+    width: 65%;
+}
+
+.barline{
+    border: 1px solid lightgray;
+    width: 100%;
+    border-radius: 2px;
+}
+/*Add Steps===============================*/
+
+.steps_box{
+    margin: 1rem 0.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-content: initial;
+
+}
+
+
+
+.step_btn{
+    border-radius: 4px;
+}
+
+.step_btn:hover{
+    background-color: de0c19;
+    color: white;
+}
+
+.add_steps{
+    resize: none;
+    margin-left: 104px;
+    width: 65%;
+}
+
+/*Add Ingredients===============================*/
+.ingre_box{
+        margin: 1rem 0rem;
+        padding-left: 0.25rem;
+    }
+
+
+
+.add_ingre{
+    margin-top: 0.25rem;
+    margin-left: 104px;
+    width: 65%;
+}
+
+.ingre_btn{
+    border-radius: 4px;
+}
+.ingre_btn:hover{
+    background-color: de0c19; 
+    color: white;
+}
+/*Description===============================*/
+.desc_box{
+    margin: 1rem 0.2rem;
+    display: flex;
+    gap: 0.3rem;
+    align-content: initial;
+
+}
+
+.desc{
+    resize: none;
+    width: 65%;
+}
+/*Category===============================*/
+.categ_box{
+    margin: 1rem 0.2rem;
+    display: flex;
+}
+
+.categbtn{
+    border-radius: 4px;
+}
+
+.categbtn:hover{
+    background-color: de0c19; 
+    color: white;
+}
+
+.btn_container{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
+
+.btn_container button{
+    width: 30%;
+    margin: 0.25rem 0.5rem;
+}
+/*Cook Time ===============================*/
+.cook_box{
+    margin: 1rem 0.2rem;
+    display: flex;
+}
+
+
+
+/*Servings===============================*/
+
+.serve_count{
+    width: 15%;
+}
+
+.recipesubmit {
+    font-weight: 400;
+    font-size: 15px;
+    padding: 5px 30px;
+    color: #000000;
+    font-family: Roboto, Sans-serif;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #ffffff;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 33%;
+}
+
+.recipesubmit:hover{
+    transform: translateY(-5px);
+    background-color: de0c19; 
+    color: white;
+}
+
+.ttl{
+    font-weight: bold;
+    font-family: Roboto, Sans-serif;
+    font-size: 30px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.radio-toolbar {
+
+  }
+  
+  .radio-toolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+  
+  .radio-toolbar label {
+      display: inline-block;
+      background-color: #ddd;
+      font-family: sans-serif, Arial;
+      font-size: 16px;
+      border: 2px solid #444;
+      border-radius: 4px;
+      width: 100px;
+      text-align: center;
+      padding: 1px;
+  }
+  
+  .radio-toolbar label:hover {
+    background-color: rgb(201, 57, 32);
+  }
+  
+  .radio-toolbar input[type="radio"]:focus + label {
+      border: 2px solid #444;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked + label {
+      background-color: rgb(211, 84, 84);
+      border-color: rgb(0, 0, 0);
+      color: white;
+  }
+  
+  body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #fbd691;
+}
+.container .navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5%;
+    background-color: #fbd691;
+    font-family: "Playfair Display", serif;
+}
+
+.container .navbar .logo{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container .navbar .logo h1{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+}
+
+.container .navbar .test{
+    display: inline-block;
+    padding: 5px 15px ;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+}
+.container .navbar .test a{
+    padding: 5px 15px ;
+    color: #000000;
+    text-decoration: none;
+    font-size: 2.5vmin;
+}
+
+.container .navbar .test a:hover{
+    color: #ffff;
+}
+
+.container .navbar .navs{
+    margin-left: 10vmin;
+}
+.container .navbar .navs li{
+    display: inline-block;
+    padding: 5px 30px;
+    align-items: center;
+    font-size: 2.5vmin;
+}
+
+.container .navbar .navs a{
+    text-decoration: none;
+    color: #000000;
+    padding: 10 5px;
+    position: relative;
+}
+
+.container .navbar .navs a:hover{
+    color: #ffff;
+}
+
+.logout{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.logout:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    transition: all 0.4s;
+    color: #fbd691;
+}
+
+.signup{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.signup:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    transition: all 0.4s;
+    color: #fbd691;
+}
+
+
+
+
+.textLabel{
+    font-family: Roboto, Sans-serif;
+    text-align: left;
+    display: block;
+    width: auto;
+    margin-right: 10px;
+}
+
+.textInput{
+    margin-top: 10px;
+    display: block;
+    height: 35px;
+    width: 100%;
+}
+
+.ingreLabel{
+    font-family: Roboto, Sans-serif;
+    text-align: left;
+    display: block;
+    width: 100%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.ingre{
+    margin-top: 5px;
+    height: 30px;
+    width: 100%;
+}
+
+.stepLabel{
+    font-family: Roboto, Sans-serif;
+    text-align: left;
+    display: block;
+    width: 100%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.steps{
+    margin-top: 5px;
+    height: 40px;
+    width: 100%;
+    resize: vertical;
+}
+
+.mins_count{
+    width: 15%;
+    margin: 0 0.25rem;
+}
+
+.fieldSet{
+    width: 40%;
+    height: auto;
+    margin: auto;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1080px){
+    .fieldSet{
+        width: 80%;
+        height: 100%;
+        border: none;
+    }
+
+    .recipesubmit{
+        margin-left: 0;
+    }
+}

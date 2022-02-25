@@ -1,0 +1,196 @@
+* {
+	font-family: 'Muli', Sans-Serif;
+	font-size: 16px;
+	color: #333333;
+}
+
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
+i {
+	padding-right: 5px;
+	color: #3089FC;
+}
+
+body {
+	background-color: #F5F5F5;
+}
+
+.brand {
+	font-family: 'Neuton', Serif;
+	font-size: 2em;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.brand-text {
+	font-family: 'Work Sans', Sans-Serif;
+	font-size: 15px;
+	padding-top: 10px;
+}
+
+.caption-title {
+	font-family: 'Neuton', Serif;
+	font-size: 50px;
+	color: #333333;
+	font-weight: bold;
+}
+
+.caption-body {
+	font-size: 20px;
+	font-weight: bold;
+	color: #333333;
+	padding: 15px 0;
+	/* border: 2px solid red; */
+}
+
+.btn{
+	align-items: center;
+	/* font-weight: normal; */
+	background-color: #333333;
+	color: #F5F5F5;
+	border-radius: 50px;
+	padding: 8px;
+	transition: .3s ease;
+}
+
+.btn:hover{
+	background-color: #3089FC;
+	color: #F5F5F5;
+}
+
+.btn i {
+	color: #F5F5F5;
+	padding-top: 4px;
+	padding-left: 3px;
+}
+
+.btnSquare {
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
+a.nav-link {
+	margin-right: 10px;
+}
+
+.top-nav {
+	padding-top: 10px;
+}
+
+/* .main-container {
+	margin-left: 18%;
+} */
+.container {
+	overflow: auto;
+}
+
+.component {
+	margin-bottom: 40px;
+}
+
+.component-title {
+	color: #3089FC;
+}
+
+.wide-container {
+	width: 100%;
+}
+
+.bg-primary {
+	background-color: #3089FC	!important;
+}
+
+.bg-dark {
+	background-color: #333333	!important;
+}
+
+td>input {
+	max-width: 110px;
+}
+
+.form-check {
+	margin: 15px 0;
+	/* border: 2px solid red; */
+	line-height: 20px;
+	font-weight: bold;
+}
+
+.test {
+	border: 2px solid red;
+	background-color: white;
+}
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #333333 !important;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color:#f1f1f1;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+.sidebar a.currentPage{
+	background-color: #e5ecef;
+	font-weight: bold;
+  	color: #000000;
+  	transition: text-shadow 0.075s ease-in-out, background-color 0.105s ease-in-out;
+}
+.sidebar a.currentPage:hover{
+	background-color: white;
+  	color: #545151;
+	font-weight: bold;
+  	text-shadow: 6px 6px 4px grey;
+  	transition: text-shadow 0.075s ease-in-out, background-color 0.105s ease-in-out;
+}
+
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}

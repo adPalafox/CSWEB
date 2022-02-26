@@ -168,6 +168,9 @@ td>input {
   	transition: text-shadow 0.075s ease-in-out, background-color 0.105s ease-in-out;
 }
 
+.fas {
+	color: #de0c19 !important;
+}
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {

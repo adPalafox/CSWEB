@@ -40,15 +40,7 @@ session_start();
 </html>
 
 <style>
-	@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-	/* *,
-    *:before,
-    *:after {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-    } */
+	@import url("https://fonts.googleapis.com/css2?family=Dr+Sugiyama&display=swap");
 
 	body,
 	html {
@@ -61,7 +53,6 @@ session_start();
 	}
 
 	body {
-		font-family: Roboto, Sans-serif;
 		color: #010001;
 		font-size: 14px;
 		line-height: 25px;
@@ -85,8 +76,9 @@ session_start();
 	}
 
 	.logo {
+		
 		padding-bottom: 75px;
-		padding-top: 30px;
+		padding-top: 20px;
 	}
 
 	.mycontainer .hero .logo {
@@ -96,13 +88,14 @@ session_start();
 	}
 
 	.mycontainer .hero .logo h1 {
-		font-size: 20px;
+		font-size: 2em;
 	}
 
 	.clipart {
 		position: absolute;
 		bottom: 0;
+		left: -5%;
 		height: auto;
-		width: 60%;
+		width: 50%;
 	}
 </style>

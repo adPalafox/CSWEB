@@ -335,7 +335,7 @@
 
  				<div class="modal-footer justify-content-between mx-3 my-2">
  					<button type="submit" class="btn " name="pageSelect" value = "create">Create an account</button>
- 					<button type="submit" class="btn btnSquare bg-primary" name="loginAccount">Login</button>
+ 					<button type="submit" class="btn btnSquare bg-dark" name="loginAccount">Login</button>
  				</div>
  			</form>
  			<!-- <form action="index.php" method="POST">
@@ -391,7 +391,7 @@
 
  				<div class="modal-footer justify-content-between mx-3 my-2">
  					<button type="submit" class="btn " name="pageSelect" value = "login">Already have an account?</button>
- 					<button type="submit" class="btn btnSquare bg-primary" name="createAccount">Create Account</button>
+ 					<button type="submit" class="btn btnSquare bg-dark" name="createAccount">Create Account</button>
 
  				</div>
  			</form>
@@ -429,7 +429,7 @@
 
 				<div class="modal-footer justify-content-between mx-3 my-2">
 					<button type="submit" class="btn " name="pageSelect" value = "login">Login to Account</button>
-					<button type="submit" class="btn btnSquare bg-primary" name="resetPassword">Reset</button>
+					<button type="submit" class="btn btnSquare bg-dark" name="resetPassword">Reset</button>
 				</div>
 
 			</form>

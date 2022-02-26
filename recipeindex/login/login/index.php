@@ -25,11 +25,7 @@ session_start();
 </head>
 
 <body>
-	<!-- <div class="container">
-		<?php include 'login.php'; ?>
-	</div> -->
-	<div class="container">
-		<?php include 'login.php'; ?>
+	<div class="mycontainer">
 		<div class="hero">
 			<div class="logo">
 				<img src="All-Tasty-.png" width="70px" alt="">
@@ -37,6 +33,7 @@ session_start();
 			</div>
 			<img class="clipart" src="clipart.png" />
 		</div>
+		<?php include 'login.php'; ?>
 	</div>
 </body>
 
@@ -72,7 +69,7 @@ session_start();
 		-moz-osx-font-smoothing: grayscale;
 	}
 
-	.container {
+	.mycontainer {
 		display: flex;
 		flex-direction: row;
 		height: 100%;
@@ -92,13 +89,13 @@ session_start();
 		padding-top: 30px;
 	}
 
-	.container .hero .logo {
+	.mycontainer .hero .logo {
 		display: flex;
 		align-items: center;
 		position: relative;
 	}
 
-	.container .hero .logo h1 {
+	.mycontainer .hero .logo h1 {
 		font-size: 20px;
 	}
 
@@ -108,5 +105,4 @@ session_start();
 		height: auto;
 		width: 60%;
 	}
-
 </style>

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="profilepagestyle.css">
 </head>
 
-<body class="body">
+<body>
 
 <?php
 include("accounts/db.php");
@@ -297,8 +297,8 @@ if (isset($_POST["resetPassword"])){
 			</div>
 		</div>
 	</nav> -->
-	<div class="mycontainer">
-		<div class="mynavbar">
+	<div class="top">
+		<div class="yellow">
 			<div class="logo">
 				<img width="70px" src="./assets/All-Tasty.png" alt="">
 				<h1>All Tasty</h1>

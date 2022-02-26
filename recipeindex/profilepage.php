@@ -12,7 +12,43 @@
 </head>
 
 <body class="body">
+<?php
+$message = "<strong>Welcome User</strong>";
+include("accounts/db.php");
+if (isset($_POST["resetPassword"])){
+	$email = $_POST["forgotemail"];
+	$newpassword = $_POST["newpassword"];
+	echo $email;
+	// checkPasswords($email, $conn);
 
+	$sql = "SELECT * FROM users WHERE email = '$email'";
+	$list = $conn->query($sql);
+	if($email != "" and $newpassword != ""){
+		if ($list->num_rows > 0) {
+			$result = $list->fetch_all(MYSQLI_ASSOC);
+			foreach ($result as $row){
+				$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+				// $message = '<div class="alert alert-danger">'.$result.'</div>';
+				$message = '<strong>'.$result.'</strong>';
+				if (strlen($result) <= 0) {
+					$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
+					if ($conn->query($sqlpassword) === TRUE) {
+						updateTime($row["id"], $conn);
+						$message = "<strong>Account Password Successfully Updated</strong>";
+					} else {
+						echo "Error: " . $sql . "<br>" . $conn->error;
+					}
+					$conn->close();
+				}
+			}
+		}else{
+			$message = "<strong>Account Does Not Exist!</strong>";
+		}
+	}else{
+		$message = '<strong>There must be no empty inputs.</strong>';
+	}
+}
+?>
 	<!-- Nav -->
 	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
@@ -179,24 +215,27 @@
 		<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
 			<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
 				<div class="toast-header">
-					<strong class="me-auto">Password Expiration</strong>
+					<strong class="me-auto">New Notification</strong>
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
 				<div class="toast-body alert-danger">
 					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
-					<strong>Sweet potato!</strong> You have <strong> 69 days left </strong>before your password expires
+					<!-- <strong>Sweet potato!</strong> You have <strong> 69 days left </strong>before your password expires -->
+					<?php echo $message; ?>
+					<strong></strong>
 				</div>
 			</div>
 		</div>
 		<!-- End of Toast -->
-
+		
+		
 		<!-- FORGOT MODULE -->
 		<div class="modal fade" id="modalResetPass" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
-					<form action="index.php" method="POST">
+					<form action="" method="POST">
 						<div class="modal-header justify-content-center">
 							<h5 class="brand" id="staticBackdropLabel">Forgot Password</h5>
 						</div>

@@ -105,7 +105,7 @@
     
     let username = getCookie("user");
     if (username != ""){
-        $("#loginForm").append('<a> '+username+'</a>');
+        $("#loginForm").append('<a href="../profilepage.php"> '+username+'</a>');
         $("#loginForm").append('<a href="./aboutpage.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
         $("#navigation").append('<li><a href="../form/addrecipe.php">Create Recipe</a></li>');
     }

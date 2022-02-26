@@ -21,7 +21,7 @@
 
 .img-circle{
 	border-radius: 8em;
-	border: .4em solid black;
+	border: .4em solid white;
 	width: 15em;
 }
 
@@ -114,11 +114,87 @@ a.nav-link:hover{
 	font-family: "Playfair Display", serif;
 }
 
-/* .nav-link{
-    font-family: Roboto, Sans-serif;
-    text-transform: uppercase;
-} */
-
 .bg-light{
 	background-color: #fbd691 !important;
+}
+
+/* nav bar ni gwen */
+/* Navigation Bar */
+.mycontainer .mynavbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5%;
+    background-color: #fbd691;
+    font-family: "Playfair Display", serif;
+}
+
+.mycontainer .mynavbar .logo{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.mycontainer .mynavbar .logo h1{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+}
+
+.mycontainer .mynavbar .test{
+    display: inline-block;
+    padding: 5px 15px ;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+}
+.mycontainer .mynavbar .test a{
+    padding: 5px 15px ;
+    color: #000000;
+    text-decoration: none;
+    font-size: 2.5vmin;
+    font-weight: normal;
+}
+
+.mycontainer .mynavbar .test a:hover{
+    color: #ffff;
+}
+
+.mycontainer .mynavbar .navs{
+    margin-left: 10vmin;
+}
+.mycontainer .mynavbar .navs li{
+    display: inline-block;
+    padding: 5px 30px;
+    align-items: center;
+    font-size: 2.5vmin;
+}
+
+.mycontainer .mynavbar .navs a{
+    text-decoration: none;
+    color: #000000;
+    padding: 10 5px;
+    position: relative;
+}
+
+.mycontainer .mynavbar .navs a:hover{
+    color: #ffff;
+}
+
+/* Login/Logout/Signup */
+.logout{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.logout:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    transition: all 0.4s;
+    color: #fbd691;
 }

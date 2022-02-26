@@ -228,7 +228,6 @@ $message = "<strong>Welcome User</strong>";
 if (isset($_POST["resetPassword"])){
 	$email = $_POST["forgotemail"];
 	$newpassword = $_POST["newpassword"];
-	echo $email;
 	// checkPasswords($email, $conn);
 
 	$sql = "SELECT * FROM users WHERE email = 'jansample@gmail.com' ";
@@ -236,13 +235,12 @@ if (isset($_POST["resetPassword"])){
 	if($email != "" and $newpassword != ""){
 		if ($list->num_rows > 0) {
 			$result = $list->fetch_all(MYSQLI_ASSOC);
-			echo $result;
 			foreach ($result as $row){
 				$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
 				// $message = '<div class="alert alert-danger">'.$result.'</div>';
 				$message = '<strong>'.$result.'</strong>';
 				if (strlen($result) <= 0) {
-					$sqlpassword = "UPDATE users SET password1='$newpassword' WHERE email='$email'";
+					$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
 					if ($conn->query($sqlpassword) === TRUE) {
 						updateTime($row["id"], $conn);
 						$message = "<strong>Account Password Successfully Updated</strong>";

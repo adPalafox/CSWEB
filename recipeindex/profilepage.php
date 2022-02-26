@@ -57,7 +57,7 @@
 					</div>
 					<div class="col-6">
 						<div class="card-body">
-							<p class="profile-name">Jan Kyle Merin</p>
+							<p class="profile-name">Jan Andrew Latoza</p>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nihil beatae aspernatur ipsam quam debitis? </p>
 							<p class="profile-info">jansample@gmail.com</p>
 							<!-- Button trigger modal -->

@@ -138,7 +138,7 @@
 		<!--End of Posted Recipes-->
 
 		<!-- Modal password -->
-		<div class="modal fade" id="modalResetPass" tabindex="-1" aria-labelledby="modalResetPass" aria-hidden="true">
+		<!-- <div class="modal fade" id="modalResetPass" tabindex="-1" aria-labelledby="modalResetPass" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -154,7 +154,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- End of Modal -->
 		<!-- Toast -->
 
@@ -169,7 +169,7 @@
 					<strong class="me-auto">Password Expiration</strong>
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
-				<div class="toast-body alert-warning">
+				<div class="toast-body alert-danger">
 					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
@@ -178,6 +178,44 @@
 			</div>
 		</div>
 		<!-- End of Toast -->
+
+		<!-- FORGOT MODULE -->
+		<div class="modal fade" id="modalResetPass" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<form action="index.php" method="POST">
+						<div class="modal-header justify-content-center">
+							<h5 class="brand" id="staticBackdropLabel">Forgot Password</h5>
+						</div>
+						<div class="modal-body">
+							<div class="container">
+								<h4 class="mb-3 fw-bold  text-center">Enter your new Password</h4>
+								<!-- <span><?php echo $message; ?></span> -->
+
+								<label for="forgotemail" class="form-label" style="color: red">Email Address</label>
+								<div class="input-group flex-nowrap mb-3">
+									<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="jansample@gmail.com" readonly>
+									<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
+								</div>
+
+								<label for="password" class="form-label" style="color: red">Enter New Password</label>
+								<div class="input-group flex-nowrap mb-3">
+									<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
+									<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="modal-footer justify-content-between mx-3 my-2">
+							<button type="submit" class="btn btn-dark" name="resetPassword">Reset</button>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
 	</div>
 	</div>
 </body>

@@ -66,6 +66,12 @@
                 </li>
                 <li>
                     <div class ="content">
+                        <h2>Adrean Andrew Palafox</h2>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur ratione alias necessitatibus repellat aut provident? Cum nihil a explicabo qui natus placeat, beatae illo, at tenetur laudantium rem dolorem iusto.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class ="content">
                         <h2>Kenneth Rada</h2>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur ratione alias necessitatibus repellat aut provident? Cum nihil a explicabo qui natus placeat, beatae illo, at tenetur laudantium rem dolorem iusto.</p>
                     </div>

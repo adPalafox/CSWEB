@@ -466,6 +466,12 @@ section{
     background-position: center;
 }
 .timeline ul li:nth-child(5)::before{
+    background-image: url(adfox.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.timeline ul li:nth-child(6)::before{
     background-image: url(rada.jpg);
     background-repeat: no-repeat;
     background-size: cover;

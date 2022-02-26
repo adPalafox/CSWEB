@@ -13,262 +13,261 @@
 
 <body>
 
-<?php
-include("accounts/db.php");
+	<?php
+	include("accounts/db.php");
 
-function checkExpire($seconds){
-	$currentSeconds = time() - $seconds;
+	function checkExpire($seconds)
+	{
+		$currentSeconds = time() - $seconds;
 
-	$minutes = $currentSeconds/60;
-	$hours = $minutes/60;
-	$days = $hours/24;
+		$minutes = $currentSeconds / 60;
+		$hours = $minutes / 60;
+		$days = $hours / 24;
 
-	return abs($days);
-}
-
-$sql = "SELECT * FROM users";
-$list = $conn->query($sql);
-if ($list->num_rows > 0) {
-	$result = $list->fetch_all(MYSQLI_ASSOC);
-	foreach ($result as $row) {
-		$days = checkExpire($row['expire']);
-		if ($days >= 20 and $days <= 30){
-			$daysleft = 30 - ((int)$days);
-			// $expireResult .= $row['email'].' is about to expire in ('.(int)$daysleft.' days)<br>';
-			// $message = '<div class="alert alert-danger">'.$expireResult.' </div>';
-		}
-		else if (checkExpire($row['expire']) > 30){
-			// $expireResult .= $row['email'].' has expired ('.(int)$days.' days)<br>';
-			// $message = '<div class="alert alert-danger">'.$expireResult.' </div>';
-		}
+		return abs($days);
 	}
-}
 
-if (!isset($_COOKIE['page'])) {
-	setcookie("page", "login", time() + 3600);
-}
-
-// PAGE SELECT MODULE
-if (isset($_POST["pageSelect"])) {
-	if($_POST['pageSelect'] == 'create'){
-		setcookie("page", "create", time() + 3600);
-	}
-	elseif($_POST['pageSelect'] == 'login'){
-		setcookie("page", "login", time() + 3600);
-	}
-	elseif($_POST['pageSelect'] == 'forgot'){
-		setcookie("page", "forgot", time() + 3600);
-	}
-}
-
-// ERROR MESSAGE
-if (isset($_SESSION['attempt'])) {
-	if ($_SESSION['attempt'] > 0) {
-		if ($_COOKIE['page'] != 'login') {
-			$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
-		}
-	}
-}
-
-
-
-if (isset($_POST["loginAccount"])) {
-	$passwordExpirationDays = 30;
-	if (!isset($_SESSION['attempt'])) {
-		$_SESSION['attempt'] = 0;
-	}
-	if ($_SESSION['attempt'] >= $maxattempts - 1) {
-		$_SESSION['error'] = 'Attempt limit reach';
-		$message = '<div class="alert alert-danger"> Attempt Limit Reached: (' . ($_SESSION["attempt"] + 1) . "/" . $maxattempts . ')</div>';
-	} else {
-		$email = $_POST['email'];
-		$sql = "SELECT * FROM users WHERE email = '$email'";
-		$list = $conn->query($sql);
-		if ($list->num_rows > 0) {
-			$result = $list->fetch_all(MYSQLI_ASSOC);
-			foreach ($result as $row) {
-				$days = checkExpire($row['expire']);
-				setcookie("DAYS", $days, time() + 3600);
-				setcookie("Expiration", $passwordExpirationDays, time() + 3600);
-				if($days <= $passwordExpirationDays){
-					if ($_POST['password'] == $row['password1']) {
-						//Successful Login - ZenocyFox21234@
-						$_SESSION['success'] = 'Login successful';
-						unset($_SESSION['attempt']);
-						setcookie("accountid", $row["id"], time() + 3600);
-						header("location:aboutpage.php");
-					} else {
-						$_SESSION['error'] = 'Password incorrect';
-						$_SESSION['attempt'] += 1;
-						if ($_SESSION['attempt'] == $maxattempts) {
-							//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
-							$_SESSION['attempt_again'] = time() + (5 * 60);
-						}
-						$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
-					}
-				}else{
-					$message = '<div class="alert alert-danger"> Password has expired for '.$row['email'].'<br>'. (int) $days.' days has passed</div>';
-				}
-			}
-		} else {
-			$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
-		}
-	}
-}
-
-function checkUpper($array)
-{
-	foreach ($array as $letter) {
-		if (ctype_upper($letter)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function checkLower($array)
-{
-	foreach ($array as $letter) {
-		if (ctype_lower($letter)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function checkSpecial($array)
-{
-	foreach ($array as $letter) {
-		if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $letter)) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function checkContain($password, $string)
-{
-	if (strpos(strtolower($password), strtolower($string)) !== false) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-function checkDictionary($password, $conn)
-{
-	$sql = "SELECT word from entries";
+	$sql = "SELECT * FROM users";
 	$list = $conn->query($sql);
 	if ($list->num_rows > 0) {
 		$result = $list->fetch_all(MYSQLI_ASSOC);
 		foreach ($result as $row) {
-			if (strlen($row['word']) >= 4) {
-				if (checkContain($password, $row['word'])) {
-					return $row['word'];
+			$days = checkExpire($row['expire']);
+			if ($days >= 20 and $days <= 30) {
+				$daysleft = 30 - ((int)$days);
+				// $expireResult .= $row['email'].' is about to expire in ('.(int)$daysleft.' days)<br>';
+				// $message = '<div class="alert alert-danger">'.$expireResult.' </div>';
+			} else if (checkExpire($row['expire']) > 30) {
+				// $expireResult .= $row['email'].' has expired ('.(int)$days.' days)<br>';
+				// $message = '<div class="alert alert-danger">'.$expireResult.' </div>';
+			}
+		}
+	}
+
+	if (!isset($_COOKIE['page'])) {
+		setcookie("page", "login", time() + 3600);
+	}
+
+	// PAGE SELECT MODULE
+	if (isset($_POST["pageSelect"])) {
+		if ($_POST['pageSelect'] == 'create') {
+			setcookie("page", "create", time() + 3600);
+		} elseif ($_POST['pageSelect'] == 'login') {
+			setcookie("page", "login", time() + 3600);
+		} elseif ($_POST['pageSelect'] == 'forgot') {
+			setcookie("page", "forgot", time() + 3600);
+		}
+	}
+
+	// ERROR MESSAGE
+	if (isset($_SESSION['attempt'])) {
+		if ($_SESSION['attempt'] > 0) {
+			if ($_COOKIE['page'] != 'login') {
+				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
+			}
+		}
+	}
+
+
+
+	if (isset($_POST["loginAccount"])) {
+		$passwordExpirationDays = 30;
+		if (!isset($_SESSION['attempt'])) {
+			$_SESSION['attempt'] = 0;
+		}
+		if ($_SESSION['attempt'] >= $maxattempts - 1) {
+			$_SESSION['error'] = 'Attempt limit reach';
+			$message = '<div class="alert alert-danger"> Attempt Limit Reached: (' . ($_SESSION["attempt"] + 1) . "/" . $maxattempts . ')</div>';
+		} else {
+			$email = $_POST['email'];
+			$sql = "SELECT * FROM users WHERE email = '$email'";
+			$list = $conn->query($sql);
+			if ($list->num_rows > 0) {
+				$result = $list->fetch_all(MYSQLI_ASSOC);
+				foreach ($result as $row) {
+					$days = checkExpire($row['expire']);
+					setcookie("DAYS", $days, time() + 3600);
+					setcookie("Expiration", $passwordExpirationDays, time() + 3600);
+					if ($days <= $passwordExpirationDays) {
+						if ($_POST['password'] == $row['password1']) {
+							//Successful Login - ZenocyFox21234@
+							$_SESSION['success'] = 'Login successful';
+							unset($_SESSION['attempt']);
+							setcookie("accountid", $row["id"], time() + 3600);
+							header("location:aboutpage.php");
+						} else {
+							$_SESSION['error'] = 'Password incorrect';
+							$_SESSION['attempt'] += 1;
+							if ($_SESSION['attempt'] == $maxattempts) {
+								//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
+								$_SESSION['attempt_again'] = time() + (5 * 60);
+							}
+							$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
+						}
+					} else {
+						$message = '<div class="alert alert-danger"> Password has expired for ' . $row['email'] . '<br>' . (int) $days . ' days has passed</div>';
+					}
 				}
+			} else {
+				$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
+			}
+		}
+	}
+
+	function checkUpper($array)
+	{
+		foreach ($array as $letter) {
+			if (ctype_upper($letter)) {
+				return true;
 			}
 		}
 		return false;
-	} else {
+	}
+
+	function checkLower($array)
+	{
+		foreach ($array as $letter) {
+			if (ctype_lower($letter)) {
+				return true;
+			}
+		}
 		return false;
 	}
-}
-function passwordValidation($firstname, $lastname, $password, $conn)
-{
-	$result = '';
-	$array = str_split($password);
-	if (strlen($password) < 10) {
-		$result .= "Password length must be atleast 10 characters.\n";
-	}
-	if (!checkUpper($array)) {
-		$result .= "Password must contain atleast 1 uppercase letter.\n";
-	}
-	if (!checkLower($array)) {
-		$result .= "Password must contain atleast 1 lowercase letter.\n";
-	}
-	if (!checkSpecial($array)) {
-		$result .= "Password must contain atleast 1 special character.\n";
-	}
-	if (checkContain($password, $firstname)) {
-		$result .= "Password must not be containing your first name.\n";
-	}
-	if (checkContain($password, $lastname)) {
-		$result .= "Password must not be containing your last name.\n";
-	}
 
-	$dictionary = checkDictionary($password, $conn);
-	setcookie("word", $dictionary, time() + 3600);
-	if ($dictionary) {
-		$result .= "Password must not contain a word from the dictionary.\n" . "$dictionary";
-	}
-
-	return $result;
-}
-
-function existingAccount($conn, $checkEmail)
-{
-	$sql = "SELECT * FROM users WHERE email = '$checkEmail'";
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		return true;
-	} else {
+	function checkSpecial($array)
+	{
+		foreach ($array as $letter) {
+			if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $letter)) {
+				return true;
+			}
+		}
 		return false;
 	}
-}
 
-function updateTime($id, $conn){
-	$newtime = time();
-	$sqlpassword = "UPDATE users SET expire='$newtime' WHERE id='$id'";
-	if ($conn->query($sqlpassword) === TRUE) {
+	function checkContain($password, $string)
+	{
+		if (strpos(strtolower($password), strtolower($string)) !== false) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-}
 
-function passwordHashing(){
-	
-}
-
-$message = "<strong>Welcome User</strong>";
-
-//RESET PASSWORD
-if (isset($_POST["resetPassword"])){
-	$email = $_POST["forgotemail"];
-	$newpassword = $_POST["newpassword"];
-	// checkPasswords($email, $conn);
-
-	$sql = "SELECT * FROM users WHERE email = 'jansample@gmail.com' ";
-	$list = $conn->query($sql);
-	if($email != "" and $newpassword != ""){
+	function checkDictionary($password, $conn)
+	{
+		$sql = "SELECT word from entries";
+		$list = $conn->query($sql);
 		if ($list->num_rows > 0) {
 			$result = $list->fetch_all(MYSQLI_ASSOC);
-			foreach ($result as $row){
-				//Goes to password validation
-				$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
-				//If $result returns a non empty string then it means the password is not accepted
-
-				//If $result returns a empty string then the password is accepted
-				passwordHashing($newpassword);
-
-				// $message = '<div class="alert alert-danger">'.$result.'</div>';
-				$message = '<strong>'.$result.'</strong>';
-				if (strlen($result) <= 0) {
-					$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
-					if ($conn->query($sqlpassword) === TRUE) {
-						updateTime($row["id"], $conn);
-						$message = "<strong>Account Password Successfully Updated</strong>";
-					} else {
-						echo "Error: " . $sql . "<br>" . $conn->error;
+			foreach ($result as $row) {
+				if (strlen($row['word']) >= 4) {
+					if (checkContain($password, $row['word'])) {
+						return $row['word'];
 					}
-					$conn->close();
 				}
 			}
-		}else{
-			$message = "<strong>Account Does Not Exist!</strong>";
+			return false;
+		} else {
+			return false;
 		}
-	}else{
-		$message = '<strong>There must be no empty inputs.</strong>';
 	}
-}
-?>
+	function passwordValidation($firstname, $lastname, $password, $conn)
+	{
+		$result = '';
+		$array = str_split($password);
+		if (strlen($password) < 10) {
+			$result .= "Password length must be atleast 10 characters.\n";
+		}
+		if (!checkUpper($array)) {
+			$result .= "Password must contain atleast 1 uppercase letter.\n";
+		}
+		if (!checkLower($array)) {
+			$result .= "Password must contain atleast 1 lowercase letter.\n";
+		}
+		if (!checkSpecial($array)) {
+			$result .= "Password must contain atleast 1 special character.\n";
+		}
+		if (checkContain($password, $firstname)) {
+			$result .= "Password must not be containing your first name.\n";
+		}
+		if (checkContain($password, $lastname)) {
+			$result .= "Password must not be containing your last name.\n";
+		}
+
+		$dictionary = checkDictionary($password, $conn);
+		setcookie("word", $dictionary, time() + 3600);
+		if ($dictionary) {
+			$result .= "Password must not contain a word from the dictionary.\n" . "$dictionary";
+		}
+
+		return $result;
+	}
+
+	function existingAccount($conn, $checkEmail)
+	{
+		$sql = "SELECT * FROM users WHERE email = '$checkEmail'";
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	function updateTime($id, $conn)
+	{
+		$newtime = time();
+		$sqlpassword = "UPDATE users SET expire='$newtime' WHERE id='$id'";
+		if ($conn->query($sqlpassword) === TRUE) {
+		}
+	}
+
+	function passwordHashing()
+	{
+	}
+
+	$message = "<strong>Welcome User</strong>";
+
+	//RESET PASSWORD
+	if (isset($_POST["resetPassword"])) {
+		$email = $_POST["forgotemail"];
+		$newpassword = $_POST["newpassword"];
+		// checkPasswords($email, $conn);
+
+		$sql = "SELECT * FROM users WHERE email = 'jansample@gmail.com' ";
+		$list = $conn->query($sql);
+		if ($email != "" and $newpassword != "") {
+			if ($list->num_rows > 0) {
+				$result = $list->fetch_all(MYSQLI_ASSOC);
+				foreach ($result as $row) {
+					//Goes to password validation
+					$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+					//If $result returns a non empty string then it means the password is not accepted
+
+					//If $result returns a empty string then the password is accepted
+					passwordHashing($newpassword);
+
+					// $message = '<div class="alert alert-danger">'.$result.'</div>';
+					$message = '<strong>' . $result . '</strong>';
+					if (strlen($result) <= 0) {
+						$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
+						if ($conn->query($sqlpassword) === TRUE) {
+							updateTime($row["id"], $conn);
+							$message = "<strong>Account Password Successfully Updated</strong>";
+						} else {
+							echo "Error: " . $sql . "<br>" . $conn->error;
+						}
+						$conn->close();
+					}
+				}
+			} else {
+				$message = "<strong>Account Does Not Exist!</strong>";
+			}
+		} else {
+			$message = '<strong>There must be no empty inputs.</strong>';
+		}
+	}
+	?>
 	<!-- Nav -->
 	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
@@ -297,8 +296,8 @@ if (isset($_POST["resetPassword"])){
 			</div>
 		</div>
 	</nav> -->
-	<div class="top">
-		<div class="yellow">
+	<div class="mycontainer">
+		<div class="mynavbar">
 			<div class="logo">
 				<img width="70px" src="./assets/All-Tasty.png" alt="">
 				<h1>All Tasty</h1>
@@ -406,25 +405,6 @@ if (isset($_POST["resetPassword"])){
 		</div>
 		<!--End of Posted Recipes-->
 
-		<!-- Modal password -->
-		<!-- <div class="modal fade" id="modalResetPass" tabindex="-1" aria-labelledby="modalResetPass" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Reset Password</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						asdfasdfasdf
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- End of Modal -->
 		<!-- Toast -->
 
 		<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -438,7 +418,7 @@ if (isset($_POST["resetPassword"])){
 					<strong class="me-auto">New Notification</strong>
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
-				<div class="toast-body alert-danger">
+				<div class="toast-body alert-info">
 					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
@@ -449,8 +429,8 @@ if (isset($_POST["resetPassword"])){
 			</div>
 		</div>
 		<!-- End of Toast -->
-		
-		
+
+
 		<!-- FORGOT MODULE -->
 		<div class="modal fade" id="modalResetPass" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
@@ -499,4 +479,35 @@ if (isset($_POST["resetPassword"])){
 	var toastLiveExample = document.getElementById('liveToast')
 	var toast = new bootstrap.Toast(toastLiveExample)
 	toast.show()
+
+	function getCookie(cname) {
+		let name = cname + "=";
+		let decodedCookie = decodeURIComponent(document.cookie);
+		let ca = decodedCookie.split(';');
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	let username = getCookie("user");
+	if (username != "") {
+		$("#loginForm").append('<a href="./profilepage.php"> ' + username + '</a>');
+		$("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
+		$("#navigation").append('<li><a href="./form/addrecipe.php">Create Recipe</a></li>');
+	} else {
+		$("#loginForm").append('<a href = "./login/login.php">Log In</a>');
+		$("#loginForm").append('<a href = "./login/signup.php"><button class="signup">Sign Up →</button></a>');
+	}
+	$("#logoutBtn").click(function() {
+		if (username != "") {
+			document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+		}
+	});
 </script>

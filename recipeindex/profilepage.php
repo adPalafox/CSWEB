@@ -10,6 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"> </script>
 	<link rel="stylesheet" href="profilepagestyle.css">
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -223,19 +224,22 @@
 		}
 	}
 
-	function passwordHashing()
-	{
-	}
-
 	$message = "<strong>Welcome User</strong>";
 
 	//RESET PASSWORD
 	if (isset($_POST["resetPassword"])) {
 		$email = $_POST["forgotemail"];
+		$hashemail = base64_encode($email);
 		$newpassword = $_POST["newpassword"];
 		// checkPasswords($email, $conn);
+		$SecretKey = '6LeQ6qEeAAAAAOg8CaomIHC1aAAU6ekIzfO39SNI';
+		$ResponseKey = $_POST['g-recaptcha-response'];
+		$userIP = $_SERVER['REMOTE_ADDR'];
 
-		$sql = "SELECT * FROM users WHERE email = 'jansample@gmail.com' ";
+		$url = "https://www.google.com/recaptcha/api/siteverify?secret=$SecretKey&response=$ResponseKey&remoteip=$userIP";
+		$response = file_get_contents($url);
+
+		$sql = "SELECT * FROM users WHERE email = '$hashemail' ";
 		$list = $conn->query($sql);
 		if ($email != "" and $newpassword != "") {
 			if ($list->num_rows > 0) {
@@ -245,20 +249,23 @@
 					$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
 					//If $result returns a non empty string then it means the password is not accepted
 
-					//If $result returns a empty string then the password is accepted
-					passwordHashing($newpassword);
 
 					// $message = '<div class="alert alert-danger">'.$result.'</div>';
 					$message = '<strong>' . $result . '</strong>';
 					if (strlen($result) <= 0) {
-						$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
-						if ($conn->query($sqlpassword) === TRUE) {
-							updateTime($row["id"], $conn);
-							$message = "<strong>Account Password Successfully Updated</strong>";
+						if ($_POST["g-recaptcha-response"] != '') {
+							$hashpass = base64_encode($newpassword);
+							$sqlpassword = "UPDATE users SET password='$hashpass' WHERE email='$hashemail'";
+							if ($conn->query($sqlpassword) === TRUE) {
+								updateTime($row["id"], $conn);
+								$message = "<strong>Account Password Successfully Updated</strong>";
+							} else {
+								echo "Error: " . $sql . "<br>" . $conn->error;
+							}
+							$conn->close();
 						} else {
-							echo "Error: " . $sql . "<br>" . $conn->error;
+							$message = "<strong>Please verify captcha.</strong>";
 						}
-						$conn->close();
 					}
 				}
 			} else {
@@ -456,6 +463,8 @@
 									<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
 									<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
 								</div>
+
+								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
 
 							</div>
 						</div>

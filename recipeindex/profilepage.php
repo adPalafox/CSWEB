@@ -503,8 +503,8 @@
 		$("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
 		$("#navigation").append('<li><a href="form/addrecipe.php">Create Recipe</a></li>');
 	} else {
-		$("#loginForm").append('<a href = "./login/login/index.php">Log In</a>');
-		$("#loginForm").append('<a href = "./login/login/index.php"><button class="signup">Sign Up →</button></a>');
+		$("#loginForm").append('<a href = "./login/index.php">Log In</a>');
+		$("#loginForm").append('<a href = "./login/index.php"><button class="signup">Sign Up →</button></a>');
 	}
 	$("#logoutBtn").click(function() {
 		if (username != "") {

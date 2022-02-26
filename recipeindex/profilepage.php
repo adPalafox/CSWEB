@@ -201,6 +201,7 @@ function passwordValidation($firstname, $lastname, $password, $conn)
 	if ($dictionary) {
 		$result .= "Password must not contain a word from the dictionary.\n" . "$dictionary";
 	}
+
 	return $result;
 }
 
@@ -222,6 +223,10 @@ function updateTime($id, $conn){
 	}
 }
 
+function passwordHashing(){
+	
+}
+
 $message = "<strong>Welcome User</strong>";
 
 //RESET PASSWORD
@@ -236,7 +241,13 @@ if (isset($_POST["resetPassword"])){
 		if ($list->num_rows > 0) {
 			$result = $list->fetch_all(MYSQLI_ASSOC);
 			foreach ($result as $row){
+				//Goes to password validation
 				$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+				//If $result returns a non empty string then it means the password is not accepted
+
+				//If $result returns a empty string then the password is accepted
+				passwordHashing($newpassword);
+
 				// $message = '<div class="alert alert-danger">'.$result.'</div>';
 				$message = '<strong>'.$result.'</strong>';
 				if (strlen($result) <= 0) {

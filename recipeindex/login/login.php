@@ -329,12 +329,12 @@
  							<input type="password" class="form-control" placeholder="Password" id="password" name="password" value="">
  							<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
  						</div>
-						 <button type="submit" class="btn " name="pageSelect" value = "forgot">Change Password</button>
- 					</div>
- 				</div>
-
- 				<div class="modal-footer justify-content-between mx-3 my-2">
- 					<button type="submit" class="btn " name="pageSelect" value = "create">Create an account</button>
+					</div>
+				</div>
+				
+				<div class="modal-footer justify-content-between mx-3 my-2">
+					<button type="submit" class="btn " name="pageSelect" value = "create">Create an account</button>
+					<button type="submit" class="btn " name="pageSelect" value = "forgot">Change Password</button>
  					<button type="submit" class="btn btnSquare bg-dark" name="loginAccount">Login</button>
  				</div>
  			</form>

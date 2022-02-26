@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Dr+Sugiyama&display=swap");
-a.mylink:hover{
-	cursor: pointer;
-}
+
 
 .body {
 	background-color: #f5f3ef;
 	color: #1a1a1a;
 	font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 
 .bg-profile-card{
@@ -17,20 +16,24 @@ a.mylink:hover{
     background-color: #fbd691;
     border-bottom-left-radius: 50% 75px;
     border-bottom-right-radius: 50% 75px;
+    border-bottom: solid .5em white;
 }
 
 .img-circle{
 	border-radius: 8em;
-	border: .5em solid #f5f3ef;
+	border: .4em solid black;
 	width: 15em;
 }
 
 .mylink {
-	/* text-decoration: none; */
 	color: #1a1a1a;
-	/* text-decoration: underline;
-	text-decoration-color: #de0c19;
-	text-decoration-thickness: .2em; */
+    transition-duration: .3s;
+
+}
+
+a.mylink:hover{
+	cursor: pointer;
+    color: #de0c19 !important;
 }
 
 .profile-name{
@@ -43,14 +46,14 @@ a.mylink:hover{
 	font-size: 1.2em;
 }
 
-.column{
+.pics-group{
     position: relative;
     margin-top: -5vmin;
     height: auto;
     width: 100%;
 }
 
-.column .rightcenter{
+.pics-group .rightcenter{
     position: absolute;
     right: 0;
     height: auto;
@@ -59,7 +62,7 @@ a.mylink:hover{
     margin-top: -13%;
 }
 
-.column .rightcenter2{
+.pics-group .rightcenter2{
     position: absolute;
     right: 0;
     height: auto;
@@ -68,7 +71,7 @@ a.mylink:hover{
     margin-top: -15%;
 }
 
-.column .rightcenter3{
+.pics-group .rightcenter3{
     position: absolute;
     right: 0;
     height: auto;
@@ -77,7 +80,7 @@ a.mylink:hover{
     margin-top: -12%;
 }
 
-.column .right{
+.pics-group .right{
     position: absolute;
     right: 0;
     height: auto;
@@ -90,17 +93,31 @@ a.mylink:hover{
 }
 
 .navbar-brand{
-	font-size: 1.5em;
+	font-size: 2em;
 	font-weight: bold;
 }
 
-.navbar-brand, .nav-link{
+a.nav-link{
+    font-size: 1em;
+    text-decoration: underline;
+    text-decoration-color: #de0c19;
+    text-decoration-thickness: .15em;
+    text-underline-offset: .2em;
+    color: black !important;
+}
+
+a.nav-link:hover{
+    text-decoration-color: black !important;
+}
+
+.navbar-brand{
 	font-family: "Playfair Display", serif;
 }
 
-.navbar-nav {
-	justify-content: space-between;
-}
+/* .nav-link{
+    font-family: Roboto, Sans-serif;
+    text-transform: uppercase;
+} */
 
 .bg-light{
 	background-color: #fbd691 !important;

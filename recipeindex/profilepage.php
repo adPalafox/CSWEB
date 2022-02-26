@@ -23,21 +23,20 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto p-3 mb-2 mb-lg-0">
-					<li class="nav-item">
+					<li class="nav-item ms-5">
 						<a class="nav-link" href="#">Home</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item ms-5">
 						<a class="nav-link" href="#">Recipes</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item ms-5">
 						<a class="nav-link" href="#">About</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item ms-5">
 						<a class="nav-link" href="#">Create Recipe</a>
 					</li>
 
 				</ul>
-				<a class="nav-link">Jan Kyle</a>
 				<button class="btn btn-dark" type="submit">Logout</button>
 				<!-- <form class="d-flex">
 					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -68,8 +67,8 @@
 
 					</div>
 
-					<div class="row">
-						<div class="column">
+					<div class="pics">
+						<div class="pics-group">
 							<img class="rightcenter" src="./home/mushcenter.png">
 							<img class="rightcenter2" src="./home/cilantro.png">
 							<img class="rightcenter3" src="./home/parsley.png">
@@ -85,13 +84,14 @@
 	<div class="container">
 
 		<!--Posted Recipes-->
+		<h3 class="">Created Recipes</h3>
 		<div class="row row-cols-1 row-cols-md-4 g-4">
 			<div class="col">
 				<div class="card">
 					<img src="./assets/blackforestcake.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores labore blanditiis repellat adipisci quod.</p>
 					</div>
 					<div class="card-footer">
 						<small class="text-muted">Last updated 3 mins ago</small>
@@ -103,7 +103,7 @@
 					<img src="./assets/isaw.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, ex laborum consequuntur sunt esse repudiandae cupiditate hic! Quos, assumenda illum.</p>
 					</div>
 					<div class="card-footer">
 						<small class="text-muted">Last updated 3 mins ago</small>
@@ -115,7 +115,7 @@
 					<img src="./assets/steak.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi eaque quia repellendus voluptatem magnam consectetur cumque nam, ipsum voluptatum quas facilis asperiores libero consequatur? Doloremque quas fuga cum odio consectetur?</p>
 					</div>
 					<div class="card-footer">
 						<small class="text-muted">Last updated 3 mins ago</small>
@@ -127,7 +127,7 @@
 					<img src="./assets/lettuce.png" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+						<p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est perspiciatis adipisci porro neque sint totam exercitationem. Esse repellat omnis perferendis laborum sapiente quisquam rerum sed ea tenetur, consequuntur dignissimos aspernatur!</p>
 					</div>
 					<div class="card-footer">
 						<small class="text-muted">Last updated 3 mins ago</small>
@@ -169,11 +169,11 @@
 					<strong class="me-auto">Password Expiration</strong>
 					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 				</div>
-				<div class="toast-body alert-success">
+				<div class="toast-body alert-warning">
 					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
-					<strong>Sweet potato!</strong> You have 69 days left before your password expires
+					<strong>Sweet potato!</strong> You have <strong> 69 days left </strong>before your password expires
 				</div>
 			</div>
 		</div>

@@ -28,7 +28,7 @@
                 </div>
                 <div class = "landing-page">
                     <div class="head-title">
-                        Chef's Recipe Secrets 
+                        Kenneth Rada was here
                         <p class = "head-second-title" >Tips | Techniques | Tricks</p>
                     </div>
                     <div class = "row">

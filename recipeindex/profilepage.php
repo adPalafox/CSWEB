@@ -14,7 +14,7 @@
 <body class="body">
 
 	<!-- Nav -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
 			<img src="./home/All-Tasty-.png" alt="logo" width="50" height="40">
 			<a class="navbar-brand" href="#">All Tasty</a>
@@ -38,13 +38,26 @@
 
 				</ul>
 				<button class="btn btn-dark" type="submit">Logout</button>
-				<!-- <form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form> -->
 			</div>
 		</div>
-	</nav>
+	</nav> -->
+	<div class="mycontainer">
+		<div class="mynavbar">
+			<div class="logo">
+				<img width="70px" src="./assets/All-Tasty.png" alt="">
+				<h1>All Tasty</h1>
+			</div>
+
+			<div id="navigation" class="navs">
+				<li><a href="./home/index.php">Home</a></li>
+				<li><a href="./index.php">Recipes</a></li>
+				<li><a href="./about/aboutpage.php">About</a></li>
+			</div>
+
+			<div id="loginForm" class="test">
+			</div>
+		</div>
+	</div>
 	<!-- End of Nav -->
 	<div class="bg-profile-card">
 		<div class="container">

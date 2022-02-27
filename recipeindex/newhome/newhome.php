@@ -51,8 +51,8 @@
     <div class="background-design">
         <div>
             <div class="background-image">
-                <img class="background-image-left" src="design2.png">
-                <img class="background-image-right" src="design3.png">
+                <img class="background-image-left" src="redesign2.png">
+                <img class="background-image-right" src="redesign3.png">
             </div>
 
             <div class=content-background>
@@ -100,8 +100,15 @@
             </div>
         </div>
     </div>
-    
 
+    <div class="background-design2">
+        <footer class="page-footer">
+            <p>&#169; All Tasty. All right reserved.</p>
+        </footer>
+    </div>
+    
+    
+    
     <script src="script.js"></script>
 
 </body>

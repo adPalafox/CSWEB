@@ -240,7 +240,7 @@
 							//Successful Login
 							setcookie("user", $row['firstname'], time() + 3600, '/', NULL, 0);
 							setcookie("id", $row['id'], time() + 3600, '/', NULL, 0);
-							setcookie("email", base64_encode($row['email']), time() + 3600, '/', NULL, 0);
+							setcookie("email", $row['email'], time() + 3600, '/', NULL, 0);
 							setcookie("attempt", 0, time() + 3600);
 							$message = '<div class="alert alert-danger"> Login Successful! </div>';
 							header("location:../home/index.php");

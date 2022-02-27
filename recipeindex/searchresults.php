@@ -72,7 +72,7 @@
                                 cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
                             }
                         }
-                        $("#searchList").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = '+recipe.recipe_id+' ><img src="./assets/'+recipe.img_name+'" class="img recipe-img"><p class = "Author">Author: '+recipe.firstname+'</p> <div class = "flexStar" id = "'+index+'"> </div> <h5>'+recipe.recipe_name+'</h5><p> Cook time: '+cooktime+'</p></button> </div>');
+                        $("#searchList").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = '+recipe.recipe_id+' ><img src="./assets/'+recipe.img_name+'" class="img recipe-img"><p class = "Author">Author: '+atob(recipe.firstname)+'</p> <div class = "flexStar" id = "'+index+'"> </div> <h5>'+recipe.recipe_name+'</h5><p> Cook time: '+cooktime+'</p></button> </div>');
                     }
                 });
                 for(let i = 0; i < response.length; i++){
@@ -120,7 +120,9 @@
     }
     $("#logoutBtn").click(function(){
         if (username != ""){
+            document.cookie = `id= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
             document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+            document.cookie = `email= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
         }
     });
 </script>

@@ -269,9 +269,7 @@
                 results = true;
             }
         });
-        console.log(results);
-        if(results == false){
-            console.log("HELLO");
+        if(results == false && getCookie("id")){
             $('#ratingSection').append('<div class="col-md-3"></div>');
             $('#ratingSection').append('<div class="col-md-6 well">');
             $('#ratingSection').append('<h3 class="ratingtext">How much would you rate this recipe?</h3>');
@@ -302,7 +300,7 @@
                 response.forEach(function(rating, index){
                     if(rating.rating != 0){
                         if(rating.recipe_id == recipeId){
-                            $('#reviewBox').append('<h5 class = "ratingUsername" >'+rating.firstname+'');
+                            $('#reviewBox').append('<h5 class = "ratingUsername" >'+atob(rating.firstname)+'');
                             for(let i = 0; i < rating.rating; i++){
                                 $('#reviewBox').append('<span class = "fa fa-star" style = "color: #FDCC0D"></span>');
                             }

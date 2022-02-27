@@ -16,7 +16,7 @@
 <body>
 
 	<?php
-	include("db.php");
+	include("./login/endpoints/db.php");
 
 	$attempts = 0;
 	$maxattempts = 3;
@@ -175,7 +175,7 @@
 		
 	}
 
-	$message = '<strong>Welcome '.$_COOKIE['user'].'</strong>';
+	$message = '<strong>Welcome '.base64_decode($_COOKIE['user']).'</strong>';
 
 	// RESET PASSWORD
 	if (isset($_POST["resetPassword"])) {
@@ -198,7 +198,7 @@
 							$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
 							if ($conn->query($sqlpassword) === TRUE) {
 								// updateTime($row["id"], $conn);
-								$message = '<div class="alert alert-danger"> Account Password Successfully Updated </div>';
+								$message = '<strong> Account Password Successfully Updated! </strong>';
 							} else {
 								echo "Error: " . $sql . "<br>" . $conn->error;
 							}
@@ -206,13 +206,13 @@
 						}
 					}
 				} else {
-					$message = '<div class="alert alert-danger"> Please verify captcha. </div>';
+					$message = '<strong> Please verify captcha. </strong>';
 				}
 			} else {
-				$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
+				$message = '<strong> Account Does Not Exist! </strong>';
 			}
 		} else {
-			$message = '<div class="alert alert-danger"> There must be no empty inputs. </div>';
+			$message = '<strong> There must be no empty inputs. </strong>';
 		}
 	}
 	?>
@@ -453,7 +453,10 @@
 	}
 	$("#logoutBtn").click(function() {
 		if (username != "") {
-			document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+			document.cookie = `id= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+            document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+            document.cookie = `email= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+			location.reload();
 		}
 	});
 	
@@ -468,7 +471,8 @@
 			var firstname = atob(response[0].firstname);
 			var lastname = atob(response[0].lastname);
 			var email = atob(response[0].email);
-			document.cookie = "email="+response[0].email;
+			// document.cookie = "email="+response[0].email;
+			
 			// $("#profile").append('<h1>'+recipe.recipe_name+'</h1> <p>'+recipe.recipe_description+'</p> <div class="time-grid">  <div id = "recipeServings" class="time-square-1"> <div class="time-title-1">Serving</div> <div class="time-alotted">'+recipe.servings+' servings</div></div><div id = "recipeTime" class="time-square-2"><div class="time-title-2">Cook</div><div class="time-alotted">'+cooktime+'</div></div></div>')
             // <p class="profile-name"> </p>
 			$("#profile").append('<p class="profile-name">'+firstname+' '+lastname+'</p>');

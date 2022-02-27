@@ -178,6 +178,7 @@
         $("#navigation").append('<li><a href="../form/addrecipe.php">Create Recipe</a></li>');
     } else {
         $("#loginForm").append('<a href = "../login/index.php"><button id = "logoutBtn" class="signup">Log In</button></a>');
+        $("#loginForm").append('<a href = "./login/index.php"><button class="signup">Sign Up →</button></a>');
     }
     $("#logoutBtn").click(function() {
         if (username != "") {

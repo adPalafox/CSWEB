@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+/* Navigation Bar */
+.container .navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5%;
+    background-color: #fbd691;
+    font-family: "Playfair Display", serif;
+}
+
+.container .navbar .logo{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container .navbar .logo h1{
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+}
+
+.container .navbar .test{
+    display: inline-block;
+    padding: 5px 15px ;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+}
+.container .navbar .test a{
+    padding: 5px 15px ;
+    color: #000000;
+    text-decoration: none;
+    font-size: 2.5vmin;
+}
+
+.container .navbar .test a:hover{
+    color: #ffff;
+}
+
+.container .navbar .navs{
+    margin-left: 10vmin;
+}
+.container .navbar .navs li{
+    display: inline-block;
+    padding: 5px 30px;
+    align-items: center;
+    font-size: 2.5vmin;
+}
+
+.container .navbar .navs a{
+    text-decoration: none;
+    color: #000000;
+    padding: 10 5px;
+    position: relative;
+}
+
+.container .navbar .navs a:hover{
+    color: #ffff;
+}
+
+/* Login/Logout/Signup */
+.logout{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.logout:hover{
+    transition: all 0.2s;
+    color: #fbd691;
+}
+
+.signup{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.signup:hover{
+    transition: all 0.2s;
+    color: #fbd691;
+}
+
+/* Content */
+.container .landing-page{
+    display: block;
+    height: 70vmin;
+    position: relative;
+    background-color: #fbd691;
+    border-bottom-left-radius: 50% 75px;
+    border-bottom-right-radius: 50% 75px;
+}
+
+.head-title{
+    font-size: 9vmin;
+    position: relative;
+    text-align: center;
+    padding-top: 5vmin;
+}
+
+.head-title a{
+    display: block;
+    margin: 2% 44% 0 44%;
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+    text-decoration: none;
+    color: #000000;
+}
+
+.head-title a:hover{
+    transition: all 0.2s;
+    color: #fbd691;
+}
+
+.column{
+    position: relative;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.column .center{
+    margin-top: 50px;
+    height: auto;
+    width: 70vmin;
+}
+
+.column .left{
+    position: absolute;
+    left: 0;
+    height: auto;
+    width: 18%;
+    margin-left: 6vmin;
+    margin-top: -7%;
+}
+
+.column .leftcenter{
+    position: absolute;
+    left: 0%;
+    height: auto;
+    width: 4%;
+    margin-left: 22%;
+    margin-top: 7%;
+}
+
+.column .rightcenter{
+    position: absolute;
+    right: 0;
+    height: auto;
+    width: 4%;
+    margin-right: 20%;
+    margin-top: 11%;
+}
+
+.column .rightcenter2{
+    position: absolute;
+    right: 0;
+    height: auto;
+    width: 6%;
+    margin-right: 22%;
+    margin-top: -4%;
+}
+
+.column .rightcenter3{
+    position: absolute;
+    right: 0;
+    height: auto;
+    width: 4%;
+    margin-right: 27%;
+    margin-top: -2%;
+}
+
+.column .right{
+    position: absolute;
+    right: 0;
+    height: auto;
+    width: 10%;
+    margin-top: -8%;
+}
+
+
+/*SECOND PAGE*/
+.background-design{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.background-image{
+    background-color: black;
+}
+
+.background-design .background-image-left{
+    position: absolute;
+    left: 0;
+    margin-top: 90vmin;
+}
+
+.background-design .background-image-right{
+    position: absolute;
+    right: 0;
+    margin-top: 31vmin;
+}
+
+.second-title{
+    font-size: 4vmin;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.subtitle{
+    font-size: 2vmin;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-top: -5px;
+}
+
+.shape {
+    height: 300px;
+    display: flex;
+    margin-left: 1165px;
+    margin-top: 35px;
+}
+
+.content-background{
+    padding-top: 22%;
+    position: absolute;
+}
+
+.content-background .shape{
+    position: absolute;
+    right: 0%;
+}
+
+.img-right{
+    text-align: right;
+    margin-right: 30%;
+}
+
+.txt-right{
+    text-align: right;
+    margin-right: 35%;
+}
+
+.img-left{
+    text-align: left;
+    margin-left: -13%;
+}
+
+.txt-left{
+    text-align: left;
+    margin-left: 35%;
+}
+
+.content{
+    margin: -1% 5% -5% 5%;
+    padding: 8% 10% 10% 10%;
+}
+
+.content .content-image{
+    position: absolute;
+    width: 30%;
+    height: auto;
+    border-radius: 7%;
+    transition: all 1s;
+    overflow: hidden;
+}
+.content .content-image:hover{
+    transform: scale(1.1);
+}
+
+.content .content-text{
+    padding-top: 4%;
+    width: auto;
+}
+
+.content .description-title{
+    text-transform: uppercase;
+    font-weight:bold;
+    font-size: 3vmin;
+}
+
+.content .description-text{
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vmin;
+    
+}
+
+
+

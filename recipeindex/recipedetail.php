@@ -86,28 +86,6 @@
 </html>
 
 <script>
-    var recipeId = <?=$_POST['button']?>;
-    var user_id = 0;
-
-    var getCurrentUser = function(callback)
-    {
-        $.ajax({
-        url: "getcurrentuser.php",
-        type: "POST",
-        success: callback
-        });
-    }
-
-    getCurrentUser(function(data){
-        var currentAccount = getCookie("user");
-        data.forEach(function(user, index){
-            if (currentAccount.toLowerCase() == (user.username).toLowerCase()){
-                user_id = user.id;
-                return
-            }
-        });
-    });
-
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -123,7 +101,34 @@
         }
         return "";
     }
+
+    var recipeId = <?=$_POST['button']?>;
+    var user_id = getCookie("id");
+
     
+    // var getCurrentUser = function(callback)
+    // {
+    //     $.ajax({
+    //     url: "getcurrentuser.php",
+    //     type: "POST",
+    //     success: callback
+    //     });
+    // }
+
+    // getCurrentUser(function(data){
+    //     var currentAccount = getCookie("user");
+    //     data.forEach(function(user, index){
+    //         if (currentAccount.toLowerCase() == (user.firstname).toLowerCase()){
+    //             user_id = user.id;
+    //             return
+    //         }
+    //     });
+    // });
+
+    
+    
+
+
     Load();
     loadIngredients(recipeId);
     loadSteps(recipeId);
@@ -144,7 +149,7 @@
                         }
                         $("#recipeInfo").append('<h1>'+recipe.recipe_name+'</h1> <p>'+recipe.recipe_description+'</p> <div class="time-grid">  <div id = "recipeServings" class="time-square-1"> <div class="time-title-1">Serving</div> <div class="time-alotted">'+recipe.servings+' servings</div></div><div id = "recipeTime" class="time-square-2"><div class="time-title-2">Cook</div><div class="time-alotted">'+cooktime+'</div></div></div>')
                         $("#recipeImage").append('<img class = "testing" src = "./assets/'+recipe.img_name+'"></img>');
-                        if((recipe.username).toLowerCase() == (getCookie("user")).toLowerCase()){
+                        if((recipe.firstname).toLowerCase() == (getCookie("user")).toLowerCase()){
                             $("#navz").append('<a href="./index.php"><button id = "deleteRecipe" class="recipe">Delete Recipe</button></a>');
                         }
                     }
@@ -260,7 +265,7 @@
         var currentAccount = getCookie("user");
         var results = false;
         data.forEach(function(rating, index){
-            if(rating.recipe_id == recipeId && currentAccount == rating.username && rating.rating > 0){
+            if(rating.recipe_id == recipeId && currentAccount == rating.firstname && rating.rating > 0){
                 results = true;
             }
         });
@@ -297,7 +302,7 @@
                 response.forEach(function(rating, index){
                     if(rating.rating != 0){
                         if(rating.recipe_id == recipeId){
-                            $('#reviewBox').append('<h5 class = "ratingUsername" >'+rating.username+'');
+                            $('#reviewBox').append('<h5 class = "ratingUsername" >'+rating.firstname+'');
                             for(let i = 0; i < rating.rating; i++){
                                 $('#reviewBox').append('<span class = "fa fa-star" style = "color: #FDCC0D"></span>');
                             }

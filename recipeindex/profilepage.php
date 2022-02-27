@@ -16,38 +16,18 @@
 <body>
 
 	<?php
-	include("accounts/db.php");
+	include("db.php");
 
-	function checkExpire($seconds)
-	{
-		$currentSeconds = time() - $seconds;
-
-		$minutes = $currentSeconds / 60;
-		$hours = $minutes / 60;
-		$days = $hours / 24;
-
-		return abs($days);
-	}
-
-	$sql = "SELECT * FROM users";
-	$list = $conn->query($sql);
-	if ($list->num_rows > 0) {
-		$result = $list->fetch_all(MYSQLI_ASSOC);
-		foreach ($result as $row) {
-			$days = checkExpire($row['expire']);
-			if ($days >= 20 and $days <= 30) {
-				$daysleft = 30 - ((int)$days);
-				// $expireResult .= $row['email'].' is about to expire in ('.(int)$daysleft.' days)<br>';
-				// $message = '<div class="alert alert-danger">'.$expireResult.' </div>';
-			} else if (checkExpire($row['expire']) > 30) {
-				// $expireResult .= $row['email'].' has expired ('.(int)$days.' days)<br>';
-				// $message = '<div class="alert alert-danger">'.$expireResult.' </div>';
-			}
-		}
-	}
-
+	$attempts = 0;
+	$maxattempts = 3;
+	$expireResult = "";
+	$message = '';
+	
 	if (!isset($_COOKIE['page'])) {
 		setcookie("page", "login", time() + 3600);
+	}
+	if (!isset($_COOKIE['attempt'])) {
+		setcookie("attempt", 0, time() + 3600);
 	}
 
 	// PAGE SELECT MODULE
@@ -62,59 +42,17 @@
 	}
 
 	// ERROR MESSAGE
-	if (isset($_SESSION['attempt'])) {
-		if ($_SESSION['attempt'] > 0) {
-			if ($_COOKIE['page'] != 'login') {
-				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
+	if (isset($_COOKIE['attempt'])) {
+		if ($_COOKIE['attempt'] < $maxattempts) {
+			if($_COOKIE['attempt'] > 0){
+				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_COOKIE["attempt"] . "/" . $maxattempts . ')</div>';
 			}
+		}
+		else{
+			$message = '<div class="alert alert-danger"><span id = "time"> Login Attempt Limit Reached!</span></div>';
 		}
 	}
 
-
-
-	if (isset($_POST["loginAccount"])) {
-		$passwordExpirationDays = 30;
-		if (!isset($_SESSION['attempt'])) {
-			$_SESSION['attempt'] = 0;
-		}
-		if ($_SESSION['attempt'] >= $maxattempts - 1) {
-			$_SESSION['error'] = 'Attempt limit reach';
-			$message = '<div class="alert alert-danger"> Attempt Limit Reached: (' . ($_SESSION["attempt"] + 1) . "/" . $maxattempts . ')</div>';
-		} else {
-			$email = $_POST['email'];
-			$sql = "SELECT * FROM users WHERE email = '$email'";
-			$list = $conn->query($sql);
-			if ($list->num_rows > 0) {
-				$result = $list->fetch_all(MYSQLI_ASSOC);
-				foreach ($result as $row) {
-					$days = checkExpire($row['expire']);
-					setcookie("DAYS", $days, time() + 3600);
-					setcookie("Expiration", $passwordExpirationDays, time() + 3600);
-					if ($days <= $passwordExpirationDays) {
-						if ($_POST['password'] == $row['password1']) {
-							//Successful Login - ZenocyFox21234@
-							$_SESSION['success'] = 'Login successful';
-							unset($_SESSION['attempt']);
-							setcookie("accountid", $row["id"], time() + 3600);
-							header("location:aboutpage.php");
-						} else {
-							$_SESSION['error'] = 'Password incorrect';
-							$_SESSION['attempt'] += 1;
-							if ($_SESSION['attempt'] == $maxattempts) {
-								//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
-								$_SESSION['attempt_again'] = time() + (5 * 60);
-							}
-							$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
-						}
-					} else {
-						$message = '<div class="alert alert-danger"> Password has expired for ' . $row['email'] . '<br>' . (int) $days . ' days has passed</div>';
-					}
-				}
-			} else {
-				$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
-			}
-		}
-	}
 
 	function checkUpper($array)
 	{
@@ -201,7 +139,6 @@
 		if ($dictionary) {
 			$result .= "Password must not contain a word from the dictionary.\n" . "$dictionary";
 		}
-
 		return $result;
 	}
 
@@ -216,63 +153,66 @@
 		}
 	}
 
-	function updateTime($id, $conn)
-	{
-		$newtime = time();
-		$sqlpassword = "UPDATE users SET expire='$newtime' WHERE id='$id'";
-		if ($conn->query($sqlpassword) === TRUE) {
-		}
+	function validateDate($datenow, $sqldate){
+		$days = 0;
+		$datenow = strtotime($datenow);
+		$sqldate = strtotime($sqldate);
+
+		$datediff = $sqldate - $datenow;
+
+    	$days = abs(round($datediff / (60 * 60 * 24)));
+
+		return $days;
 	}
 
-	$message = "<strong>Welcome User</strong>";
+	function getDays($now, $sqldate){
 
-	//RESET PASSWORD
-	if (isset($_POST["resetPassword"])) {
-		$email = $_POST["forgotemail"];
-		$hashemail = base64_encode($email);
-		$newpassword = $_POST["newpassword"];
-		// checkPasswords($email, $conn);
-		$SecretKey = '6LeQ6qEeAAAAAOg8CaomIHC1aAAU6ekIzfO39SNI';
-		$ResponseKey = $_POST['g-recaptcha-response'];
-		$userIP = $_SERVER['REMOTE_ADDR'];
-
-		$url = "https://www.google.com/recaptcha/api/siteverify?secret=$SecretKey&response=$ResponseKey&remoteip=$userIP";
-		$response = file_get_contents($url);
+		$datediff = $sqldate - $now;
 		
-		$sql = "SELECT * FROM users WHERE email = '$hashemail' ";
+		$days = abs(round($datediff / (60 * 60 * 24)));
+		
+		echo $days." days";
+		
+	}
+
+	$message = '<strong>Welcome '.$_COOKIE['user'].'</strong>';
+
+	// RESET PASSWORD
+	if (isset($_POST["resetPassword"])) {
+		$email = base64_encode($_POST["forgotemail"]);
+		$newpassword = $_POST["newpassword"];
+
+		// checkPasswords($email, $conn);
+
+		$sql = "SELECT * FROM users WHERE email = '$email'";
 		$list = $conn->query($sql);
 		if ($email != "" and $newpassword != "") {
 			if ($list->num_rows > 0) {
-				$result = $list->fetch_all(MYSQLI_ASSOC);
-				foreach ($result as $row) {
-					//Goes to password validation
-					$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
-					//If $result returns a non empty string then it means the password is not accepted
-
-
-					// $message = '<div class="alert alert-danger">'.$result.'</div>';
-					$message = '<strong>' . $result . '</strong>';
-					if (strlen($result) <= 0) {
-						if ($_POST["g-recaptcha-response"] != '') {
-							$hashpass = base64_encode($newpassword);
-							$sqlpassword = "UPDATE users SET password='$hashpass' WHERE email='$hashemail'";
+				if ($_POST["g-recaptcha-response"] != '') {
+					$result = $list->fetch_all(MYSQLI_ASSOC);
+					foreach ($result as $row) {
+						$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+						$message = '<div class="alert alert-danger">' . $result . '</div>';
+						if (strlen($result) <= 0) {
+							$newpassword = base64_encode($newpassword);
+							$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
 							if ($conn->query($sqlpassword) === TRUE) {
-								updateTime($row["id"], $conn);
-								$message = "<strong>Account Password Successfully Updated</strong>";
+								// updateTime($row["id"], $conn);
+								$message = '<div class="alert alert-danger"> Account Password Successfully Updated </div>';
 							} else {
 								echo "Error: " . $sql . "<br>" . $conn->error;
 							}
 							$conn->close();
-						} else {
-							$message = "<strong>Please verify captcha.</strong>";
 						}
 					}
+				} else {
+					$message = '<div class="alert alert-danger"> Please verify captcha. </div>';
 				}
 			} else {
-				$message = "<strong>Account Does Not Exist!</strong>";
+				$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
 			}
 		} else {
-			$message = '<strong>There must be no empty inputs.</strong>';
+			$message = '<div class="alert alert-danger"> There must be no empty inputs. </div>';
 		}
 	}
 	?>
@@ -321,7 +261,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- End of Nav -->
+
 	<div class="bg-profile-card">
 		<div class="container">
 			<!--Profile card-->
@@ -331,14 +273,8 @@
 						<img src="./about/merin.jpg" class="mx-auto d-block img-circle" alt="profile picture">
 					</div>
 					<div class="col-6">
-						<div class="card-body">
-							<p class="profile-name">Jan Andrew Latoza</p>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nihil beatae aspernatur ipsam quam debitis? </p>
-							<p class="profile-info">jansample@gmail.com</p>
-							<!-- Button trigger modal -->
-							<a class="mylink" data-bs-toggle="modal" data-bs-target="#modalResetPass">
-								Reset Password
-							</a>
+						<div class="card-body" id = profile>
+
 						</div>
 
 					</div>
@@ -454,7 +390,7 @@
 
 								<label for="forgotemail" class="form-label" style="color: red">Email Address</label>
 								<div class="input-group flex-nowrap mb-3">
-									<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="jansample@gmail.com" readonly>
+									<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="<?php echo base64_decode($_COOKIE['email'])?>" readonly>
 									<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
 								</div>
 
@@ -506,7 +442,7 @@
 		return "";
 	}
 
-	let username = getCookie("user");
+	let username = atob(getCookie("user"));
 	if (username != "") {
 		$("#loginForm").append('<a href="./profilepage.php"> ' + username + '</a>');
 		$("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
@@ -520,4 +456,28 @@
 			document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 		}
 	});
+	
+	function loadProfile(id){
+        $.ajax({
+        url: "./loadprofile.php",
+        type: "POST",
+        data:{
+            "id": (id),
+        },
+        success: function(response){
+			var firstname = atob(response[0].firstname);
+			var lastname = atob(response[0].lastname);
+			var email = atob(response[0].email);
+			document.cookie = "email="+response[0].email;
+			// $("#profile").append('<h1>'+recipe.recipe_name+'</h1> <p>'+recipe.recipe_description+'</p> <div class="time-grid">  <div id = "recipeServings" class="time-square-1"> <div class="time-title-1">Serving</div> <div class="time-alotted">'+recipe.servings+' servings</div></div><div id = "recipeTime" class="time-square-2"><div class="time-title-2">Cook</div><div class="time-alotted">'+cooktime+'</div></div></div>')
+            // <p class="profile-name"> </p>
+			$("#profile").append('<p class="profile-name">'+firstname+' '+lastname+'</p>');
+			$("#profile").append('<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nihil beatae aspernatur ipsam quam debitis? </p>');
+			$("#profile").append('<p class="profile-info">'+email+'</p>');
+			$("#profile").append('<a class="mylink" data-bs-toggle="modal" data-bs-target="#modalResetPass"> Reset Password </a>');
+			}
+        });
+    }
+	
+	loadProfile(getCookie('id'));
 </script>

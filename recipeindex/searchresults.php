@@ -72,7 +72,7 @@
                                 cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
                             }
                         }
-                        $("#searchList").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = '+recipe.recipe_id+' ><img src="./assets/'+recipe.img_name+'" class="img recipe-img"><p class = "Author">Author: '+recipe.username+'</p> <div class = "flexStar" id = "'+index+'"> </div> <h5>'+recipe.recipe_name+'</h5><p> Cook time: '+cooktime+'</p></button> </div>');
+                        $("#searchList").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = '+recipe.recipe_id+' ><img src="./assets/'+recipe.img_name+'" class="img recipe-img"><p class = "Author">Author: '+recipe.firstname+'</p> <div class = "flexStar" id = "'+index+'"> </div> <h5>'+recipe.recipe_name+'</h5><p> Cook time: '+cooktime+'</p></button> </div>');
                     }
                 });
                 for(let i = 0; i < response.length; i++){
@@ -108,7 +108,7 @@
     }
     return "";
     }
-    let username = getCookie("user");
+    let username = atob(getCookie("user"));
     if (username != ""){
         $("#loginForm").append('<a> '+username+'</a>');
         $("#loginForm").append('<a href="/recipeindex/index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');

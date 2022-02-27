@@ -166,14 +166,6 @@
 		}
 	}
 
-	// function updateTime($id, $conn)
-	// {
-	// 	$newtime = time();
-	// 	$sqlpassword = "UPDATE users SET expire='$newtime' WHERE id='$id'";
-	// 	if ($conn->query($sqlpassword) === TRUE) {
-	// 	}
-	// }
-
 	function validateDate($datenow, $sqldate){
 		$days = 0;
 		$datenow = strtotime($datenow);
@@ -185,7 +177,17 @@
 
 		return $days;
 	}
-	
+
+	function getDays($now, $sqldate){
+
+		$datediff = $sqldate - $now;
+		
+		$days = abs(round($datediff / (60 * 60 * 24)));
+		
+		echo $days." days";
+		
+	}
+
 	if (isset($_POST["loginAccount"])) {
 		if (!isset($_COOKIE['attempt'])) {
 			$_COOKIE['attempt'] = 0;
@@ -229,17 +231,18 @@
 					// }
 					$hashedpassword = base64_encode($_POST['password']);
 					if ($hashedpassword == $row['password']) {
-						// $datenow = date("2022-03-05");
 						$datenow = date('Y-m-d');
-						$dayspassed = validateDate($datenow, $row['date']);
-						if($dayspassed >= 30){
+						$dayspassed = validateDate($datenow, base64_decode($row['date']));
+						if($dayspassed > 30){
 							$message = '<div class="alert alert-danger"> The password for this account has expired! </div>';
 						}
 						else{
 							//Successful Login
+							setcookie("user", $row['firstname'], time() + 3600, '/', NULL, 0);
+							setcookie("id", $row['id'], time() + 3600, '/', NULL, 0);
+							setcookie("email", base64_encode($row['email']), time() + 3600, '/', NULL, 0);
+							setcookie("attempt", 0, time() + 3600);
 							$message = '<div class="alert alert-danger"> Login Successful! </div>';
-							$_SESSION['success'] = 'Login successful';
-							unset($_SESSION['attempt']);
 							header("location:../home/index.php");
 						}
 					} else {
@@ -300,15 +303,7 @@
 
 	// checkPasswords("curfyfox@gmail.com", $conn);
 
-	function getDays($now, $sqldate){
-
-		$datediff = $sqldate - $now;
-		
-		$days = abs(round($datediff / (60 * 60 * 24)));
-		
-		echo $days." days";
-		
-	}
+	
 
 	if (isset($_POST["createAccount"])) {
 		$fname = $_POST['createfname'];
@@ -329,7 +324,10 @@
 			if ($_POST["g-recaptcha-response"] != '') {
 				if (!existingAccount($conn, $email)) {
 					if (strlen($result) <= 0) {
+						$fname = base64_encode($fname);
+						$lname = base64_encode($lname);
 						$password = base64_encode($password);
+						$date = base64_encode($date);
 						$sql = "INSERT INTO users (firstname, lastname, email, password, date) VALUES ('$fname', '$lname', '$email', '$password', '$date');";
 						if ($conn->query($sql) === TRUE) {
 							setcookie("page", "login", time() + 3600);
@@ -374,7 +372,7 @@
 							$newpassword = base64_encode($newpassword);
 							$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
 							if ($conn->query($sqlpassword) === TRUE) {
-								updateTime($row["id"], $conn);
+								// updateTime($row["id"], $conn);
 								$message = '<div class="alert alert-danger"> Account Password Successfully Updated </div>';
 							} else {
 								echo "Error: " . $sql . "<br>" . $conn->error;
@@ -610,30 +608,6 @@
 				startTimer(timer, display);
 			}
 		}
-
-		
-		// window.onload = function () {
-		// 	var fiveMinutes = 10,
-		// 	display = document.querySelector('#time');
-		// 	startTimer(fiveMinutes, display);
-		// };
-
-		// window.onload = function () {
-		// 	var time = getCookie("timer");
-		// 	var attempt = getCookie("attempt");
-		// 	if (time <= 0){
-		// 		document.cookie = 'timer=' + 0;
-		// 	}
-		// 	if (attempt >= 3){
-		// 		if (time > 0){
-		// 			getTimer(); 
-		// 		}
-		// 	}
-		// };
-
-		// if (getCookie("timer") < 300){
-		// 	getTimer();
-		// }
 		getTimer();
 
 	</script>

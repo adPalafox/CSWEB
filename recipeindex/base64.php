@@ -1,19 +1,7 @@
 <?php
 
-function getDays($now, $sqldate){
-
-    $datediff = $sqldate - $now;
-    
-    $days = abs(round($datediff / (60 * 60 * 24)));
-    
-    echo $days." days";
-    
-}
-
-$datenow = date("Y-m-d");
-$sqldate = strtotime("2022-03-05");
-
-
-getDays(strtotime($datenow), $sqldate);
+echo base64_encode("Q3VyZnk=");
+echo "<br>";
+echo base64_decode("Q3VyZnk=");
 
 ?>

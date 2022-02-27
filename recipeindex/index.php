@@ -88,11 +88,11 @@
                     }
 
                     if (recipe.category == "street") {
-                        $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + recipe.username + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
                     } else if (recipe.category == "dish") {
-                        $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + recipe.username + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
                     } else {
-                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + recipe.username + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
                     }
 
                 });
@@ -131,17 +131,18 @@
         return "";
     }
 
-    let username = getCookie("user");
+    let username = atob(getCookie("user"));
     if (username != "") {
         $("#loginForm").append('<a href="./profilepage.php"> ' + username + '</a>');
         $("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
         $("#navigation").append('<li><a href="./form/addrecipe.php">Create Recipe</a></li>');
     } else {
-        $("#loginForm").append('<a href = "./login/login/index.php">Log In</a>');
-        $("#loginForm").append('<a href = "./login/login/index.php"><button class="signup">Sign Up →</button></a>');
+        $("#loginForm").append('<a href = "./login/index.php">Log In</a>');
+        $("#loginForm").append('<a href = "./login/index.php"><button class="signup">Sign Up →</button></a>');
     }
     $("#logoutBtn").click(function() {
         if (username != "") {
+            document.cookie = `id= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
             document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
         }
     });

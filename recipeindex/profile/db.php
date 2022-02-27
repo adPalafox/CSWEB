@@ -1,11 +1,6 @@
 <?php
 
-// $db_name = "recipebooks";
-// $db_server = "";
-// $db_user = "root";
-// $db_pass = "";
-
-$db_name = "csweb";
+$db_name = "accounts";
 $db_server = "";
 $db_user = "root";
 $db_pass = "";

@@ -171,7 +171,7 @@
         }
         return "";
     }
-    let username = getCookie("user");
+    let username = atob(getCookie("user"));
     if (username != "") {
         $("#loginForm").append('<a href="../profilepage.php"> ' + username + '</a>');
         $("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="signup">Log Out</button></a>');

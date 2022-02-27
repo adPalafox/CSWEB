@@ -98,7 +98,24 @@
 </html>
 
 <script>
-    var user_id = '';
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    var user_id = getCookie("id");
     var recipe_id = '';
     var recipe_name = '';
     var recipe_description = '';
@@ -108,23 +125,6 @@
     var recipe_ingredients = [];
     var recipe_steps = [];
     var recipe_category = '';
-
-    var getUserId = function(callback) {
-        $.ajax({
-            url: "getid.php",
-            type: "POST",
-            success: callback
-        });
-    }
-
-    getUserId(function(data) {
-        var currentAccount = getCookie("user");
-        data.forEach(function(user, index) {
-            if (currentAccount.toLowerCase() == (user.username).toLowerCase()) {
-                user_id = user.id;
-            }
-        });
-    });
 
     $('#submit').click(function(e) {
         e.preventDefault();
@@ -312,22 +312,8 @@
         });
     }
 
-    function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-    let username = getCookie("user");
+    
+    let username = atob(getCookie("user"));
     if (username != "") {
         $("#loginForm").append('<a href="../profilepage.php"> ' + username + '</a>');
         $("#loginForm").append('<a href="./addrecipe.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');

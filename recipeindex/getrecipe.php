@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 include ("db.php");
 
 
-$stmt = $db->prepare("SELECT recipe.user_id, recipe.recipe_id, users.username, recipe.recipe_name, recipe.recipe_description, recipe.servings, recipe.cook_time, recipe.img_name, recipe.category, AVG(NULLIF(ratings.rating,0)) as average
+$stmt = $db->prepare("SELECT recipe.user_id, recipe.recipe_id, users.firstname, recipe.recipe_name, recipe.recipe_description, recipe.servings, recipe.cook_time, recipe.img_name, recipe.category, AVG(NULLIF(ratings.rating,0)) as average
 FROM users
 JOIN recipe
 ON users.id = recipe.user_id

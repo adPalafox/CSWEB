@@ -5,36 +5,42 @@
 	$expireResult = "";
 	$message = '';
 
-	function checkExpire($seconds)
-	{
-		$currentSeconds = time() - $seconds;
 
-		$minutes = $currentSeconds / 60;
-		$hours = $minutes / 60;
-		$days = $hours / 24;
+	//$message = '<div class="alert alert-danger"><span id = "time"> Attempt Limit Reached!</span></div>';
 
-		return abs($days);
-	}
+	// function checkExpire($seconds)
+	// {
+	// 	$currentSeconds = time() - $seconds;
 
-	$sql = "SELECT * FROM users";
-	$list = $conn->query($sql);
-	if ($list->num_rows > 0) {
-		$result = $list->fetch_all(MYSQLI_ASSOC);
-		foreach ($result as $row) {
-			$days = checkExpire($row['expire']);
-			if ($days >= 20 and $days <= 30) {
-				$daysleft = 30 - ((int)$days);
-				$expireResult .= $row['email'] . ' is about to expire in (' . (int)$daysleft . ' days)<br>';
-				$message = '<div class="alert alert-danger">' . $expireResult . ' </div>';
-			} else if (checkExpire($row['expire']) > 30) {
-				$expireResult .= $row['email'] . ' has expired (' . (int)$days . ' days)<br>';
-				$message = '<div class="alert alert-danger">' . $expireResult . ' </div>';
-			}
-		}
-	}
+	// 	$minutes = $currentSeconds / 60;
+	// 	$hours = $minutes / 60;
+	// 	$days = $hours / 24;
+
+	// 	return abs($days);
+	// }
+
+	// $sql = "SELECT * FROM users";
+	// $list = $conn->query($sql);
+	// if ($list->num_rows > 0) {
+	// 	$result = $list->fetch_all(MYSQLI_ASSOC);
+	// 	foreach ($result as $row) {
+	// 		$days = checkExpire($row['expire']);
+	// 		if ($days >= 20 and $days <= 30) {
+	// 			$daysleft = 30 - ((int)$days);
+	// 			$expireResult .= $row['email'] . ' is about to expire in (' . (int)$daysleft . ' days)<br>';
+	// 			$message = '<div class="alert alert-danger">' . $expireResult . ' </div>';
+	// 		} else if (checkExpire($row['expire']) > 30) {
+	// 			$expireResult .= $row['email'] . ' has expired (' . (int)$days . ' days)<br>';
+	// 			$message = '<div class="alert alert-danger">' . $expireResult . ' </div>';
+	// 		}
+	// 	}
+	// }
 
 	if (!isset($_COOKIE['page'])) {
 		setcookie("page", "login", time() + 3600);
+	}
+	if (!isset($_COOKIE['attempt'])) {
+		setcookie("attempt", 0, time() + 3600);
 	}
 
 	// PAGE SELECT MODULE
@@ -49,59 +55,17 @@
 	}
 
 	// ERROR MESSAGE
-	if (isset($_SESSION['attempt'])) {
-		if ($_SESSION['attempt'] > 0) {
-			if ($_COOKIE['page'] != 'login') {
-				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
+	if (isset($_COOKIE['attempt'])) {
+		if ($_COOKIE['attempt'] < $maxattempts) {
+			if($_COOKIE['attempt'] > 0){
+				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_COOKIE["attempt"] . "/" . $maxattempts . ')</div>';
 			}
+		}
+		else{
+			$message = '<div class="alert alert-danger"><span id = "time"> Login Attempt Limit Reached!</span></div>';
 		}
 	}
 
-
-
-	if (isset($_POST["loginAccount"])) {
-		$passwordExpirationDays = 30;
-		if (!isset($_SESSION['attempt'])) {
-			$_SESSION['attempt'] = 0;
-		}
-		if ($_SESSION['attempt'] >= $maxattempts - 1) {
-			$_SESSION['error'] = 'Attempt limit reach';
-			$message = '<div class="alert alert-danger"> Attempt Limit Reached: (' . ($_SESSION["attempt"] + 1) . "/" . $maxattempts . ')</div>';
-		} else {
-			$email = $_POST['email'];
-			$sql = "SELECT * FROM users WHERE email = '$email'";
-			$list = $conn->query($sql);
-			if ($list->num_rows > 0) {
-				$result = $list->fetch_all(MYSQLI_ASSOC);
-				foreach ($result as $row) {
-					$days = checkExpire($row['expire']);
-					setcookie("DAYS", $days, time() + 3600);
-					setcookie("Expiration", $passwordExpirationDays, time() + 3600);
-					if ($days <= $passwordExpirationDays) {
-						if ($_POST['password'] == $row['password']) {
-							//Successful Login - ZenocyFox21234@
-							$_SESSION['success'] = 'Login successful';
-							unset($_SESSION['attempt']);
-							setcookie("accountid", $row["id"], time() + 3600);
-							header("location:../home/index.php");
-						} else {
-							$_SESSION['error'] = 'Password incorrect';
-							$_SESSION['attempt'] += 1;
-							if ($_SESSION['attempt'] == $maxattempts) {
-								//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
-								$_SESSION['attempt_again'] = time() + (5 * 60);
-							}
-							$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
-						}
-					} else {
-						$message = '<div class="alert alert-danger"> Password has expired for ' . $row['email'] . '<br>' . (int) $days . ' days has passed</div>';
-					}
-				}
-			} else {
-				$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
-			}
-		}
-	}
 
 	function checkUpper($array)
 	{
@@ -202,14 +166,111 @@
 		}
 	}
 
-	function updateTime($id, $conn)
-	{
-		$newtime = time();
-		$sqlpassword = "UPDATE users SET expire='$newtime' WHERE id='$id'";
-		if ($conn->query($sqlpassword) === TRUE) {
+	// function updateTime($id, $conn)
+	// {
+	// 	$newtime = time();
+	// 	$sqlpassword = "UPDATE users SET expire='$newtime' WHERE id='$id'";
+	// 	if ($conn->query($sqlpassword) === TRUE) {
+	// 	}
+	// }
+
+	function validateDate($datenow, $sqldate){
+		$days = 0;
+		$datenow = strtotime($datenow);
+		$sqldate = strtotime($sqldate);
+
+		$datediff = $sqldate - $datenow;
+
+    	$days = abs(round($datediff / (60 * 60 * 24)));
+
+		return $days;
+	}
+	
+	if (isset($_POST["loginAccount"])) {
+		if (!isset($_COOKIE['attempt'])) {
+			$_COOKIE['attempt'] = 0;
 		}
+
+		if ($_COOKIE['attempt'] >= $maxattempts) {
+			// $_SESSION['error'] = 'Attempt limit reach';
+			// $message = '<div class="alert alert-danger"> Attempt Limit Reached: (' . ($_SESSION["attempt"] + 1) . "/" . $maxattempts . ')</div>';
+			$message = '<div class="alert alert-danger"><span id = "time"> Login Attempt Limit Reached!</span></div>';
+
+		} else {
+			$email = $_POST['email'];
+			$hashedemail = base64_encode($email);
+			$sql = "SELECT * FROM users WHERE email = '$hashedemail'";
+			$list = $conn->query($sql);
+			if ($list->num_rows > 0) {
+				$result = $list->fetch_all(MYSQLI_ASSOC);
+				foreach ($result as $row) {
+					//$days = checkExpire($row['expire']);
+					// setcookie("DAYS", $days, time() + 3600);
+					// setcookie("Expiration", $passwordExpirationDays, time() + 3600);
+					// if ($days <= $passwordExpirationDays) {
+					// 	$hashedpassword = base64_encode($_POST['password']);
+					// 	if ($hashedpassword == $row['password']) {
+					// 		//Successful Login - ZenocyFox21234@
+					// 		$_SESSION['success'] = 'Login successful';
+					// 		unset($_SESSION['attempt']);
+					// 		setcookie("accountid", $row["id"], time() + 3600);
+					// 		header("location:../home/index.php");
+					// 	} else {
+					// 		$_SESSION['error'] = 'Password incorrect';
+					// 		$_SESSION['attempt'] += 1;
+					// 		if ($_SESSION['attempt'] == $maxattempts) {
+					// 			//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
+					// 			$_SESSION['attempt_again'] = time() + (5 * 60);
+					// 		}
+					// 		$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
+					// 	}
+					// } else {
+					// 	$message = '<div class="alert alert-danger"> Password has expired for ' . $row['email'] . '<br>' . (int) $days . ' days has passed</div>';
+					// }
+					$hashedpassword = base64_encode($_POST['password']);
+					if ($hashedpassword == $row['password']) {
+						// $datenow = date("2022-03-05");
+						$datenow = date('Y-m-d');
+						$dayspassed = validateDate($datenow, $row['date']);
+						if($dayspassed >= 30){
+							$message = '<div class="alert alert-danger"> The password for this account has expired! </div>';
+						}
+						else{
+							//Successful Login
+							$message = '<div class="alert alert-danger"> Login Successful! </div>';
+							$_SESSION['success'] = 'Login successful';
+							unset($_SESSION['attempt']);
+							header("location:../home/index.php");
+						}
+					} else {
+						// Password Incorrect
+						$attempts = $_COOKIE['attempt'] + 1;
+						setcookie("attempt", $attempts, time() + 3600);
+						if ($attempts == $maxattempts) {
+							//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
+							$message = '<div class="alert alert-danger"><span id = "time"> Attempt Limit Reached!</span></div>';
+							setcookie("timer", 60*5, time() + 3600);
+						}
+						else{
+							$message = '<div class="alert alert-danger"> Incorrect Login: (' . $attempts . "/" . $maxattempts . ')</div>';
+						}
+					}
+				}
+			} else {
+				$attempts = $_COOKIE['attempt'] + 1;
+				setcookie("attempt", $attempts, time() + 3600);
+				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $attempts . "/" . $maxattempts . ')</div>';
+				if ($attempts == $maxattempts) {
+					//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
+					$message = '<div class="alert alert-danger"><span id = "time"> Attempt Limit Reached!</span></div>';
+					setcookie("timer", 60*5, time() + 3600);
+				}
+			}
+		}
+		
 	}
 
+	
 	// function checkPasswords($checkemail, $conn){
 	// 	$prevPasswords = new SplFixedArray(6);
 	// 	$sql = "SELECT * FROM passwords WHERE email = '$checkemail'";
@@ -239,12 +300,22 @@
 
 	// checkPasswords("curfyfox@gmail.com", $conn);
 
+	function getDays($now, $sqldate){
+
+		$datediff = $sqldate - $now;
+		
+		$days = abs(round($datediff / (60 * 60 * 24)));
+		
+		echo $days." days";
+		
+	}
+
 	if (isset($_POST["createAccount"])) {
 		$fname = $_POST['createfname'];
 		$lname = $_POST['createlname'];
 		$email =  base64_encode($_POST['createemail']);
 		$password = $_POST['createpassword'];
-		$time = time();
+		$date = date("Y-m-d");
 		$result = passwordValidation($fname, $lname, $password, $conn);
 
 		$SecretKey = '6LeQ6qEeAAAAAOg8CaomIHC1aAAU6ekIzfO39SNI';
@@ -259,14 +330,14 @@
 				if (!existingAccount($conn, $email)) {
 					if (strlen($result) <= 0) {
 						$password = base64_encode($password);
-						$sql = "INSERT INTO users (firstname, lastname, email, password, expire) VALUES ('$fname', '$lname', '$email', '$password', '$time');";
+						$sql = "INSERT INTO users (firstname, lastname, email, password, date) VALUES ('$fname', '$lname', '$email', '$password', '$date');";
 						if ($conn->query($sql) === TRUE) {
 							setcookie("page", "login", time() + 3600);
 							$result = 'Account successfully created!';
 
-							$passwordSql = "INSERT INTO passwords (email, password1, password2, password3, password4, password5, password6) VALUES ('$email', '$password', ' ', ' ', ' ', ' ', ' ');";
-							if ($conn->query($passwordSql) === TRUE) {
-							}
+							// $passwordSql = "INSERT INTO passwords (email, password1, password2, password3, password4, password5, password6) VALUES ('$email', '$password', ' ', ' ', ' ', ' ', ' ');";
+							// if ($conn->query($passwordSql) === TRUE) {
+							// }
 						} else {
 							echo "Error: " . $sql . "<br>" . $conn->error;
 						}
@@ -488,6 +559,87 @@
  			</div>
  		</div>
  	</div>
+
+	 <script>
+		 function getCookie(cname) {
+			let name = cname + "=";
+			let decodedCookie = decodeURIComponent(document.cookie);
+			let ca = decodedCookie.split(';');
+			for (let i = 0; i < ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		 function startTimer(duration, display) {
+			var timer = duration, minutes, seconds;
+			var fullseconds = duration;
+			setInterval(function () {
+				minutes = parseInt(timer / 60, 10);
+				seconds = parseInt(timer % 60, 10);
+
+				minutes = minutes < 10 ? "0" + minutes : minutes;
+				seconds = seconds < 10 ? "0" + seconds : seconds;
+
+				display.textContent = "Try again in: " + minutes + ":" + seconds;
+				document.cookie = 'timer=' + --fullseconds;
+				if (--timer < 0) {
+					//timer up!!
+					timer = 0;
+					window.location = window.location.href;
+					document.cookie = 'attempt='+0;
+				}
+			}, 1000);
+		}
+
+		function getTimer(){
+			var timer = getCookie("timer");
+			var attempts = getCookie("attempt");
+			if (timer <= 0){
+				document.cookie = 'timer=' + 0;
+			}
+			if (attempts >= 3){
+				var timer = getCookie("timer");
+				display = document.querySelector('#time');
+				startTimer(timer, display);
+			}
+		}
+
+		
+		// window.onload = function () {
+		// 	var fiveMinutes = 10,
+		// 	display = document.querySelector('#time');
+		// 	startTimer(fiveMinutes, display);
+		// };
+
+		// window.onload = function () {
+		// 	var time = getCookie("timer");
+		// 	var attempt = getCookie("attempt");
+		// 	if (time <= 0){
+		// 		document.cookie = 'timer=' + 0;
+		// 	}
+		// 	if (attempt >= 3){
+		// 		if (time > 0){
+		// 			getTimer(); 
+		// 		}
+		// 	}
+		// };
+
+		// if (getCookie("timer") < 300){
+		// 	getTimer();
+		// }
+		getTimer();
+
+	</script>
+
  </body>
+
+
 
  </html>

@@ -1,14 +1,19 @@
 <?php
 
-$str = "kenneth";
+function getDays($now, $sqldate){
 
-echo "String: {$str} <br>";
+    $datediff = $sqldate - $now;
+    
+    $days = abs(round($datediff / (60 * 60 * 24)));
+    
+    echo $days." days";
+    
+}
 
-$encoded = base64_encode($str);
+$datenow = date("Y-m-d");
+$sqldate = strtotime("2022-03-05");
 
-echo "Encoded: {$encoded} <br>";
 
-$decoded = base64_decode($encoded);
+getDays(strtotime($datenow), $sqldate);
 
-echo "\nDecoded: {$decoded} <br>";
 ?>

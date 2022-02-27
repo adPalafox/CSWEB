@@ -238,7 +238,7 @@
 
 		$url = "https://www.google.com/recaptcha/api/siteverify?secret=$SecretKey&response=$ResponseKey&remoteip=$userIP";
 		$response = file_get_contents($url);
-
+		
 		$sql = "SELECT * FROM users WHERE email = '$hashemail' ";
 		$list = $conn->query($sql);
 		if ($email != "" and $newpassword != "") {

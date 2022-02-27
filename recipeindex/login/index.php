@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 // if(isset($_COOKIE["type"]))
 // 	if($_COOKIE["type"]=="patient")
 // 		header("location:logout.php");
@@ -36,7 +33,6 @@ session_start();
 		<?php include 'login.php'; ?>
 	</div>
 </body>
-
 </html>
 
 <style>

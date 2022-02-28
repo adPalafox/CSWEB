@@ -19,8 +19,8 @@
             </div>
 
             <div id="navigation" class="navs">
-                <li><a href="./home/index.php">Home</a></li>
-                <li><a href="./index.php">Recipes</a></li>
+                <li><a href="./index.php">Home</a></li>
+                <li><a href="../index.php">Recipes</a></li>
                 <li><a href="./about/aboutpage.php">About</a></li>
             </div>
 

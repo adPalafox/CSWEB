@@ -1,33 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 body{
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: #f5f3ef;
+    background-color: white;
 }
 
-.page{
-    margin: 5px 5px 5px 5px;
-    height: 100em;
-    width: auto;
-    font-family: "Playfair Display", serif;
-    list-style: none;
-    text-decoration: none;
-}
-
-.container{
+.container {
     width: 100%;
-    height: 40%;
+    height: 100%;
     position: relative;
     border-radius: 50px;
 }
 
+/* Navigation Bar */
 .container .navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 4%;
+    padding: 1% 5%;
     background-color: #fbd691;
+    font-family: "Playfair Display", serif;
 }
 
 .container .navbar .logo{
@@ -37,21 +31,17 @@ body{
 }
 
 .container .navbar .logo h1{
-    font-size: 25px;
-}
-
-.container .navbar .loginForms{
-    display: flex;
-    padding: 5px 15px ;
-    align-items: left;
-}
-.container .navbar .loginForms p{
+    font-size: 24px;
     font-weight: bold;
-    margin-right: 15px;
-    text-transform: uppercase;
-    font-size: 1rem;
+    font-family: "Playfair Display", serif;
 }
 
+.container .navbar .test{
+    display: inline-block;
+    padding: 5px 15px ;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+}
 .container .navbar .test a{
     padding: 5px 15px ;
     color: #000000;
@@ -84,41 +74,109 @@ body{
     color: #ffff;
 }
 
-.row{
-    position: relative;
-    height: 25vmin;
-    text-align: center;
+/* Login/Logout/Signup */
+.logout{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
 
+.logout:hover{
+    transition: all 0.2s;
+    color: #fbd691;
+}
+
+.signup{
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+}
+
+.signup:hover{
+    transition: all 0.2s;
+    color: #fbd691;
+}
+
+/* Content */
+.container .landing-page{
+    display: block;
+    height: 70vmin;
+    position: relative;
+    background-color: #fbd691;
+    border-bottom-left-radius: 50% 75px;
+    border-bottom-right-radius: 50% 75px;
+}
+
+.head-title{
+    font-size: 9vmin;
+    position: relative;
+    text-align: center;
+    padding-top: 8vmin;
+}
+
+.head-title a{
+    display: block;
+    margin: 2% 44% 0 44%;
+    padding: 9px 25px;
+    background-color: #ffff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline:none;
+    transition:0.8s;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5vmin;
+    text-decoration: none;
+    color: #000000;
+}
+
+.head-title a:hover{
+    transition: all 0.2s;
+    color: #fbd691;
 }
 
 .column{
     position: relative;
-    margin-top: -5vmin;
     height: auto;
     width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.column .center{
+    margin-top: 50px;
+    height: auto;
+    width: 70vmin;
 }
 
 .column .left{
     position: absolute;
     left: 0;
     height: auto;
-    width: 15%;
-    margin-left: 5vmin;
-    margin-top: -8%;
+    width: 18%;
+    margin-left: 6vmin;
+    margin-top: -7%;
 }
 
 .column .leftcenter{
     position: absolute;
     left: 0%;
     height: auto;
-    width: 3%;
-    margin-left: 24%;
-    margin-top: 2%;
-}
-
-.column .center{
-    height: auto;
-    width: 50vmin;
+    width: 4%;
+    margin-left: 22%;
+    margin-top: 7%;
 }
 
 .column .rightcenter{
@@ -127,7 +185,7 @@ body{
     height: auto;
     width: 4%;
     margin-right: 20%;
-    margin-top: 8.5%;
+    margin-top: 11%;
 }
 
 .column .rightcenter2{
@@ -135,8 +193,8 @@ body{
     right: 0;
     height: auto;
     width: 6%;
-    margin-right: 15%;
-    margin-top: -5%;
+    margin-right: 22%;
+    margin-top: -4%;
 }
 
 .column .rightcenter3{
@@ -144,7 +202,7 @@ body{
     right: 0;
     height: auto;
     width: 4%;
-    margin-right: 20%;
+    margin-right: 27%;
     margin-top: -2%;
 }
 
@@ -156,60 +214,8 @@ body{
     margin-top: -8%;
 }
 
-/* .landing-image > div{
-    border: solid 1px #333;
-} */
-
-.signup{
-    padding: 9px 25px;
-    background-color: #ffff;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    border-style: solid #de0c19;
-    outline:none;
-    transition:0.8s;
-    font-family: 'Love Ya Like A Sister', cursive;
-    font-size: 2.5vmin;
-}
-
-.signup:hover{
-    background:transparent;
-    border: 2px solid #fff;
-    box-shadow:0px 0px 0px 0px #fff;
-}
-
-.head-title{
-    font-size: 9vmin;
-    position: relative;
-    padding-top: 15vmin;
-    text-align: center;
-}
-
-.head-second-title{
-    font-size: 2.0vmin;
-    font-family: 'Poppins', sans-serif;
-    position: relative;
-    padding-bottom: 10vmin;
-}
-
-.container .landing-page{
-    display: block;
-    height: 60vmin;
-    position: relative;
-    background-color: #fbd691;
-    border-bottom-left-radius: 50% 75px;
-    border-bottom-right-radius: 50% 75px;
-}
-
-
-
-
-
-
 
 /*SECOND PAGE*/
-
 .background-design{
     position: relative;
     width: 100%;
@@ -219,7 +225,6 @@ body{
 .background-image{
     background-color: black;
 }
-
 
 .background-design .background-image-left{
     position: absolute;
@@ -232,7 +237,6 @@ body{
     right: 0;
     margin-top: 31vmin;
 }
-
 
 .second-title{
     font-size: 4vmin;
@@ -247,7 +251,6 @@ body{
     margin-top: -5px;
 }
 
-
 .shape {
     height: 300px;
     display: flex;
@@ -256,14 +259,14 @@ body{
 }
 
 .content-background{
-    padding-top: 15%;
+    padding-top: 22%;
     position: absolute;
 }
+
 .content-background .shape{
     position: absolute;
     right: 0%;
 }
-
 
 .img-right{
     text-align: right;
@@ -319,84 +322,22 @@ body{
     
 }
 
-.lists{
+.background-design2{
+    margin-top: 47%;
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 90px;
-    margin-top: 15%;
-    margin-bottom: 10rem;
-}
-
-.lists-title{
-    position: relative;
-    font-family: 'Love Ya Like A Sister', cursive;
-    font-size: 38px;
-    margin: 150px;
-    padding-bottom: 0px;
-    text-align: center;
-}
-.lists-title::after{
-    background: #ff6348;
-    position: absolute;
-    content: '';
-    bottom: -12px;
-    left: 50%;
-    width: 50px;
-    height: 8px;
-    transform: translateX(-50%);
-}
-
-.lists .box{
-    position: relative;
-    display: flex;
-    padding: 20px;
-    width: 15%;
-    border-radius: 30px;
-    background-color: #fcbf38;
-    transition: 0.3s;
-}
-
-.lists .box:hover{
-    box-shadow: #333;
-    transition: 0.3s;
-    box-shadow: 1px 10px 16px 0px rgba(0,0,0,0.3);
-}
-
-.lists .box .imgBOX img{
-    position: relative;
-    height: auto;
-    width: 100%;
-    margin-top: -90%;
-}
-
-.lists .box .infos h5{
-    font-size: 22px;
-    text-align: center;
-}
-
-.lists .box .infos p{
-    font-size: 15px;
-    text-decoration: none;
-    color: black;
-    font-family: 'Poppins', sans-serif;
-}
-
-.lists .box .infos a{
-    position: relative;
-    display: inline-block;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
 }
 
 .page-footer {
-    background: #fcbf38;
-    color: #f1f2f6;
+    background: #fbd691;
+    color: black;
     padding: 5px 5px;
     text-align: center;
+    font-weight: bold;
 }
+
+
+
+
+
 

@@ -30,7 +30,7 @@
             </div>
             <div class="landing-page">
                 <div class="head-title">
-                    Kenneth Rada was here
+                    Chef's Recipe Secrets
                     <p class="head-second-title">Tips | Techniques | Tricks</p>
                 </div>
                 <div class="row">

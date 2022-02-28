@@ -136,7 +136,7 @@
     if (username != "") {
         $("#loginForm").append('<a href="./profilepage.php"> ' + username + '</a>');
         $("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
-        $("#navigation").append('<li><a href="./form/addrecipe.php">Create Recipe</a></li>');
+        $("#navigation").append('<li><a href="../form/addrecipe.php">Create Recipe</a></li>');
         $("#createRecipe").append('<a href="#">Create a Recipe</a>');
     } else {
         $("#loginForm").append('<a href = "../login/index.php">Log In</a>');

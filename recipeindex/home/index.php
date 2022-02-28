@@ -134,7 +134,7 @@
 
     let username = atob(getCookie("user"));
     if (username != "") {
-        $("#loginForm").append('<a href="./profilepage.php"> ' + username + '</a>');
+        $("#loginForm").append('<a href="../profilepage.php"> ' + username + '</a>');
         $("#loginForm").append('<a href="./index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
         $("#navigation").append('<li><a href="../form/addrecipe.php">Create Recipe</a></li>');
         $("#createRecipe").append('<a href="#">Create a Recipe</a>');

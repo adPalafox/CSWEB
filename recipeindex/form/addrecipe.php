@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display:400,500,600,700,800,900|Poppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"> </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tasty Recipe</title>
 </head>
 
 <body>
@@ -25,72 +26,73 @@
             </div>
         </div>
     </div>
-    <div class="formbg">
-        <div class="formcontainer">
-            <form action="upload.php" enctype="multipart/form-data" method="POST" class="addrecipe">
-                <fieldset class="fieldset">
-                    <legend style="text-align: center">
-                        <div class="ttl">
-                            <p>Add Recipe</p>
-                        </div>
-                    </legend>
+    <!-- <div class="form"> -->
+    <!-- <div class="formcontainer"> -->
+    <form action="upload.php" enctype="multipart/form-data" method="POST" class="addrecipe">
+        <fieldset class="fieldset">
+            <legend>
+                <p class="ttl">Add Recipe</p>
+            </legend>
 
-                    <label class="textLabel" for="recipe_name">Recipe Name:</label>
-                    <input class="textInput" type="text" id="recipe_name" name="recipe_name"><br><br>
+            <label class="textLabel" for="recipe_name">Recipe Name:</label>
+            <input class="input" type="text" id="recipe_name" name="recipe_name"><br><br>
 
-                    <label class="textLabel" for="recipe_description">Recipe Description:</label>
-                    <textarea style="height: 65px; resize: vertical; width: 100%; margin-top: 10px" id="recipe_description" id="" cols="50" rows="5" maxlength="280"></textarea>
+            <label class="textLabel" for="recipe_description">Recipe Description:</label>
+            <textarea class="textarea" id="recipe_description" id="" cols="50" rows="5" maxlength="280"></textarea>
 
-                    <div class="ingre_box" id="ingr_box">
-                        <span class="ingreLabel">Ingredients:
-                            <button class="ingre_btn" id="subingr" type="button">-</button>
-                            <button class="ingre_btn" id="addingr" type="button">+</button>
-                        </span>
-                        <input name="ingredients" id=x0 class="ingre" type="text">
-                    </div>
+            <div class="ingre_box" id="ingr_box">
+                <span class="textLabel">Ingredients:
+                    <button class="ingre_btn" id="subingr" type="button">-</button>
+                    <button class="ingre_btn" id="addingr" type="button">+</button>
+                </span>
+                <input class="input" name="ingredients" id=x0 type="text">
+            </div>
 
-                    <div class="steps_box" id="step_box">
-                        <span class="stepLabel">Steps:
-                            <button class="step_btn" id="substep" type="button">-</button>
-                            <button class="step_btn" id="addstep" type="button">+</button>
-                        </span>
-                        <textarea name="steps" id=y0 class="steps" type="text"></textarea>
-                    </div>
+            <div class="steps_box" id="step_box">
+                <span class="textLabel">Steps:
+                    <button class="step_btn" id="substep" type="button">-</button>
+                    <button class="step_btn" id="addstep" type="button">+</button>
+                </span>
+                <textarea class="textarea" name="steps" id=y0 class="steps" type="text"></textarea>
+            </div>
 
-                    <div class="input_box">
-                        <span class="stepLabel">Image: </span>
-                        <input class="input_style" type="file" id="file" accept=".png">
-                    </div>
-
+            <div class="input_box">
+                <span class="textLabel">Image: </span>
+                <input class="input_style" type="file" id="file" accept=".png">
+            </div>
+            <div class="row">
+                <div class="col">
                     <span class="textLabel">Cook Time: </span>
-                    <input style="height: 25px; resize: vertical; width: 20%; margin-top: 10px" type="number" id="recipe_cook" name="recipe_cook" min="1"> mins<br><br>
-
+                    <input class="input" type="number" id="recipe_cook" name="recipe_cook" min="1"> mins<br><br>
+                </div>
+                <div class="col">
                     <span class="textLabel">Servings</span>
-                    <input style="height: 25px; resize: vertical; width: 20%; margin-top: 10px;" type="number" id="recipe_servings" name="recipe_servings" min="1"> servings<br><br>
+                    <input class="input" type="number" id="recipe_servings" name="recipe_servings" min="1"> servings<br><br>
+                </div>
+            </div>
+            <div class="categ_box">
+                <span class="textLabel">Category: </span>
+                <div class="radio-toolbar">
+                    <input type="radio" id="radioStreet" name="radioCategory" value="street">
+                    <label for="radioStreet">Street Foods</label>
 
-                    <div class="categ_box">
-                        <span class="textLabel">Category: </span>
-                        <div class="radio-toolbar">
-                            <input type="radio" id="radioStreet" name="radioCategory" value="street">
-                            <label for="radioStreet">Street Foods</label>
+                    <input type="radio" id="radioDishes" name="radioCategory" value="dish">
+                    <label for="radioDishes">Dishes</label>
 
-                            <input type="radio" id="radioDishes" name="radioCategory" value="dish">
-                            <label for="radioDishes">Dishes</label>
-
-                            <input type="radio" id="radioDesserts" name="radioCategory" value="dessert">
-                            <label for="radioDesserts">Desserts</label>
-                        </div>
-                    </div>
+                    <input type="radio" id="radioDesserts" name="radioCategory" value="dessert">
+                    <label for="radioDesserts">Desserts</label>
+                </div>
+            </div>
 
 
-                    <div class="submitbtn">
-                        <button id="submit" name="submit" class="recipesubmit"> Publish Recipe </button>
-                    </div>
-                </fieldset>
+            <div class="submitbtn">
+                <button id="submit" name="submit" class="recipesubmit"> Publish Recipe </button>
+            </div>
+        </fieldset>
 
-            </form>
-        </div>
-    </div>
+    </form>
+    <!-- </div> -->
+    <!-- </div> -->
 </body>
 
 <script src="script.js"></script>
@@ -98,7 +100,6 @@
 </html>
 
 <script>
-
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -312,7 +313,7 @@
         });
     }
 
-    
+
     let username = atob(getCookie("user"));
     if (username != "") {
         $("#loginForm").append('<a href="../profilepage.php"> ' + username + '</a>');

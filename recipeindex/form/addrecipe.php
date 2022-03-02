@@ -28,69 +28,76 @@
     </div>
     <!-- <div class="form"> -->
     <!-- <div class="formcontainer"> -->
-    <form action="upload.php" enctype="multipart/form-data" method="POST" class="addrecipe">
-        <fieldset class="fieldset">
-            <legend>
-                <p class="ttl">Add Recipe</p>
-            </legend>
+    <div>
+        <p class="title">Add Recipe</p>
 
-            <label class="textLabel" for="recipe_name">Recipe Name:</label>
-            <input class="input" type="text" id="recipe_name" name="recipe_name"><br><br>
+        <form action="upload.php" enctype="multipart/form-data" method="POST" class="addrecipe">
+            <fieldset class="fieldset">
+                <legend>
+                </legend>
 
-            <label class="textLabel" for="recipe_description">Recipe Description:</label>
-            <textarea class="textarea" id="recipe_description" id="" cols="50" rows="5" maxlength="280"></textarea>
-
-            <div class="ingre_box" id="ingr_box">
-                <span class="textLabel">Ingredients:
-                    <button class="ingre_btn" id="subingr" type="button">-</button>
-                    <button class="ingre_btn" id="addingr" type="button">+</button>
-                </span>
-                <input class="input" name="ingredients" id=x0 type="text">
-            </div>
-
-            <div class="steps_box" id="step_box">
-                <span class="textLabel">Steps:
-                    <button class="step_btn" id="substep" type="button">-</button>
-                    <button class="step_btn" id="addstep" type="button">+</button>
-                </span>
-                <textarea class="textarea" name="steps" id=y0 class="steps" type="text"></textarea>
-            </div>
-
-            <div class="input_box">
-                <span class="textLabel">Image: </span>
-                <input class="input_style" type="file" id="file" accept=".png">
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span class="textLabel">Cook Time: </span>
-                    <input class="input" type="number" id="recipe_cook" name="recipe_cook" min="1"> mins<br><br>
+                <div class="input_box">
+                    <label class="textLabel" for="recipe_name">Recipe Name:</label>
+                    <input class="input" type="text" id="recipe_name" name="recipe_name">
                 </div>
-                <div class="col">
-                    <span class="textLabel">Servings</span>
-                    <input class="input" type="number" id="recipe_servings" name="recipe_servings" min="1"> servings<br><br>
+
+                <div class="input_box">
+                    <label class="textLabel" for="recipe_description">Recipe Description:</label>
+                    <textarea class="textarea" id="recipe_description" id="" cols="50" rows="5" maxlength="280"></textarea>
                 </div>
-            </div>
-            <div class="categ_box">
-                <span class="textLabel">Category: </span>
-                <div class="radio-toolbar">
-                    <input type="radio" id="radioStreet" name="radioCategory" value="street">
-                    <label for="radioStreet">Street Foods</label>
 
-                    <input type="radio" id="radioDishes" name="radioCategory" value="dish">
-                    <label for="radioDishes">Dishes</label>
-
-                    <input type="radio" id="radioDesserts" name="radioCategory" value="dessert">
-                    <label for="radioDesserts">Desserts</label>
+                <div class="input_box" id="ingr_box">
+                    <span class="textLabel">Ingredients:
+                        <button class="ingre_btn" id="subingr" type="button">-</button>
+                        <button class="ingre_btn" id="addingr" type="button">+</button>
+                    </span>
+                    <input class="input" name="ingredients" id=x0 type="text">
                 </div>
-            </div>
+
+                <div class="input_box" id="step_box">
+                    <span class="textLabel">Steps:
+                        <button class="step_btn" id="substep" type="button">-</button>
+                        <button class="step_btn" id="addstep" type="button">+</button>
+                    </span>
+                    <textarea class="textarea" name="steps" id=y0 type="text"></textarea>
+                </div>
+
+                <div class="input_box">
+                    <span class="textLabel">Image: </span>
+                    <input type="file" id="file" accept=".png">
+                </div>
+                <div class="row input_box">
+                    <div class="col">
+                        <span class="textLabel">Cook Time: </span>
+                        <input class="input" type="number" id="recipe_cook" name="recipe_cook" min="1"> mins
+                    </div>
+                    <div class="col">
+                        <span class="textLabel">Servings</span>
+                        <input class="input" type="number" id="recipe_servings" name="recipe_servings" min="1"> servings
+                    </div>
+                </div>
+                <div class="categ_box">
+                    <span class="textLabel">Category: </span>
+                    <div class="radio-toolbar">
+                        <input type="radio" id="radioStreet" name="radioCategory" value="street">
+                        <label for="radioStreet">Street Foods</label>
+
+                        <input type="radio" id="radioDishes" name="radioCategory" value="dish">
+                        <label for="radioDishes">Dishes</label>
+
+                        <input type="radio" id="radioDesserts" name="radioCategory" value="dessert">
+                        <label for="radioDesserts">Desserts</label>
+                    </div>
+                </div>
 
 
-            <div class="submitbtn">
-                <button id="submit" name="submit" class="recipesubmit"> Publish Recipe </button>
-            </div>
-        </fieldset>
+                <div class="submitbtn">
+                    <button id="submit" name="submit" class="recipesubmit"> Publish Recipe </button>
+                </div>
+            </fieldset>
 
-    </form>
+        </form>
+    </div>
     <!-- </div> -->
     <!-- </div> -->
 </body>

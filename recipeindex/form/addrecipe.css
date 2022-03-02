@@ -2,35 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Dr+Sugiyama&display=swap");
 
-/* .form{
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    color: #1a1a1a;
-    background-color: #fbd691;
-} */
 * {
     box-sizing: border-box;
+    transition-duration: .2s;
 }
 
-.addrecipe{
+/* .addrecipe{
     height: 50px;
     width: 95%;
-}
+} */
 
-.labels{
+/* .labels{
     font-family: Roboto, Sans-serif;
     width: 100px;
     display: inline-block;
-}
+} */
 
-.input_box{
+/* .input_box{
     margin: 1rem 0.2rem;
-}
-
-.input_style{
-    width: 65%;
-}
-
+} */
+/* 
 .steps_box{
     margin: 1rem 0.2rem;
     display: flex;
@@ -38,15 +29,16 @@
     gap: 0.3rem;
     align-content: initial;
 
-}
+} */
 
 .step_btn{
-    border-radius: 4px;
+    border-radius: 1em;
+    border: 1px solid #1a1a1a;
 }
 
 .step_btn:hover{
-    background-color: de0c19;
-    color: white;
+    background-color: #fbd691;
+    color: #f5f3ef;
 }
 
 .add_steps{
@@ -56,52 +48,50 @@
 }
 
 /*Add Ingredients===============================*/
-.ingre_box{
-        margin: 1rem 0rem;
-        padding-left: 0.25rem;
-    }
 
-.add_ingre{
+/* .add_ingre{
     margin-top: 0.25rem;
     margin-left: 104px;
     width: 65%;
-}
+} */
 
 .ingre_btn{
-    border-radius: 4px;
+    border-radius: 1em;
+    border: 1px solid #1a1a1a;
 }
 .ingre_btn:hover{
-    background-color: de0c19; 
-    color: white;
+    background-color: #fbd691; 
+    color: #f5f3ef;
 }
 /*Description===============================*/
-.desc_box{
+/* .desc_box{
     margin: 1rem 0.2rem;
     display: flex;
     gap: 0.3rem;
     align-content: initial;
 
-}
+} */
 
-.desc{
+/* .desc{
     resize: none;
     width: 65%;
-}
+} */
 /*Category===============================*/
 .categ_box{
     margin: 1rem 0.2rem;
     display: flex;
 }
 
-.categbtn{
+/* .categbtn{
     border-radius: 4px;
-}
+    padding: .5em;
+} */
 
 .categbtn:hover{
-    background-color: de0c19; 
-    color: white;
+    background-color: #fbd691; 
+    color: #f5f3ef;
 }
-
+/* 
 .btn_container{
     display: flex;
     width: 80%;
@@ -111,55 +101,58 @@
 .btn_container button{
     width: 30%;
     margin: 0.25rem 0.5rem;
-}
+} */
 /*Cook Time ===============================*/
-.cook_box{
+/* .cook_box{
     margin: 1rem 0.2rem;
     display: flex;
-}
+} */
 
 
 
 /*Servings===============================*/
 
-.serve_count{
+/* .serve_count{
     width: 15%;
+} */
+
+.submitbtn {
+    display: flex;
+    justify-content: center;
 }
 
 .recipesubmit {
-    font-weight: 400;
-    font-size: 15px;
-    padding: 5px 30px;
-    color: #000000;
-    font-family: Roboto, Sans-serif;
-    cursor: pointer;
-    border-radius: 50px;
-    background: #ffffff;
-    border: none;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: 33%;
+    background-color: #1a1a1a;
+    padding: 1em;
+    border-radius: .5em;
+    border: 3px solid #1a1a1a;
+    color: #f5f3ef;
+    font-weight: bold;
+    margin: 1em;
 }
 
 .recipesubmit:hover{
-    transform: translateY(-5px);
-    background-color: de0c19; 
-    color: white;
+    transform: translateY(-.1em);
+    background-color: #fbd691; 
+    color: #1a1a1a;
 }
 
 legend{
     text-align: center;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
 }
 
-.ttl{
+.title{
+    text-decoration: underline;
+    text-decoration-color: #de0c19;
+    text-underline-offset: .2em;
     font-family: 'Dr Sugiyama', cursive;	
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 3em;
+    display: flex;
+    justify-content: center;
 }
-
-.radio-toolbar {
-
-  }
   
   .radio-toolbar input[type="radio"] {
     opacity: 0;
@@ -168,29 +161,19 @@ legend{
   }
   
   .radio-toolbar label {
-      display: inline-block;
-      background-color: #ddd;
-      font-family: sans-serif, Arial;
-      font-size: 16px;
-      border: 2px solid #444;
-      border-radius: 4px;
-      width: 100px;
-      text-align: center;
-      padding: 1px;
+    padding: .3em;
+    border: 2px solid #1a1a1a;
+    border-radius: 1em;
+    font-weight: bold;
   }
   
   .radio-toolbar label:hover {
-    background-color: #de0c19;
-  }
-  
-  .radio-toolbar input[type="radio"]:focus + label {
-      border: 2px solid #444;
+    background-color: #fbd691;
   }
   
   .radio-toolbar input[type="radio"]:checked + label {
-      background-color: #de0c19;
-      border-color: rgb(0, 0, 0);
-      color: white;
+      background-color: #fbd691;
+      color: #f5f3ef;
   }
   
   body{
@@ -199,6 +182,7 @@ legend{
     height: 100%;
     width: 100%;
     background-color: #f5f3ef;
+    font-family: 'Lato', sans-serif;
 }
 .container .navbar{
     display: flex;
@@ -295,15 +279,21 @@ legend{
     color: #fbd691;
 }
 
-.input, .textarea{
-    min-height: 30px;
+.input, .textarea, .input_box{
+    min-height: 50px;
     border-radius: .5em;
-    border: 2px solid #1a1a1a;
+    /* border: .1em solid #1a1a1a; */
+    border: none;
     display: block;
     width: 100%;
     background-color: #f5f3ef;
     padding: 1em;
     margin-top: 1em;
+    transition-delay: 0;
+}
+
+.input_box {
+    background-color: #fbd691;
 }
 
 .textLabel {
@@ -328,34 +318,33 @@ legend{
     padding: 1em;
 }
 
-.ingre{
+/* .ingre{
     margin-top: 5px;
     height: 30px;
     width: 100%;
-}
-
+} */
+/* 
 .steps{
     margin-top: 5px;
     height: 40px;
     width: 100%;
     resize: vertical;
-}
+} */
 
-.mins_count{
+/* .mins_count{
     width: 15%;
     margin: 0 0.25rem;
-}
+} */
 
 .fieldSet{
     width: 50%;
-    /* /* height: auto; */
     margin: auto; 
-    border: 2px solid #1a1a1a;
-    border-radius: .5em;
+    border: .3em solid #1a1a1a;
+    border-radius: 1em;
     padding: 1em;
     font-family: 'Lato', sans-serif;
     color: #1a1a1a;
-    background-color: white;
+    background-color: #f5f3ef;
 }
 
 @media screen and (max-width: 1080px){

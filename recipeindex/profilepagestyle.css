@@ -58,6 +58,23 @@ body {
     margin: 1em 0;
 }
 
+.fas {
+	color: #de0c19 !important;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.red {
+    border: 1px solid red;
+}
+
+.black {
+    border: 1px solid black;
+}
+
 /* nav bar ni gwen */
 /* Navigation Bar */
 .mycontainer .mynavbar{

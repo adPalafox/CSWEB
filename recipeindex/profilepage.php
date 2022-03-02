@@ -9,6 +9,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"> </script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 	<link rel="stylesheet" href="profilepagestyle.css">
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
@@ -346,11 +347,10 @@
 				<div class="modal-content">
 					<form action="" method="POST">
 						<div class="modal-header justify-content-center">
-							<h5 class="brand" id="staticBackdropLabel">Forgot Password</h5>
+							<h5 class="brand" id="staticBackdropLabel">Enter your new Password</h5>
 						</div>
 						<div class="modal-body">
 							<div class="container">
-								<h4 class="mb-3 fw-bold  text-center">Enter your new Password</h4>
 								<!-- <span><?php echo $message; ?></span> -->
 
 								<label for="forgotemail" class="form-label" style="color: red">Email Address</label>
@@ -365,12 +365,13 @@
 									<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
 								</div>
 
-								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
-
+								<div class="center">
+									<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+								</div>
 							</div>
 						</div>
 
-						<div class="modal-footer justify-content-between mx-3 my-2">
+						<div class="modal-footer center">
 							<button type="submit" class="btn btn-dark" name="resetPassword">Reset</button>
 						</div>
 

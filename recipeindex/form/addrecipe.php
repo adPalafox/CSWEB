@@ -30,7 +30,7 @@
     <!-- <div class="formcontainer"> -->
     <div>
         <p class="title">Add Recipe</p>
-
+        <!-- <p class="input_box">Share the happiness</p> -->
         <form action="upload.php" enctype="multipart/form-data" method="POST" class="addrecipe">
             <fieldset class="fieldset">
                 <legend>

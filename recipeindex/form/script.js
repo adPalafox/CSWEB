@@ -15,7 +15,7 @@ add_ingredient.onclick = function () {
     input.type = "text";
     input.name = "ingredients" + x;
     input.id = "x" + x;
-    input.classList.add("ingre");
+    input.classList.add("input");
     ingr_container.appendChild(input);
     x++;
     localStorage.setItem("X", x)
@@ -27,7 +27,7 @@ add_step.onclick = function () {
     input1.rows = "3";
     input1.name = "steps" + y;
     input1.id = "y" + y;
-    input1.classList.add("steps");
+    input1.classList.add("input");
     step_container.appendChild(input1);
     y++;
     localStorage.setItem("Y", y)

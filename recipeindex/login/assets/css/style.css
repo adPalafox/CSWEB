@@ -172,6 +172,11 @@ td>input {
 	color: #de0c19 !important;
 }
 
+.center {
+	display: flex;
+	justify-content: center;
+}
+
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
   margin-left: 200px;

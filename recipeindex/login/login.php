@@ -57,11 +57,10 @@
 	// ERROR MESSAGE
 	if (isset($_COOKIE['attempt'])) {
 		if ($_COOKIE['attempt'] < $maxattempts) {
-			if($_COOKIE['attempt'] > 0){
+			if ($_COOKIE['attempt'] > 0) {
 				$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_COOKIE["attempt"] . "/" . $maxattempts . ')</div>';
 			}
-		}
-		else{
+		} else {
 			$message = '<div class="alert alert-danger"><span id = "time"> Login Attempt Limit Reached!</span></div>';
 		}
 	}
@@ -166,26 +165,27 @@
 		}
 	}
 
-	function validateDate($datenow, $sqldate){
+	function validateDate($datenow, $sqldate)
+	{
 		$days = 0;
 		$datenow = strtotime($datenow);
 		$sqldate = strtotime($sqldate);
 
 		$datediff = $sqldate - $datenow;
 
-    	$days = abs(round($datediff / (60 * 60 * 24)));
+		$days = abs(round($datediff / (60 * 60 * 24)));
 
 		return $days;
 	}
 
-	function getDays($now, $sqldate){
+	function getDays($now, $sqldate)
+	{
 
 		$datediff = $sqldate - $now;
-		
+
 		$days = abs(round($datediff / (60 * 60 * 24)));
-		
-		echo $days." days";
-		
+
+		echo $days . " days";
 	}
 
 	if (isset($_POST["loginAccount"])) {
@@ -197,7 +197,6 @@
 			// $_SESSION['error'] = 'Attempt limit reach';
 			// $message = '<div class="alert alert-danger"> Attempt Limit Reached: (' . ($_SESSION["attempt"] + 1) . "/" . $maxattempts . ')</div>';
 			$message = '<div class="alert alert-danger"><span id = "time"> Login Attempt Limit Reached!</span></div>';
-
 		} else {
 			$email = $_POST['email'];
 			$hashedemail = base64_encode($email);
@@ -233,10 +232,9 @@
 					if ($hashedpassword == $row['password']) {
 						$datenow = date('Y-m-d');
 						$dayspassed = validateDate($datenow, base64_decode($row['date']));
-						if($dayspassed > 30){
+						if ($dayspassed > 30) {
 							$message = '<div class="alert alert-danger"> The password for this account has expired! </div>';
-						}
-						else{
+						} else {
 							//Successful Login
 							setcookie("user", $row['firstname'], time() + 3600, '/', NULL, 0);
 							setcookie("id", $row['id'], time() + 3600, '/', NULL, 0);
@@ -252,9 +250,8 @@
 						if ($attempts == $maxattempts) {
 							//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
 							$message = '<div class="alert alert-danger"><span id = "time"> Attempt Limit Reached!</span></div>';
-							setcookie("timer", 60*5, time() + 3600);
-						}
-						else{
+							setcookie("timer", 60 * 5, time() + 3600);
+						} else {
 							$message = '<div class="alert alert-danger"> Incorrect Login: (' . $attempts . "/" . $maxattempts . ')</div>';
 						}
 					}
@@ -266,14 +263,13 @@
 				if ($attempts == $maxattempts) {
 					//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
 					$message = '<div class="alert alert-danger"><span id = "time"> Attempt Limit Reached!</span></div>';
-					setcookie("timer", 60*5, time() + 3600);
+					setcookie("timer", 60 * 5, time() + 3600);
 				}
 			}
 		}
-		
 	}
 
-	
+
 	// function checkPasswords($checkemail, $conn){
 	// 	$prevPasswords = new SplFixedArray(6);
 	// 	$sql = "SELECT * FROM passwords WHERE email = '$checkemail'";
@@ -303,7 +299,7 @@
 
 	// checkPasswords("curfyfox@gmail.com", $conn);
 
-	
+
 
 	if (isset($_POST["createAccount"])) {
 		$fname = $_POST['createfname'];
@@ -503,8 +499,9 @@
  								<input type="password" class="form-control" placeholder="Password" id="createpassword" name="createpassword" value="">
  								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
-
- 							<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+ 							<div class="center">
+ 								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+ 							</div>
  						</div>
  					</div>
 
@@ -542,8 +539,9 @@
  								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
  								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
-
- 							<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+ 							<div class="center">
+ 								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+ 							</div>
  						</div>
  					</div>
 
@@ -558,59 +556,59 @@
  		</div>
  	</div>
 
-	 <script>
-		 function getCookie(cname) {
-			let name = cname + "=";
-			let decodedCookie = decodeURIComponent(document.cookie);
-			let ca = decodedCookie.split(';');
-			for (let i = 0; i < ca.length; i++) {
-				let c = ca[i];
-				while (c.charAt(0) == ' ') {
-					c = c.substring(1);
-				}
-				if (c.indexOf(name) == 0) {
-					return c.substring(name.length, c.length);
-				}
-			}
-			return "";
-		}
+ 	<script>
+ 		function getCookie(cname) {
+ 			let name = cname + "=";
+ 			let decodedCookie = decodeURIComponent(document.cookie);
+ 			let ca = decodedCookie.split(';');
+ 			for (let i = 0; i < ca.length; i++) {
+ 				let c = ca[i];
+ 				while (c.charAt(0) == ' ') {
+ 					c = c.substring(1);
+ 				}
+ 				if (c.indexOf(name) == 0) {
+ 					return c.substring(name.length, c.length);
+ 				}
+ 			}
+ 			return "";
+ 		}
 
-		 function startTimer(duration, display) {
-			var timer = duration, minutes, seconds;
-			var fullseconds = duration;
-			setInterval(function () {
-				minutes = parseInt(timer / 60, 10);
-				seconds = parseInt(timer % 60, 10);
+ 		function startTimer(duration, display) {
+ 			var timer = duration,
+ 				minutes, seconds;
+ 			var fullseconds = duration;
+ 			setInterval(function() {
+ 				minutes = parseInt(timer / 60, 10);
+ 				seconds = parseInt(timer % 60, 10);
 
-				minutes = minutes < 10 ? "0" + minutes : minutes;
-				seconds = seconds < 10 ? "0" + seconds : seconds;
+ 				minutes = minutes < 10 ? "0" + minutes : minutes;
+ 				seconds = seconds < 10 ? "0" + seconds : seconds;
 
-				display.textContent = "Try again in: " + minutes + ":" + seconds;
-				document.cookie = 'timer=' + --fullseconds;
-				if (--timer < 0) {
-					//timer up!!
-					timer = 0;
-					window.location = window.location.href;
-					document.cookie = 'attempt='+0;
-				}
-			}, 1000);
-		}
+ 				display.textContent = "Try again in: " + minutes + ":" + seconds;
+ 				document.cookie = 'timer=' + --fullseconds;
+ 				if (--timer < 0) {
+ 					//timer up!!
+ 					timer = 0;
+ 					window.location = window.location.href;
+ 					document.cookie = 'attempt=' + 0;
+ 				}
+ 			}, 1000);
+ 		}
 
-		function getTimer(){
-			var timer = getCookie("timer");
-			var attempts = getCookie("attempt");
-			if (timer <= 0){
-				document.cookie = 'timer=' + 0;
-			}
-			if (attempts >= 3){
-				var timer = getCookie("timer");
-				display = document.querySelector('#time');
-				startTimer(timer, display);
-			}
-		}
-		getTimer();
-
-	</script>
+ 		function getTimer() {
+ 			var timer = getCookie("timer");
+ 			var attempts = getCookie("attempt");
+ 			if (timer <= 0) {
+ 				document.cookie = 'timer=' + 0;
+ 			}
+ 			if (attempts >= 3) {
+ 				var timer = getCookie("timer");
+ 				display = document.querySelector('#time');
+ 				startTimer(timer, display);
+ 			}
+ 		}
+ 		getTimer();
+ 	</script>
 
  </body>
 

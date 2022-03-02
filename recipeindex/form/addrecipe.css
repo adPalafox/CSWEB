@@ -5,7 +5,9 @@
 * {
     box-sizing: border-box;
     transition-duration: .2s;
+    
 }
+
 
 /* .addrecipe{
     height: 50px;
@@ -181,8 +183,13 @@ legend{
     /* padding: 0;
     height: 100%;
     width: 100%; */
-    background-color: #f5f3ef;
+    background-color: #fbd691;
     font-family: 'Lato', sans-serif;
+    background-image: url("clipart.png");
+    background-repeat: no-repeat;
+    background-size: 600px;
+    background-position: left bottom;
+    background-attachment: fixed;
 }
 .container .navbar{
     display: flex;
@@ -358,3 +365,44 @@ legend{
         margin-left: 0;
     }
 }
+
+
+/* START OF BG
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body,
+html {
+    background-color: #fbd691;
+}
+
+.mycontainer {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 15px 50px;
+}
+
+.mycontainer .hero .logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.mycontainer .hero .logo h1 {
+    font-size: 20px;
+}
+
+.clipart {
+    position: absolute;
+    bottom: 0;
+    height: auto;
+    width: 60%;
+} */

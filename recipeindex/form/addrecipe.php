@@ -26,8 +26,13 @@
             </div>
         </div>
     </div>
-    <!-- <div class="form"> -->
-    <!-- <div class="formcontainer"> -->
+
+    <!-- <div class="mycontainer">
+        <div class="hero">
+            <img class="clipart" src="clipart.png" />
+        </div>
+    </div> -->
+
     <div>
         <p class="title">Add Recipe</p>
         <!-- <p class="input_box">Share the happiness</p> -->

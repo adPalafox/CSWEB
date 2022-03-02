@@ -2,120 +2,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Dr+Sugiyama&display=swap");
 
 
-.body {
-	background-color: #f5f3ef;
+body {
+	background-color: #f5f3ef !important;
 	color: #1a1a1a;
 	font-family: 'Lato', sans-serif;
     font-weight: bold;
 }
 
-.bg-profile-card{
-    /* display: block; */
-    /* height: 40vmin; */
-    position: relative;
-    background-color: #fbd691;
-    border-bottom-left-radius: 50% 75px;
-    border-bottom-right-radius: 50% 75px;
-    border-bottom: solid .5em white;
-}
-
 .img-circle{
 	border-radius: 8em;
-	border: .4em solid white;
-	width: 15em;
+	border: .5em solid #f5f3ef;
+	width: 12em;
 }
 
-.mylink {
-	color: #1a1a1a;
-    transition-duration: .3s;
-
+#profile {
+    border: 2px solid #1a1a1a;
+    border-radius: .5em;
+    padding: 1em;
 }
 
-a.mylink:hover{
-	cursor: pointer;
-    color: #de0c19 !important;
+.profile2{
+    padding: 1em;
 }
 
 .profile-name{
 	font-family: 'Dr Sugiyama', cursive;	
 	font-weight: bold;
-	font-size: 2.5em;
+	font-size: 5em;
+}
+
+.underline{
+    text-decoration: underline;
+    text-decoration-color: #de0c19;
+    text-underline-offset: .2em;
 }
 
 .profile-info{
-	font-size: 1.2em;
-}
-
-.pics-group{
-    position: relative;
-    margin-top: -5vmin;
-    height: auto;
-    width: 100%;
-}
-
-.pics-group .rightcenter{
-    position: absolute;
-    right: 0;
-    height: auto;
-    width: 5%;
-    margin-right: 9%;
-    margin-top: -13%;
-}
-
-.pics-group .rightcenter2{
-    position: absolute;
-    right: 0;
-    height: auto;
-    width: 6%;
-    margin-right: 15%;
-    margin-top: -15%;
-}
-
-.pics-group .rightcenter3{
-    position: absolute;
-    right: 0;
-    height: auto;
-    width: 4%;
-    margin-right: 20%;
-    margin-top: -12%;
-}
-
-.pics-group .right{
-    position: absolute;
-    right: 0;
-    height: auto;
-    width: 8%;
-    margin-top: -15%;
+    font-size: .8em;
+    background-color: #f5f3ef;
+    border: 1px solid #f5f3ef;
+    border-radius: .5em;
+    padding: .5em;
+    font-weight: bold;
 }
 
 .alert {
 	margin-bottom: 0;
 }
 
-.navbar-brand{
-	font-size: 2em;
-	font-weight: bold;
-}
-
-a.nav-link{
-    font-size: 1em;
-    text-decoration: underline;
-    text-decoration-color: #de0c19;
-    text-decoration-thickness: .15em;
-    text-underline-offset: .2em;
-    color: black !important;
-}
-
-a.nav-link:hover{
-    text-decoration-color: black !important;
-}
-
-.navbar-brand{
-	font-family: "Playfair Display", serif;
-}
-
-.bg-light{
-	background-color: #fbd691 !important;
+.my-card {
+    background-color: #fbd691;
+    padding: 1em;
+    /* border: solid .3em white; */
+    border-radius: 1em;
+    margin: 1em 0;
 }
 
 /* nav bar ni gwen */

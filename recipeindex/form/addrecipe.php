@@ -33,10 +33,10 @@
         </div>
     </div> -->
 
-    <div>
+    <div class="addrecipe">
         <p class="title">Add Recipe</p>
         <!-- <p class="input_box">Share the happiness</p> -->
-        <form action="upload.php" enctype="multipart/form-data" method="POST" class="addrecipe">
+        <form action="upload.php" enctype="multipart/form-data" method="POST">
             <fieldset class="fieldset">
                 <legend>
                 </legend>
@@ -103,6 +103,8 @@
 
         </form>
     </div>
+    <br>
+    <br>
     <!-- </div> -->
     <!-- </div> -->
 </body>

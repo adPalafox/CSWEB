@@ -217,6 +217,7 @@
 		}
 	}
 	?>
+	<!-- Nav -->
 	<div class="mycontainer">
 		<div class="mynavbar">
 			<div class="logo">
@@ -234,7 +235,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- End of Nav -->
 
 	<!--Profile card-->
@@ -257,136 +257,163 @@
 			</div>
 		</div>
 	</div>
-
 	<!--End of profile card-->
 
-	<!--Posted Recipes-->
-	<div class="container">
-		<h3 class="">Created Recipes</h3>
-		<div class="row row-cols-1 row-cols-md-4 g-4">
-			<div class="col">
-				<div class="card">
-					<img src="./assets/blackforestcake.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores labore blanditiis repellat adipisci quod.</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				</div>
+	<!-- Toast -->
+
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+		<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+			<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+		</symbol>
+	</svg>
+	<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<strong class="me-auto">New Notification</strong>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 			</div>
-			<div class="col">
-				<div class="card">
-					<img src="./assets/isaw.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, ex laborum consequuntur sunt esse repudiandae cupiditate hic! Quos, assumenda illum.</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card">
-					<img src="./assets/steak.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi eaque quia repellendus voluptatem magnam consectetur cumque nam, ipsum voluptatum quas facilis asperiores libero consequatur? Doloremque quas fuga cum odio consectetur?</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card">
-					<img src="./assets/lettuce.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est perspiciatis adipisci porro neque sint totam exercitationem. Esse repellat omnis perferendis laborum sapiente quisquam rerum sed ea tenetur, consequuntur dignissimos aspernatur!</p>
-					</div>
-					<div class="card-footer">
-						<small class="text-muted">Last updated 3 mins ago</small>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--End of Posted Recipes-->
-
-		<!-- Toast -->
-
-		<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-			<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-				<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-			</symbol>
-		</svg>
-		<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-			<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-				<div class="toast-header">
-					<strong class="me-auto">New Notification</strong>
-					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-				</div>
-				<div class="toast-body alert-info">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<!-- <strong>Sweet potato!</strong> You have <strong> 69 days left </strong>before your password expires -->
-					<?php echo $message; ?>
-					<strong></strong>
-				</div>
-			</div>
-		</div>
-		<!-- End of Toast -->
-
-
-		<!-- FORGOT MODULE -->
-		<div class="modal fade" id="modalResetPass" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<form action="" method="POST">
-						<div class="modal-header justify-content-center">
-							<h5 class="brand" id="staticBackdropLabel">Enter your new Password</h5>
-						</div>
-						<div class="modal-body">
-							<div class="container">
-								<!-- <span><?php echo $message; ?></span> -->
-
-								<label for="forgotemail" class="form-label" style="color: red">Email Address</label>
-								<div class="input-group flex-nowrap mb-3">
-									<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="<?php echo base64_decode($_COOKIE['email']) ?>" readonly>
-									<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
-								</div>
-
-								<label for="password" class="form-label" style="color: red">Enter New Password</label>
-								<div class="input-group flex-nowrap mb-3">
-									<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
-									<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
-								</div>
-
-								<div class="center">
-									<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
-								</div>
-							</div>
-						</div>
-
-						<div class="modal-footer center">
-							<button type="submit" class="btn btn-dark" name="resetPassword">Reset</button>
-						</div>
-
-					</form>
-
-				</div>
+			<div class="toast-body alert-info">
+				<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:">
+					<use xlink:href="#exclamation-triangle-fill" />
+				</svg>
+				<?php echo $message; ?>
+				<strong></strong>
 			</div>
 		</div>
 	</div>
+	<!-- End of Toast -->
+
+
+	<!-- FORGOT MODULE -->
+	<div class="modal fade" id="modalResetPass" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<form action="" method="POST">
+					<div class="modal-header justify-content-center">
+						<h5 class="brand" id="staticBackdropLabel">Enter your new Password</h5>
+					</div>
+					<div class="modal-body">
+						<div class="container">
+							<!-- <span><?php echo $message; ?></span> -->
+
+							<label for="forgotemail" class="form-label" style="color: red">Email Address</label>
+							<div class="input-group flex-nowrap mb-3">
+								<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="<?php echo base64_decode($_COOKIE['email']) ?>" readonly>
+								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
+							</div>
+
+							<label for="password" class="form-label" style="color: red">Enter New Password</label>
+							<div class="input-group flex-nowrap mb-3">
+								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
+								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
+							</div>
+
+							<div class="center">
+								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer center">
+						<button type="submit" class="btn btn-dark" name="resetPassword">Reset</button>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	<!--End Posted Recipes-->
+
+	<!--Kenneth Recipes-->
+	<div class="recipes_container active">
+		<h5 class="fw-bold">Created Recipes</h5>
+		<!-- <div class="btn_container">
+			<button class="my-btn active" data-target="#streetDishes">Street Foods</button>
+			<button class="my-btn" data-target="#dishDishes">Dish</button>
+			<button class="my-btn" data-target="#dessertDishes">Dessert</button>
+		</div> -->
+
+		<form action="recipedetail.php" method="POST">
+			<div id="streetDishes" class="recipe_list active">
+			</div>
+		</form>
+
+		<form action="recipedetail.php" method="POST">
+			<div id="dishDishes" class="recipe_list">
+			</div>
+		</form>
+
+		<form action="recipedetail.php" method="POST">
+			<div id="dessertDishes" class="recipe_list">
+			</div>
+		</form>
+	</div>
+	<!--End of Kenneth Recipes-->
+
+	<!--Footer-->
+	<div class="background-design2">
+		<footer class="page-footer">
+			<p>&#169; All Tasty. All right reserved.</p>
+		</footer>
+	</div>
+	<!--End of Footer-->
+
+	<!--Kenneth js-->
+	<script src="script.js"></script>
+
 	</div>
 </body>
 
 </html>
 
 <script>
+	/* kenneth scripts */
+	Load();
+
+	function Load() {
+		$.ajax({
+			url: "./getrecipe.php",
+			type: "POST",
+			success: function(response) {
+				response.forEach(function(recipe, index) {
+					var cooktime = recipe.cook_time + ' mins';
+					if (recipe.cook_time > 60) {
+						cooktime = ' ' + Math.round(recipe.cook_time / 60) + ' hours';
+						if (recipe.cook_time % 60 > 0) {
+							cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
+						}
+					}
+
+					if (recipe.category == "street") {
+						$("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+					} else if (recipe.category == "dish") {
+						$("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+					} else {
+						$("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+					}
+
+				});
+				for (let i = 0; i < response.length; i++) {
+					average = response[i].average;
+					if (average == null) {
+						$('#' + i + '').append('<p2 class = "average" >0.0</p2>');
+					} else {
+						$('#' + i + '').append('<p2 class = "average" > ' + parseFloat(average).toFixed(1) + '</p2>');
+					}
+					for (let j = 0; j < Math.trunc(average); j++) {
+						$('#' + i + '').append('<span class = "fa fa-star" style = "color: #ff0038"></span>');
+					}
+					for (let k = 0; k < (5 - Math.trunc(average)); k++) {
+						$('#' + i + '').append('<span class = "fa fa-star" style = "color: black"></span>');
+					}
+				}
+
+			}
+		});
+	}
+
 	var toastTrigger = document.getElementById('liveToastBtn')
 	var toastLiveExample = document.getElementById('liveToast')
 	var toast = new bootstrap.Toast(toastLiveExample)

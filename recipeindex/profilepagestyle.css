@@ -84,6 +84,7 @@ body {
     padding: 1% 5%;
     background-color: #fbd691;
     font-family: "Playfair Display", serif;
+    font-weight: normal;
 }
 
 .mycontainer .mynavbar .logo{
@@ -172,4 +173,226 @@ body {
     box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
     transition: all 0.4s;
     color: #fbd691;
+}
+
+
+/* Recipes Container CSS */
+.recipes_container{
+    padding: 0 10vw;
+}
+.recipe_list.active{
+    display:grid;
+}
+/* Category Buttons CSS */
+.btn_container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.my-btn {
+    font-size: 2.5vmin;
+    text-transform: uppercase;
+    border-radius: 50px;
+    display: block;
+    height: auto;
+    width: 35vmin;
+    text-align: center;
+    line-height: 50px;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    background: #fbd691;
+    margin: auto;
+    border: none;
+}
+
+.my-btn.active{
+    background: #de0c19;
+    border: none;
+}
+
+.my-btn:hover {
+    transform: translateY(-10px);
+}
+
+/* Recipe Cards */
+
+.recipe{
+    display: block;
+    margin-left: 1rem;
+    background-color: #fbd691;
+    border-radius: 2rem;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+a{
+    text-decoration: none;
+}
+
+.recipe h5{
+    margin-top: -0.5rem;
+    margin-left: 1rem;
+    margin-bottom: 0rem;
+    line-height: 1;
+    color: #010001;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: 1000;
+    text-align: left;
+}
+
+.recipe p{
+    font-size: 10px;
+    padding: 5px 15px;
+    position: relative;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
+    text-align: left;
+    font-weight: bold;
+}
+.seperate {
+    width: 3px;
+    height: 3px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #010001;
+    border-radius: 50%;
+    margin: 0 6px;
+}
+/*
+.recipe-img{
+    height: 15rem;
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 1rem;
+}
+*/
+.recipe-img {
+    border-radius: 20px 20px 0 0;
+    display: block;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.recipe:hover img {
+    transform: scale(1.4);
+    transform-origin: center;
+}
+
+.recipeButton{
+    background-color: #fbd691;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.recipe h6 {
+    padding: 5px 15px;
+    position: relative;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
+}
+
+.img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.recipe_list{
+    margin-top: 3rem;
+    width: 80vw;
+    display:none;
+    gap:2rem 1rem;
+    padding-bottom: 3rem;
+}
+
+.recipe_list .recipe .author{
+    font-size: 14px;
+    padding: 14px 16px;
+    position: relative;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
+} 
+
+.recipe_list .recipe:hover .author{
+    opacity: 0;
+}
+
+@media screen and (min-width:776px) {
+    .recipe_list{
+        grid-template-columns: 1fr 1fr;
+    }
+    .recipe-img{
+        height: 10rem;
+    }
+}
+
+
+@media screen and (min-width:1200px) {
+    .recipe_list{
+        grid-template-columns: 1fr 1fr 1fr;    
+        width: 100%;
+    }
+    .recipe h5{
+        font-size: 1.15rem ;
+    }
+}
+
+@media screen and (max-width: 1080px){
+    .recipe_list{
+        margin: 10% auto;
+        grid-template-columns: 1fr;
+        height: auto;
+        width: 70%;
+    }
+
+    .recipe p{
+        font-size: 1rem;
+    }
+    .recipe h5{
+        font-size: 1.3rem;
+    }
+
+    .recipe-img{
+        height: 12rem;
+    }
+}
+.flexStar{
+    margin-top: -10px;
+    margin-bottom: 25px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: left;
+}
+
+.average{
+    margin-top: -0.4px;
+    margin-right: 5px;
+    color: rgb(59, 59, 59);
+    font-size: 13px;
+}
+
+
+/*Footer*/
+.background-design2{
+    /* margin-top: 47%; */
+    /* position: relative; */
+    width: 100%;
+}
+
+.page-footer {
+    font-family: "Playfair Display", serif;
+    background: #fbd691;
+    color: black;
+    padding: 1em;
+    text-align: center;
+    font-weight: bold;
 }

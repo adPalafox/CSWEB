@@ -502,6 +502,16 @@
  							<div class="center">
  								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
  							</div>
+
+							 <!--REPEAT PASSWORD -->
+ 							<label for="repassword" class="form-label">Password</label>
+ 							<div class="input-group flex-nowrap mb-3">
+ 								<input type="password" class="form-control" placeholder="Repeat Password" id="repeatpassword" name="repeatpassword" value="">
+ 								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
+ 							</div>
+ 							<div class="center">
+ 								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
+ 							</div>
  						</div>
  					</div>
 

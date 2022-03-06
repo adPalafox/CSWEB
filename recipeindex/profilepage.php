@@ -469,7 +469,7 @@
 				// $("#profile").append('<h1>'+recipe.recipe_name+'</h1> <p>'+recipe.recipe_description+'</p> <div class="time-grid">  <div id = "recipeServings" class="time-square-1"> <div class="time-title-1">Serving</div> <div class="time-alotted">'+recipe.servings+' servings</div></div><div id = "recipeTime" class="time-square-2"><div class="time-title-2">Cook</div><div class="time-alotted">'+cooktime+'</div></div></div>')
 				// <p class="profile-name"> </p>
 				$("#profile").append('<p class="profile-name underline">' + firstname + ' ' + lastname + '</p>');
-				$("#profile").append('<p class="profile-info">Click to change me. I am person description that you can edit.</p>');
+				$("#profile").append('<p class="profile-info">Life is awesome! Make your life tasty with All Tasty.</p>');
 				$(".profile2").append('<p class="underline">' + email + '</p>');
 				$(".profile2").append('<a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalResetPass"> Reset Password </a>');
 			}

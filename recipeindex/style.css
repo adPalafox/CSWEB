@@ -212,6 +212,7 @@ body{
     transition: all 0.2s;
     text-decoration: none;
     font-family: "Playfair Display", serif;
+    font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

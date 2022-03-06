@@ -67,7 +67,13 @@
         </div>
         </div>
     </section>
-
+    <!--Footer-->
+    <div class="background-design2">
+        <footer class="page-footer">
+            <p>&#169; All Tasty. All right reserved.</p>
+        </footer>
+    </div>
+    <!--End of Footer-->
     <script src="script.js"></script>
 
 </body>

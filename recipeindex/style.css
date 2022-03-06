@@ -107,7 +107,7 @@ body{
 /* Second Content */
 
 .page{
-    height: 100em;
+    /* height: 100em; */
     width: auto;
     font-family: "Playfair Display", serif;
     list-style: none;
@@ -387,4 +387,20 @@ a{
     margin-right: 5px;
     color: rgb(59, 59, 59);
     font-size: 13px;
+}
+
+/*Footer*/
+.background-design2{
+    /* margin-top: 47%; */
+    /* position: relative; */
+    width: 100%;
+}
+
+.page-footer {
+    font-family: "Playfair Display", serif;
+    background: #fbd691;
+    color: black;
+    padding: 1em;
+    text-align: center;
+    font-weight: bold;
 }

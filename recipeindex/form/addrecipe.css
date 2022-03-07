@@ -354,11 +354,11 @@ legend{
     background-color: #f5f3ef;
 }
 
+
 @media screen and (max-width: 1080px){
     .fieldSet{
-        width: 80%;
-        height: 100%;
-        border: none;
+        width: 70%;
+        height: 125%;
     }
 
     .recipesubmit{

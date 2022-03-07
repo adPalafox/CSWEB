@@ -74,11 +74,15 @@
                 <div class="row input_box">
                     <div class="col">
                         <span class="textLabel">Cook Time: </span>
-                        <input class="input" type="number" id="recipe_cook" name="recipe_cook" min="1"> mins
+                            <div class="minservings">
+                                <input class="input" type="number" id="recipe_cook" name="recipe_cook" min="1"> mins
+                            </div>
                     </div>
                     <div class="col">
                         <span class="textLabel">Servings</span>
-                        <input class="input" type="number" id="recipe_servings" name="recipe_servings" min="1"> servings
+                            <div class="minservings">
+                                <input class="input" type="number" id="recipe_servings" name="recipe_servings" min="1"> servings
+                            </div>
                     </div>
                 </div>
                 <div class="categ_box">

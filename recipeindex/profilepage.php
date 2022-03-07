@@ -176,41 +176,54 @@
 		echo $days . " days";
 	}
 
+	function check_password($pass, $conpass)
+	{
+		if ($pass == $conpass) {
+			return true;
+		} else
+			return false;
+	}
+
 	$message = '<strong>Welcome ' . base64_decode($_COOKIE['user']) . '</strong>';
 
 	// RESET PASSWORD
 	if (isset($_POST["resetPassword"])) {
 		$email = base64_encode($_POST["forgotemail"]);
 		$newpassword = $_POST["newpassword"];
+		$connewpassword = $_POST["connewpassword"];
 
 		// checkPasswords($email, $conn);
 
 		$sql = "SELECT * FROM users WHERE email = '$email'";
 		$list = $conn->query($sql);
 		if ($email != "" and $newpassword != "") {
-			if ($list->num_rows > 0) {
-				if ($_POST["g-recaptcha-response"] != '') {
-					$result = $list->fetch_all(MYSQLI_ASSOC);
-					foreach ($result as $row) {
-						$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
-						$message = '<div class="alert alert-danger">' . $result . '</div>';
-						if (strlen($result) <= 0) {
-							$newpassword = base64_encode($newpassword);
-							$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
-							if ($conn->query($sqlpassword) === TRUE) {
-								// updateTime($row["id"], $conn);
-								$message = '<strong> Account Password Successfully Updated! </strong>';
-							} else {
-								echo "Error: " . $sql . "<br>" . $conn->error;
+			if (check_password($newpassword, $connewpassword)) {
+				if ($list->num_rows > 0) {
+					if ($_POST["g-recaptcha-response"] != '') {
+						$result = $list->fetch_all(MYSQLI_ASSOC);
+						foreach ($result as $row) {
+							$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+							$message = '<div class="alert alert-danger">' . $result . '</div>';
+							if (strlen($result) <= 0) {
+								$newpassword = base64_encode($newpassword);
+								$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
+								if ($conn->query($sqlpassword) === TRUE) {
+									// updateTime($row["id"], $conn);
+									$message = '<strong> Account Password Successfully Updated! </strong>';
+								} else {
+									echo "Error: " . $sql . "<br>" . $conn->error;
+								}
+								$conn->close();
 							}
-							$conn->close();
 						}
+					} else {
+						$message = '<strong> Please verify captcha. </strong>';
 					}
 				} else {
-					$message = '<strong> Please verify captcha. </strong>';
+					$message = '<strong> Account Does Not Exist! </strong>';
 				}
 			} else {
-				$message = '<strong> Account Does Not Exist! </strong>';
+				$message = '<div class="alert alert-danger"> Passwords do not match </div>';
 			}
 		} else {
 			$message = '<strong> There must be no empty inputs. </strong>';
@@ -301,12 +314,20 @@
 								<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="<?php echo base64_decode($_COOKIE['email']) ?>" readonly>
 								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
 							</div>
-
+							<!--NEW PASSWORD -->
 							<label for="password" class="form-label" style="color: red">Enter New Password</label>
 							<div class="input-group flex-nowrap mb-3">
 								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
 								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
 							</div>
+
+							<!--REPEAT PASSWORD -->
+							<label for="repassword" class="form-label"> Confirm Password</label>
+							<div class="input-group flex-nowrap mb-3">
+								<input type="password" class="form-control" placeholder="Confirm Password" id="repeatpassword" name="repeatpassword" value="">
+								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
+							</div>
+
 
 							<div class="center">
 								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>

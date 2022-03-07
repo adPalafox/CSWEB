@@ -341,15 +341,17 @@
     let username = atob(getCookie("user"));
     if (username != "") {
         $("#loginForm").append('<a href="../profilepage.php"> ' + username + '</a>');
-        $("#loginForm").append('<a href="./addrecipe.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
-        $("#navigation").append('<li><a href="./addrecipe.php">Create Recipe</a></li>');
+        $("#loginForm").append('<a href="../index.php"><button id = "logoutBtn" class="logout">Log Out</button></a>');
+        $("#navigation").append('<li><a href="../form/addrecipe.php">Create Recipe</a></li>');
     } else {
-        $("#loginForm").append('<a href = "../loginindex.php">Log In</a>');
+        $("#loginForm").append('<a href = "../login/index.php">Log In</a>');
         $("#loginForm").append('<a href = "../login/index.php"><button class="signup">Sign Up →</button></a>');
     }
     $("#logoutBtn").click(function() {
         if (username != "") {
+            document.cookie = `id= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
             document.cookie = `user= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+            document.cookie = `email= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
         }
     });
 </script>

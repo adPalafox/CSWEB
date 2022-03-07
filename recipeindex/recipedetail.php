@@ -260,14 +260,11 @@
     }
 
     checkIfReview(function(data){
-        var currentAccount = atob(getCookie("user"));
-        var currentUserId = getCookie('id')
+        var currentUserId = getCookie('id');
         var results = false;
+        console.log(recipeId);
         data.forEach(function(rating, index){
-            // if(rating.recipe_id == recipeId  ){
-            //     results = true;
-            // }
-            if(rating.user_id == currentUserId){
+            if(rating.recipe_id == recipeId && rating.user_id == currentUserId && rating.rating > 0 ||  rating.recipe_id == recipeId && rating.user_id == currentUserId || currentUserId == ""){
                 results = true;
             }
         });

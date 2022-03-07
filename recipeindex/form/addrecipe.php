@@ -136,7 +136,7 @@
     var recipe_description = '';
     var recipe_servings = '';
     var recipe_cook = '';
-    var recipe_img = '';
+    // var recipe_img = '';
     var recipe_ingredients = [];
     var recipe_steps = [];
     var recipe_category = '';
@@ -149,7 +149,7 @@
         recipe_description = document.getElementById('recipe_description').value;
         recipe_servings = '';
         recipe_cook = '';
-        recipe_img = '';
+        // recipe_img = '';
         recipe_ingredients = [];
         recipe_steps = [];
         recipe_category = '';
@@ -255,8 +255,14 @@
 
             var formData = new FormData();
             formData.append("file", files[0]);
-            formData.append("fileName", recipe_name);
-            recipe_img = files[0].name;
+            var randomFilename = recipe_id+".png";
+            formData.append("file", files[0], randomFilename);
+            // formData.append("fileName", recipe_name);
+
+            // var randomFilename = Math.round((Date.now() * Math.random()));
+            // formData.append("file", 'kenneth.png');
+
+            // recipe_img = files[0].name;
             var xhttp = new XMLHttpRequest();
 
 
@@ -267,7 +273,7 @@
                     var response = this.responseText;
                     if (response == 1) {
                         //alert("Upload successfully.");
-                        uploadRecipeDatabase();
+                        uploadRecipeDatabase(randomFilename);
                         uploadIngredientDatabase();
                         uploadStepsDatabase();
                         uploadRatingDatabase();
@@ -285,7 +291,7 @@
         }
     }
 
-    function uploadRecipeDatabase() {
+    function uploadRecipeDatabase(recipe_img) {
         $.ajax({
             url: "./insertdatabase.php",
             type: "POST",

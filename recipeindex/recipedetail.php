@@ -86,6 +86,7 @@
 </html>
 
 <script>
+    
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -133,6 +134,7 @@
     loadIngredients(recipeId);
     loadSteps(recipeId);
     loadReviews();
+    
     function Load(){
         $.ajax({
         url: "./getrecipe.php",
@@ -187,19 +189,15 @@
             }
         });
     }
+
     $("#navz").on('click', 'button', function(){
         $.ajax({
         url: "./deleterecipe.php",
         type: "POST",
         data: {
-            "id": recipeId
+            "id": recipeId,
         },
         success: function(response){
-                if (response){
-                    console.log("successful");
-                }else{
-                    console.log("failure");
-                }
             }
         });
     });
@@ -262,14 +260,18 @@
     }
 
     checkIfReview(function(data){
-        var currentAccount = getCookie("user");
+        var currentAccount = atob(getCookie("user"));
+        var currentUserId = getCookie('id')
         var results = false;
         data.forEach(function(rating, index){
-            if(rating.recipe_id == recipeId && currentAccount == rating.firstname && rating.rating > 0){
+            // if(rating.recipe_id == recipeId  ){
+            //     results = true;
+            // }
+            if(rating.user_id == currentUserId){
                 results = true;
             }
         });
-        if(results == false && getCookie("id")){
+        if(results == false){
             $('#ratingSection').append('<div class="col-md-3"></div>');
             $('#ratingSection').append('<div class="col-md-6 well">');
             $('#ratingSection').append('<h3 class="ratingtext">How much would you rate this recipe?</h3>');

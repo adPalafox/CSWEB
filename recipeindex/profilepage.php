@@ -378,38 +378,41 @@
 			type: "POST",
 			success: function(response) {
 				response.forEach(function(recipe, index) {
-					var cooktime = recipe.cook_time + ' mins';
-					if (recipe.cook_time > 60) {
-						cooktime = ' ' + Math.round(recipe.cook_time / 60) + ' hours';
-						if (recipe.cook_time % 60 > 0) {
-							cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
+
+					if (recipe.user_id == getCookie("id")){
+						var cooktime = recipe.cook_time + ' mins';
+						if (recipe.cook_time > 60) {
+							cooktime = ' ' + Math.round(recipe.cook_time / 60) + ' hours';
+							if (recipe.cook_time % 60 > 0) {
+								cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
+							}
+						}
+
+						if (recipe.category == "street") {
+							$("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						} else if (recipe.category == "dish") {
+							$("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						} else {
+							$("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						}
+						for (let i = 0; i < response.length; i++) {
+							average = response[i].average;
+							if (average == null) {
+								$('#' + i + '').append('<p2 class = "average" >0.0</p2>');
+							} else {
+								$('#' + i + '').append('<p2 class = "average" > ' + parseFloat(average).toFixed(1) + '</p2>');
+							}
+							for (let j = 0; j < Math.trunc(average); j++) {
+								$('#' + i + '').append('<span class = "fa fa-star" style = "color: #ff0038"></span>');
+							}
+							for (let k = 0; k < (5 - Math.trunc(average)); k++) {
+								$('#' + i + '').append('<span class = "fa fa-star" style = "color: black"></span>');
+							}
 						}
 					}
-
-					if (recipe.category == "street") {
-						$("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
-					} else if (recipe.category == "dish") {
-						$("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
-					} else {
-						$("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
-					}
-
 				});
-				for (let i = 0; i < response.length; i++) {
-					average = response[i].average;
-					if (average == null) {
-						$('#' + i + '').append('<p2 class = "average" >0.0</p2>');
-					} else {
-						$('#' + i + '').append('<p2 class = "average" > ' + parseFloat(average).toFixed(1) + '</p2>');
-					}
-					for (let j = 0; j < Math.trunc(average); j++) {
-						$('#' + i + '').append('<span class = "fa fa-star" style = "color: #ff0038"></span>');
-					}
-					for (let k = 0; k < (5 - Math.trunc(average)); k++) {
-						$('#' + i + '').append('<span class = "fa fa-star" style = "color: black"></span>');
-					}
-				}
-
+				
+				
 			}
 		});
 	}

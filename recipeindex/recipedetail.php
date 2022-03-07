@@ -14,8 +14,15 @@
     <section>
             <div class="pageOne">
                 <header>
-                    <!-- <a href="./index.php"><button id = "returnBack" class="recipeback">Return to Previous Page</button></a> -->
-                    <div id = "navz"></div>
+                    <button id = "returnBack" class="recipeback" onClick = "returnPage()">Return to Previous Page</button>
+                    <div id = "navz">
+                        <form id = "editz" action="./form/edit/editrecipe.php" method = "POST">
+                            <!-- <label for="fname">First name:</label>
+                            <input type="text" id="fname" name="fname"><br><br>
+                            <input type="hidden" id="custId" name="custId" value="3487">
+                            <input type="submit" value="Submit"> -->
+                        </form>
+                    </div>
                     <!-- <a href="./index.php"><button id = "deleteRecipe" class="recipe">Delete Recipe</button></a> -->
                 </header>
                 <!-- <div class="content">
@@ -86,7 +93,10 @@
 </html>
 
 <script>
-    
+    function returnPage(){
+        var data = <?php echo json_encode($_POST) ?>;
+        window.location.replace(data.previouspage)
+    }
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -134,7 +144,6 @@
     loadIngredients(recipeId);
     loadSteps(recipeId);
     loadReviews();
-    
     function Load(){
         $.ajax({
         url: "./getrecipe.php",
@@ -151,8 +160,20 @@
                         }
                         $("#recipeInfo").append('<h1>'+recipe.recipe_name+'</h1> <p>'+recipe.recipe_description+'</p> <div class="time-grid">  <div id = "recipeServings" class="time-square-1"> <div class="time-title-1">Serving</div> <div class="time-alotted">'+recipe.servings+' servings</div></div><div id = "recipeTime" class="time-square-2"><div class="time-title-2">Cook</div><div class="time-alotted">'+cooktime+'</div></div></div>')
                         $("#recipeImage").append('<img class = "testing" src = "./assets/'+recipe.img_name+'"></img>');
+                        
+                        $('#editz').append('<input type="hidden" name="name" value="'+recipe.recipe_name+'">');
+                        $('#editz').append('<input type="hidden" name="description" value="'+recipe.recipe_description+'">');
+                        $('#editz').append('<input type="hidden" name="servings" value="'+recipe.servings+'">');
+                        $('#editz').append('<input type="hidden" name="cooktime" value="'+recipe.cook_time+'">');
+                        $('#editz').append('<input type="hidden" name="recipe_id" value="'+recipe.recipe_id+'">');
+                        $('#editz').append('<input type="hidden" name="img_name" value="'+recipe.img_name+'">');
+                        $('#editz').append('<input type="hidden" name="category" value="'+recipe.category+'">');
+
                         if((recipe.firstname).toLowerCase() == (getCookie("user")).toLowerCase()){
-                            $("#navz").append('<a href="./index.php"><button id = "deleteRecipe" class="recipe">Delete Recipe</button></a>');
+                            // $("#editz").append('<button id = "editRecipe" class="recipeback">Edit Recipe</button>');
+                            $("#editz").append('<button id = "editRecipe" class="recipeback">Edit Recipe</button>');
+                            $("#navz").append('<button id = "deleteRecipe" class="recipe" onClick = "deleteRecipe()">Delete Recipe</button>');
+                            
                         }
                     }
                 });
@@ -190,17 +211,33 @@
         });
     }
 
-    $("#navz").on('click', 'button', function(){
-        $.ajax({
-        url: "./deleterecipe.php",
-        type: "POST",
-        data: {
-            "id": recipeId,
-        },
-        success: function(response){
-            }
-        });
-    });
+
+    function deleteRecipe(){
+        if(confirm("Are you sure about deleting this recipe?")){
+            window.location.replace("./index.php");
+            $.ajax({
+            url: "./deleterecipe.php",
+            type: "POST",
+            data: {
+                "id": recipeId,
+            },
+            success: function(response){
+                }
+            });
+        }
+    }
+
+    // $("#navz").on('click', 'button', function(){
+    //     $.ajax({
+    //     url: "./deleterecipe.php",
+    //     type: "POST",
+    //     data: {
+    //         "id": recipeId,
+    //     },
+    //     success: function(response){
+    //         }
+    //     });
+    // });
 
     var count = 0;
     function result() {
@@ -315,5 +352,6 @@
             }
         });
     }
-
+    var data = <?php echo json_encode($_POST) ?>;
+    console.log(data);
 </script>

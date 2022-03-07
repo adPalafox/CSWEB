@@ -188,6 +188,16 @@
 		echo $days . " days";
 	}
 
+
+	function check_password($pass, $conpass)
+	{
+		if ($pass == $conpass) {
+			return true;
+		} else
+			return false;
+	}
+
+
 	if (isset($_POST["loginAccount"])) {
 		if (!isset($_COOKIE['attempt'])) {
 			$_COOKIE['attempt'] = 0;
@@ -306,6 +316,7 @@
 		$lname = $_POST['createlname'];
 		$email =  base64_encode($_POST['createemail']);
 		$password = $_POST['createpassword'];
+		$confirmpassword =  $_POST['repeatpassword'];
 		$date = date("Y-m-d");
 		$result = passwordValidation($fname, $lname, $password, $conn);
 
@@ -316,33 +327,43 @@
 		$url = "https://www.google.com/recaptcha/api/siteverify?secret=$SecretKey&response=$ResponseKey&remoteip=$userIP";
 		$response = file_get_contents($url);
 
-		if ($fname != "" and $lname != "" and $email != "" and $password != "") {
-			if ($_POST["g-recaptcha-response"] != '') {
-				if (!existingAccount($conn, $email)) {
-					if (strlen($result) <= 0) {
-						$fname = base64_encode($fname);
-						$lname = base64_encode($lname);
-						$password = base64_encode($password);
-						$date = base64_encode($date);
-						$sql = "INSERT INTO users (firstname, lastname, email, password, date) VALUES ('$fname', '$lname', '$email', '$password', '$date');";
-						if ($conn->query($sql) === TRUE) {
-							setcookie("page", "login", time() + 3600);
-							$result = 'Account successfully created!';
 
-							// $passwordSql = "INSERT INTO passwords (email, password1, password2, password3, password4, password5, password6) VALUES ('$email', '$password', ' ', ' ', ' ', ' ', ' ');";
-							// if ($conn->query($passwordSql) === TRUE) {
-							// }
+
+		if ($fname != "" and $lname != "" and $email != "" and $password != "") {
+			if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $fname) == 0 and preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $lname) == 0) {
+				if (check_password($password, $confirmpassword)) {
+					if ($_POST["g-recaptcha-response"] != '') {
+						if (!existingAccount($conn, $email)) {
+							if (strlen($result) <= 0) {
+								$fname = base64_encode($fname);
+								$lname = base64_encode($lname);
+								$password = base64_encode($password);
+								$date = base64_encode($date);
+								$sql = "INSERT INTO users (firstname, lastname, email, password, date) VALUES ('$fname', '$lname', '$email', '$password', '$date');";
+								if ($conn->query($sql) === TRUE) {
+									setcookie("page", "login", time() + 3600);
+									$result = 'Account successfully created!';
+
+									// $passwordSql = "INSERT INTO passwords (email, password1, password2, password3, password4, password5, password6) VALUES ('$email', '$password', ' ', ' ', ' ', ' ', ' ');";
+									// if ($conn->query($passwordSql) === TRUE) {
+									// }
+								} else {
+									echo "Error: " . $sql . "<br>" . $conn->error;
+								}
+								$conn->close();
+							}
 						} else {
-							echo "Error: " . $sql . "<br>" . $conn->error;
+							$result .= "\nEmail Account Address is already being used.";
 						}
-						$conn->close();
+						$message = '<div class="alert alert-danger">' . $result . '</div>';
+					} else {
+						$message = '<div class="alert alert-danger"> Please verify captcha. </div>';
 					}
 				} else {
-					$result .= "\nEmail Account Address is already being used.";
+					$message = '<div class="alert alert-danger"> Passwords do not match </div>';
 				}
-				$message = '<div class="alert alert-danger">' . $result . '</div>';
 			} else {
-				$message = '<div class="alert alert-danger"> Please verify captcha. </div>';
+				$message = '<div class="alert alert-danger"> Invalid Characters </div>';
 			}
 		} else {
 			$message = '<div class="alert alert-danger"> There must be no empty inputs. </div>';
@@ -352,35 +373,40 @@
 	if (isset($_POST["resetPassword"])) {
 		$email = base64_encode($_POST["forgotemail"]);
 		$newpassword = $_POST["newpassword"];
+		$connewpassword = $_POST["connewpassword"];
 
 		// checkPasswords($email, $conn);
 
 		$sql = "SELECT * FROM users WHERE email = '$email'";
 		$list = $conn->query($sql);
 		if ($email != "" and $newpassword != "") {
-			if ($list->num_rows > 0) {
-				if ($_POST["g-recaptcha-response"] != '') {
-					$result = $list->fetch_all(MYSQLI_ASSOC);
-					foreach ($result as $row) {
-						$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
-						$message = '<div class="alert alert-danger">' . $result . '</div>';
-						if (strlen($result) <= 0) {
-							$newpassword = base64_encode($newpassword);
-							$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
-							if ($conn->query($sqlpassword) === TRUE) {
-								// updateTime($row["id"], $conn);
-								$message = '<div class="alert alert-danger"> Account Password Successfully Updated </div>';
-							} else {
-								echo "Error: " . $sql . "<br>" . $conn->error;
+			if (check_password($newpassword, $connewpassword)) {
+				if ($list->num_rows > 0) {
+					if ($_POST["g-recaptcha-response"] != '') {
+						$result = $list->fetch_all(MYSQLI_ASSOC);
+						foreach ($result as $row) {
+							$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+							$message = '<div class="alert alert-danger">' . $result . '</div>';
+							if (strlen($result) <= 0) {
+								$newpassword = base64_encode($newpassword);
+								$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
+								if ($conn->query($sqlpassword) === TRUE) {
+									// updateTime($row["id"], $conn);
+									$message = '<div class="alert alert-danger"> Account Password Successfully Updated </div>';
+								} else {
+									echo "Error: " . $sql . "<br>" . $conn->error;
+								}
+								$conn->close();
 							}
-							$conn->close();
 						}
+					} else {
+						$message = '<div class="alert alert-danger"> Please verify captcha. </div>';
 					}
 				} else {
-					$message = '<div class="alert alert-danger"> Please verify captcha. </div>';
+					$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
 				}
 			} else {
-				$message = '<div class="alert alert-danger"> Account Does Not Exist! </div>';
+				$message = '<div class="alert alert-danger"> Passwords do not match </div>';
 			}
 		} else {
 			$message = '<div class="alert alert-danger"> There must be no empty inputs. </div>';
@@ -499,9 +525,20 @@
  								<input type="password" class="form-control" placeholder="Password" id="createpassword" name="createpassword" value="">
  								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
+
+ 							<!--REPEAT PASSWORD -->
+ 							<label for="repassword" class="form-label"> Confirm Password</label>
+ 							<div class="input-group flex-nowrap mb-3">
+ 								<input type="password" class="form-control" placeholder="Confirm Password" id="repeatpassword" name="repeatpassword" value="">
+ 								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
+ 							</div>
+
+ 							<!-- CAPTCHA -->
  							<div class="center">
  								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
  							</div>
+
+
  						</div>
  					</div>
 
@@ -539,6 +576,14 @@
  								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
  								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
+
+ 							<label for="password" class="form-label" style="color: red">Confirm New Password</label>
+ 							<div class="input-group flex-nowrap mb-3">
+ 								<input type="password" class="form-control" placeholder="Confirm New Password" id="connewpassword" name="connewpassword" value="">
+ 								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
+ 							</div>
+
+
  							<div class="center">
  								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
  							</div>

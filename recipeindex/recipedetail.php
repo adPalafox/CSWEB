@@ -14,7 +14,7 @@
     <section>
             <div class="pageOne">
                 <header>
-                    <a href="./index.php"><button id = "returnBack" class="recipeback">Return to Previous Page</button></a>
+                    <!-- <a href="./index.php"><button id = "returnBack" class="recipeback">Return to Previous Page</button></a> -->
                     <div id = "navz"></div>
                     <!-- <a href="./index.php"><button id = "deleteRecipe" class="recipe">Delete Recipe</button></a> -->
                 </header>

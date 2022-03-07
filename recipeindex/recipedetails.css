@@ -224,13 +224,14 @@ p{
     float: left;
     font-size: 2.5em;
     margin-top: 100px;
+    margin-left: 90px;
 }
 
 .column p{
     text-align: left;
-    font-size: 2.25vmin;
+    font-size: 3vmin;
     line-height: 1.2em;
-    margin: 15px 30px 30px 40px;
+    margin: 0 0 0 30px;
     color: grey;
     font-family: 'Lato', sans-serif;
     padding-top: 10px;
@@ -238,10 +239,11 @@ p{
 
 .row{
     width: 100%;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
     float: center;
 }
+
 .row:after {
     content: "";
     display: table;
@@ -252,6 +254,7 @@ p{
     .row{
         margin-top: 200px;
     }
+
     .column {
         width: 100%;
         text-align: center;

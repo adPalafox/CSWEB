@@ -80,7 +80,7 @@
 } */
 /*Category===============================*/
 .categ_box{
-    margin: 1rem 0.2rem;
+    margin: 1.5rem 0.2rem;
     display: flex;
 }
 
@@ -156,29 +156,29 @@ legend{
     justify-content: center;
 }
   
-  .radio-toolbar input[type="radio"] {
+.radio-toolbar input[type="radio"] {
     opacity: 0;
     position: fixed;
     width: 0;
-  }
-  
-  .radio-toolbar label {
-    padding: .3em;
-    border: 2px solid #1a1a1a;
+}
+
+.radio-toolbar label {
+    padding: .5em;
+    border: 2px solid #161616;
     border-radius: 1em;
     font-weight: bold;
-  }
-  
-  .radio-toolbar label:hover {
+}
+
+.radio-toolbar label:hover {
     background-color: #fbd691;
-  }
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+    background-color: #fbd691;
+    color: #f5f3ef;
+}
   
-  .radio-toolbar input[type="radio"]:checked + label {
-      background-color: #fbd691;
-      color: #f5f3ef;
-  }
-  
-  body{
+body{
     margin: 0;
     /* padding: 0;
     height: 100%;
@@ -306,6 +306,7 @@ legend{
 .textLabel {
     font-size: 1em;
     font-weight: bold;
+    margin-right: 0.5rem;
 }
 
 .textarea{
@@ -322,7 +323,13 @@ legend{
 .col{
     float: left;
     width: 50%;
-    padding: 1em;
+    padding: 0 0.5rem 0 0;
+}
+
+.minservings {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
 }
 
 /* .ingre{
@@ -354,15 +361,21 @@ legend{
     background-color: #f5f3ef;
 }
 
-
 @media screen and (max-width: 1080px){
     .fieldSet{
         width: 70%;
-        height: 125%;
+        height: auto;
     }
 
     .recipesubmit{
         margin-left: 0;
+    }
+
+    .radio-toolbar{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
     }
 }
 
@@ -406,3 +419,4 @@ html {
     height: auto;
     width: 60%;
 } */
+

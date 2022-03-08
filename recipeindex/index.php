@@ -97,13 +97,13 @@
                         }
                     }
                     if (recipe.category == "street") {
-                        $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p>  <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>' );
                         $('#streetDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     } else if (recipe.category == "dish") {
-                        $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p>  <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>');
                         $('#dishDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     } else {
-                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p> <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>');
                         $('#dessertDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     }
                     

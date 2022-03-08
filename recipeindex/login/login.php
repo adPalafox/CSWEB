@@ -417,6 +417,7 @@
 
  <head>
  	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	 
 
  	<script>
  		function getCookie(cname) {
@@ -453,29 +454,29 @@
  			<div class="modal-content">
  				<form action="index.php" method="POST">
  					<div class="modal-header justify-content-center">
- 						<h5 class="brand" id="staticBackdropLabel">Login</h5>
+						<img src="All-Tasty-.png" width="50px" alt="">
  					</div>
  					<div class="modal-body">
  						<div class="container">
- 							<h4 class="mb-3 fw-bold  text-center">Login to start your session</h4>
+ 							<h4 class="mb-3 fw-bold  text-center">Log In to All Tasty</h4>
  							<span><?php echo $message; ?></span>
- 							<label for="email" class="form-label">Email address</label>
+ 							<label for="email" class="form-label">Email</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="email" class="form-control" placeholder="Email" id="email" name="email" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
  							</div>
  							<label for="password" class="form-label">Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Password" id="password" name="password" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
+							<div class="buttons">
+								<button type="submit" class="btn-password" name="pageSelect" value="forgot">Forgot Password?</button>
+								<button type="submit" class="btn btnSquare bg-dark" name="loginAccount">Login</button>
+							</div>
  						</div>
  					</div>
-
  					<div class="modal-footer justify-content-between mx-3 my-2">
- 						<button type="submit" class="btn " name="pageSelect" value="create">Create an account</button>
- 						<button type="submit" class="btn " name="pageSelect" value="forgot">Change Password</button>
- 						<button type="submit" class="btn btnSquare bg-dark" name="loginAccount">Login</button>
+						<p>Don't have an account?</p>
+ 						<button type="submit" class="btn-signup" name="pageSelect" value="create">Sign Up</button>
  					</div>
  				</form>
  				<!-- <form action="index.php" method="POST">
@@ -491,61 +492,60 @@
  			<div class="modal-content">
  				<form action="index.php" method="POST">
  					<div class="modal-header justify-content-center">
- 						<h5 class="brand" id="staticBackdropLabel">Create Account</h5>
+					 	<img src="All-Tasty-.png" width="50px" alt="">
  					</div>
  					<div class="modal-body">
  						<div class="container">
- 							<h4 class="mb-3 fw-bold  text-center">Start creating your account now!</h4>
+ 							<h4 class="mb-3 fw-bold  text-center">Join All Tasty</h4>
  							<span><?php echo $message; ?></span>
 
  							<!-- FIRST NAME -->
  							<label for="fname" class="form-label">First Name</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="text" class="form-control" placeholder="First Name" id="createfname" name="createfname" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="fname"><i class="fas fa-user fa-1x p-2"></i></label>
  							</div>
 
  							<!-- LAST NAME -->
  							<label for="lname" class="form-label">Last Name</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="text" class="form-control" placeholder="Last Name" id="createlname" name="createlname" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="lname"><i class="fas fa-user fa-1x p-2"></i></label>
  							</div>
 
  							<!-- EMAIL -->
- 							<label for="email" class="form-label">Email address</label>
+ 							<label for="email" class="form-label">Email</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="email" class="form-control" placeholder="Email" id="createemail" name="createemail" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
  							</div>
 
  							<!-- PASSWORD -->
  							<label for="password" class="form-label">Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Password" id="createpassword" name="createpassword" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
 
  							<!--REPEAT PASSWORD -->
  							<label for="repassword" class="form-label"> Confirm Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Confirm Password" id="repeatpassword" name="repeatpassword" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
 
  							<!-- CAPTCHA -->
  							<div class="center">
  								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
  							</div>
-
-
+		 					
+							<div class="class-two">
+								<button type="submit" class="btn btnSquare bg-dark" name="createAccount">Sign Up</button>
+								
+							</div>
+							
+							<p class="policy"> By continuing, you agree to All Tasty's Terms of Service and Privacy Policy. <p>
  						</div>
  					</div>
 
  					<div class="modal-footer justify-content-between mx-3 my-2">
- 						<button type="submit" class="btn " name="pageSelect" value="login">Already have an account?</button>
- 						<button type="submit" class="btn btnSquare bg-dark" name="createAccount">Create Account</button>
-
+					 	<p>Already have an account?</p>
+ 						<button type="submit" class="btn-login " name="pageSelect" value="login">Log In</button>
  					</div>
  				</form>
  			</div>
@@ -568,19 +568,16 @@
  							<label for="forgotemail" class="form-label" style="color: red">Enter Email Address</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
  							</div>
 
  							<label for="password" class="form-label" style="color: red">Enter New Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
 
  							<label for="password" class="form-label" style="color: red">Confirm New Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Confirm New Password" id="connewpassword" name="connewpassword" value="">
- 								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
  							</div>
 
 
@@ -591,12 +588,11 @@
  					</div>
 
  					<div class="modal-footer justify-content-between mx-3 my-2">
- 						<button type="submit" class="btn " name="pageSelect" value="login">Login to Account</button>
+ 						<button type="submit" class="btn-cancel " name="pageSelect" value="login">Cancel</button>
  						<button type="submit" class="btn btnSquare bg-dark" name="resetPassword">Reset</button>
  					</div>
 
  				</form>
-
  			</div>
  		</div>
  	</div>

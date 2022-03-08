@@ -369,7 +369,7 @@
  			<div class="modal-content">
  				<form action="index.php" method="POST">
  					<div class="modal-header justify-content-center">
-						<img src="All-Tasty-.png" width="50px" alt="">
+						<img src="All-Tasty-.png" width="60px" alt="">
  					</div>
  					<div class="modal-body">
  						<div class="container">
@@ -407,7 +407,7 @@
  			<div class="modal-content">
  				<form action="index.php" method="POST">
  					<div class="modal-header justify-content-center">
-					 	<img src="All-Tasty-.png" width="50px" alt="">
+					 	<img src="All-Tasty-.png" width="60px" alt="">
  					</div>
  					<div class="modal-body">
  						<div class="container">
@@ -450,7 +450,7 @@
  							</div>
 		 					
 							<div class="class-two">
-								<button type="submit" class="btn btnSquare bg-dark" name="createAccount">Sign Up</button>
+								<button type="submit" class="btn btnSquares bg-dark" name="createAccount">Sign Up</button>
 								
 							</div>
 							
@@ -477,20 +477,19 @@
  					</div>
  					<div class="modal-body">
  						<div class="container">
- 							<h4 class="mb-3 fw-bold  text-center">Enter your email address</h4>
  							<span><?php echo $message; ?></span>
 
- 							<label for="forgotemail" class="form-label" style="color: red">Enter Email Address</label>
+ 							<label for="forgotemail" class="form-label" style="color: #de0c19">Enter Email Address</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="">
  							</div>
 
- 							<label for="password" class="form-label" style="color: red">Enter New Password</label>
+ 							<label for="password" class="form-label" style="color: #de0c19">Enter New Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
  							</div>
 
- 							<label for="password" class="form-label" style="color: red">Confirm New Password</label>
+ 							<label for="password" class="form-label" style="color: #de0c19">Confirm New Password</label>
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Confirm New Password" id="connewpassword" name="connewpassword" value="">
  							</div>

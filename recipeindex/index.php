@@ -57,10 +57,9 @@
                             <div class = "descrip-cook"> <i class="fa fa-clock-o"></i>5 mins</div> 
                             <div class = "descrip-serve"> <i class="fa fa-cutlery"></i> 2 people</div>
                             <hr/>
-                            <div class = "flexStar" id = "1">
+                            <div class = "flexStar" id = "1"> 
                                 <div class = "rateStar" id = "rateStar1"> </div>
-                            </div> 
-                            
+                            </div>                
                         </button> 
                     </div>
                 </div>

@@ -389,7 +389,7 @@
 							</div>
  						</div>
  					</div>
- 					<div class="modal-footer justify-content-between mx-3 my-2">
+ 					<div class="modal-footer justify-content-center mx-3 my-2">
 						<p>Don't have an account?</p>
  						<button type="submit" class="btn-signup" name="pageSelect" value="create">Sign Up</button>
  					</div>
@@ -458,7 +458,7 @@
  						</div>
  					</div>
 
- 					<div class="modal-footer justify-content-between mx-3 my-2">
+ 					<div class="modal-footer justify-content-center mx-3 my-2">
 					 	<p>Already have an account?</p>
  						<button type="submit" class="btn-login " name="pageSelect" value="login">Log In</button>
  					</div>
@@ -494,7 +494,6 @@
  							<div class="input-group flex-nowrap mb-3">
  								<input type="password" class="form-control" placeholder="Confirm New Password" id="connewpassword" name="connewpassword" value="">
  							</div>
-
 
  							<div class="center">
  								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>

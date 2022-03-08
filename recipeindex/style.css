@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 body{
     margin: 0;
     padding: 0;
@@ -125,7 +124,7 @@ body{
     padding: 100px 0 80px 0;
     position: relative;
     overflow: hidden;
-}
+  }
   
 .search::before {
     content: '';
@@ -190,11 +189,9 @@ body{
 .recipes_container{
     padding: 1rem 10vw;
 }
-
 .recipe_list.active{
     display:grid;
 }
-
 /* Category Buttons CSS */
 .btn_container{
     margin-top: 2rem;
@@ -219,6 +216,7 @@ body{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
     background: #fbd691;
     margin: auto;
     border: none;
@@ -237,6 +235,7 @@ body{
 
 .recipe{
     display: block;
+    margin-left: 1rem;
     background-color: #fbd691;
     border-radius: 2rem;
     position: relative;
@@ -248,33 +247,26 @@ a{
     text-decoration: none;
 }
 
-.recipename {
-    /*position: relative;
-    text-align: left;
+.recipe h5{
+    margin-top: -0.5rem;
+    margin-left: 1rem;
+    margin-bottom: 0rem;
     line-height: 1;
     color: #010001;
     text-decoration: none;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-weight: 900;
-    text-align: left;*/
-    font-size: 15px;
-
-    position: absolute;
-    color: black;
-    font-family: 'Source Sans Pro', sans-serif;
     text-align: left;
-    background-color: #de0c19;
 }
 
 .recipe p{
-    font-size: 15px;
-    padding: 0 15px 5px 15px;
+    font-size: 10px;
+    padding: 5px 15px;
     position: relative;
-    color: #aaa;
-    font-family: 'Source Sans Pro', sans-serif;
+    color: #252936;
+    font-family: 'Lato', sans-serif;
     text-align: left;
 }
-
 .seperate {
     width: 3px;
     height: 3px;
@@ -299,7 +291,7 @@ a{
 }
 
 .recipe:hover img {
-    transform: scale(1.2);
+    transform: scale(1.4);
     transform-origin: center;
 }
 
@@ -310,7 +302,6 @@ a{
     padding: 0;
     width: 100%;
 }
-
 .recipe h6 {
     padding: 5px 15px;
     position: relative;
@@ -353,6 +344,7 @@ a{
     }
 }
 
+
 @media screen and (min-width:1200px) {
     .recipe_list{
         grid-template-columns: 1fr 1fr 1fr;    
@@ -382,7 +374,6 @@ a{
         height: 12rem;
     }
 }
-
 .flexStar{
     margin-top: -10px;
     margin-bottom: 25px;

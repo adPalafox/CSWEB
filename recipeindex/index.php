@@ -103,7 +103,11 @@
                         $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p>  <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>');
                         $('#dishDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     } else {
+<<<<<<< Updated upstream
                         $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p> <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>');
+=======
+                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p> </button> </div>');
+>>>>>>> Stashed changes
                         $('#dessertDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     }
                     

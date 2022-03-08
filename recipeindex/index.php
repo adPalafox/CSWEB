@@ -41,7 +41,7 @@
             </form>
         </nav>
 
-        <div class="recipes_container active" id = "recipesContainer">
+        <div class="recipes_container active">
             <div class="btn_container">
                 <button class="btn active" data-target="#streetDishes">Street Foods</button>
                 <button class="btn" data-target="#dishDishes">Dish</button>
@@ -51,9 +51,20 @@
 
             <form action="recipedetail.php" method="POST">
                 <div id="streetDishes" class="recipe_list active">
+                    <div class = "recipe">
+                        <button class = "recipeButton" name = "button" value = "ken" ><img src="./assets/kwek.png" class="img recipe-img">
+                            <div class = "recipename">  Shrimp</div> 
+                            <div class = "descrip-cook"> <i class="fa fa-clock-o"></i>5 mins</div> 
+                            <div class = "descrip-serve"> <i class="fa fa-cutlery"></i> 2 people</div>
+                            <hr/>
+                            <div class = "flexStar" id = "1">
+                                <div class = "rateStar" id = "rateStar1"> </div>
+                            </div> 
+                            
+                        </button> 
+                    </div>
                 </div>
             </form>
-
             <form action="recipedetail.php" method="POST">
                 <div id="dishDishes" class="recipe_list">
                 </div>
@@ -96,31 +107,33 @@
                             cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
                         }
                     }
+
                     if (recipe.category == "street") {
-                        $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p>  <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>' );
-                        $('#streetDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
+                        $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
                     } else if (recipe.category == "dish") {
-                        $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p>  <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>');
-                        $('#dishDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
+                        $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
                     } else {
-                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author"> ' + atob(recipe.firstname) + '</p> <p class = "recipename">' + recipe.recipe_name + '</p> <p> Cook time: ' + cooktime + '</p> <div class = "flexStar" id = "' + index + '"> </div> </button> </div>');
-                        $('#dessertDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
+                        $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
                     }
-                    
+
                 });
                 for (let i = 0; i < response.length; i++) {
                     average = response[i].average;
+                    
                     if (average == null) {
                         $('#' + i + '').append('<p2 class = "average" >0.0</p2>');
                     } else {
                         $('#' + i + '').append('<p2 class = "average" > ' + parseFloat(average).toFixed(1) + '</p2>');
                     }
+
                     for (let j = 0; j < Math.trunc(average); j++) {
-                        $('#' + i + '').append('<span class = "fa fa-star" style = "color: #ff0038"></span>');
+                        $('#rateStar' + i + '').append('<span class = "fa fa-star" style = "color: #ff0038"></span>');
                     }
                     for (let k = 0; k < (5 - Math.trunc(average)); k++) {
-                        $('#' + i + '').append('<span class = "fa fa-star" style = "color: black"></span>');
+                        $('#rateStar' + i + '').append('<span class = "fa fa-star" style = "color: black"></span>');
                     }
+
+                    
                 }
 
             }

@@ -23,9 +23,6 @@
 
 <body>
 	<div class="mycontainer">
-		<div class="hero">
-			<img class="clipart" src="clipart.png" />
-		</div>
 		<?php include 'login.php'; ?>
 	</div>
 </body>
@@ -62,11 +59,15 @@
 	}
 
 	.mycontainer {
+		background-image: url('../assets/clipartsy.jpg');
 		display: flex;
 		flex-direction: row;
 		height: 100%;
 		width: 100%;
 		padding-left: 20px;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
 	}
 
 	.hero {
@@ -89,13 +90,6 @@
 
 	.mycontainer .hero .logo h1 {
 		font-size: 20px;
-	}
-
-	.clipart {
-		position: absolute;
-		bottom: 0;
-		height: auto;
-		width: 60%;
 	}
 
 	.container{
@@ -184,5 +178,9 @@
 		color: #333333;
 		font-size: 15px;
 		font-weight: bolder;
+	}
+
+	.modal-footer>* {
+    	margin: 0;
 	}
 </style>

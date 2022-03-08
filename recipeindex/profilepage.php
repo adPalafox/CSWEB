@@ -309,25 +309,21 @@
 						<div class="container">
 							<!-- <span><?php echo $message; ?></span> -->
 
-							<label for="forgotemail" class="form-label" style="color: red">Email Address</label>
+							<label for="forgotemail" class="form-label" style="color: #DE0C19">Email Address</label>
 							<div class="input-group flex-nowrap mb-3">
 								<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="<?php echo base64_decode($_COOKIE['email']) ?>" readonly>
-								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
 							</div>
 							<!--NEW PASSWORD -->
-							<label for="password" class="form-label" style="color: red">Enter New Password</label>
+							<label for="password" class="form-label" style="color: #DE0C19">Enter New Password</label>
 							<div class="input-group flex-nowrap mb-3">
 								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
-								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
 							</div>
 
 							<!--REPEAT PASSWORD -->
-							<label for="repassword" class="form-label"> Confirm Password</label>
+							<label for="repassword" class="form-label" style="color: #DE0C19"> Confirm Password</label>
 							<div class="input-group flex-nowrap mb-3">
 								<input type="password" class="form-control" placeholder="Confirm Password" id="repeatpassword" name="repeatpassword" value="">
-								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
 							</div>
-
 
 							<div class="center">
 								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>

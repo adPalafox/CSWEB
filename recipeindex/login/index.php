@@ -120,6 +120,10 @@
 		font-weight: bolder;
 	}
 
+	.btn{
+		font-weight: bold;
+	}
+
 	.btn-password {
 		border: none;
 		background: white;
@@ -170,5 +174,15 @@
 		color: #de0c19;
 		font-weight: bold;
 		font-size: 15px;
+	}
+
+	.btn-cancel{
+		border: none;
+		background: #eeeeee;
+		padding: 10px 20px;
+    	border-radius: 20px;
+		color: #333333;
+		font-size: 15px;
+		font-weight: bolder;
 	}
 </style>

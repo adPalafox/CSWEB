@@ -397,10 +397,11 @@ a{
 }
 
 .page-footer {
+    font-size: 15px;
     font-family: "Playfair Display", serif;
     background: #fbd691;
     color: black;
-    padding: 1em;
+    padding: 8px 5px 5px 5px;
     text-align: center;
-    font-weight: bold;
+    font-weight: bolder;
 }

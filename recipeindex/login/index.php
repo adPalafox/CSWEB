@@ -140,6 +140,11 @@
 		border-radius: 20px;
 	}
 
+	.btnSquares{
+		border-radius: 20px;
+		padding: 10px 9rem;
+	}
+
 	.btn-signup{
 		border: none;
 		background: white;
@@ -155,10 +160,10 @@
 	}
 
 	.policy{
-		font-size: 15px;
+		font-size: 14px;
 		text-align: center;
 		color: #6f6f6f;
-		margin: 26px 0 0 0;
+		margin: 25px 0 0 0;
 		line-height: 18px;
 	}
 
@@ -182,5 +187,9 @@
 
 	.modal-footer>* {
     	margin: 0;
+	}
+
+	.center{
+		margin-bottom: 0.7rem;
 	}
 </style>

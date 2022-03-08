@@ -212,13 +212,14 @@
       color: white;
   }
   
-  body{
+body{
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
     background-color: white;
 }
+
 .container .navbar{
     display: flex;
     justify-content: space-between;
@@ -226,6 +227,7 @@
     padding: 1% 5%;
     background-color: #fbd691;
     font-family: "Playfair Display", serif;
+    font-weight: normal;
 }
 
 .container .navbar .logo{
@@ -472,7 +474,7 @@ section{
     background-position: center;
 }
 .timeline ul li:nth-child(6)::before{
-    background-image: url(rada.jpg);
+    background-image: url(rada.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

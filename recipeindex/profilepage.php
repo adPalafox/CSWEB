@@ -176,41 +176,54 @@
 		echo $days . " days";
 	}
 
+	function check_password($pass, $conpass)
+	{
+		if ($pass == $conpass) {
+			return true;
+		} else
+			return false;
+	}
+
 	$message = '<strong>Welcome ' . base64_decode($_COOKIE['user']) . '</strong>';
 
 	// RESET PASSWORD
 	if (isset($_POST["resetPassword"])) {
 		$email = base64_encode($_POST["forgotemail"]);
 		$newpassword = $_POST["newpassword"];
+		$connewpassword = $_POST["connewpassword"];
 
 		// checkPasswords($email, $conn);
 
 		$sql = "SELECT * FROM users WHERE email = '$email'";
 		$list = $conn->query($sql);
 		if ($email != "" and $newpassword != "") {
-			if ($list->num_rows > 0) {
-				if ($_POST["g-recaptcha-response"] != '') {
-					$result = $list->fetch_all(MYSQLI_ASSOC);
-					foreach ($result as $row) {
-						$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
-						$message = '<div class="alert alert-danger">' . $result . '</div>';
-						if (strlen($result) <= 0) {
-							$newpassword = base64_encode($newpassword);
-							$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
-							if ($conn->query($sqlpassword) === TRUE) {
-								// updateTime($row["id"], $conn);
-								$message = '<strong> Account Password Successfully Updated! </strong>';
-							} else {
-								echo "Error: " . $sql . "<br>" . $conn->error;
+			if (check_password($newpassword, $connewpassword)) {
+				if ($list->num_rows > 0) {
+					if ($_POST["g-recaptcha-response"] != '') {
+						$result = $list->fetch_all(MYSQLI_ASSOC);
+						foreach ($result as $row) {
+							$result = passwordValidation($row["firstname"], $row["lastname"], $newpassword, $conn);
+							$message = '<div class="alert alert-danger">' . $result . '</div>';
+							if (strlen($result) <= 0) {
+								$newpassword = base64_encode($newpassword);
+								$sqlpassword = "UPDATE users SET password='$newpassword' WHERE email='$email'";
+								if ($conn->query($sqlpassword) === TRUE) {
+									// updateTime($row["id"], $conn);
+									$message = '<strong> Account Password Successfully Updated! </strong>';
+								} else {
+									echo "Error: " . $sql . "<br>" . $conn->error;
+								}
+								$conn->close();
 							}
-							$conn->close();
 						}
+					} else {
+						$message = '<strong> Please verify captcha. </strong>';
 					}
 				} else {
-					$message = '<strong> Please verify captcha. </strong>';
+					$message = '<strong> Account Does Not Exist! </strong>';
 				}
 			} else {
-				$message = '<strong> Account Does Not Exist! </strong>';
+				$message = '<div class="alert alert-danger"> Passwords do not match </div>';
 			}
 		} else {
 			$message = '<strong> There must be no empty inputs. </strong>';
@@ -301,12 +314,20 @@
 								<input type="email" class="form-control" placeholder="Email" id="forgotemail" name="forgotemail" value="<?php echo base64_decode($_COOKIE['email']) ?>" readonly>
 								<label class="input-group-text" id="addon-wrapping" for="email"><i class="fas fa-user fa-1x p-2"></i></label>
 							</div>
-
+							<!--NEW PASSWORD -->
 							<label for="password" class="form-label" style="color: red">Enter New Password</label>
 							<div class="input-group flex-nowrap mb-3">
 								<input type="password" class="form-control" placeholder="Enter New Password" id="newpassword" name="newpassword" value="">
 								<label class="input-group-text" id="addon-wrapping" for="newpassword"><i class="fas fa-lock fa-1x p-2"></i></label>
 							</div>
+
+							<!--REPEAT PASSWORD -->
+							<label for="repassword" class="form-label"> Confirm Password</label>
+							<div class="input-group flex-nowrap mb-3">
+								<input type="password" class="form-control" placeholder="Confirm Password" id="repeatpassword" name="repeatpassword" value="">
+								<label class="input-group-text" id="addon-wrapping" for="password"><i class="fas fa-lock fa-1x p-2"></i></label>
+							</div>
+
 
 							<div class="center">
 								<div class="g-recaptcha" data-sitekey="6LeQ6qEeAAAAAHoVDImiuHU2_-kC7kkIyPrtbhtU"></div>
@@ -335,7 +356,7 @@
 			<button class="my-btn" data-target="#dessertDishes">Dessert</button>
 		</div> -->
 
-		<form action="recipedetail.php" method="POST">
+		<!-- <form action="recipedetail.php" method="POST">
 			<div id="streetDishes" class="recipe_list active">
 			</div>
 		</form>
@@ -347,6 +368,10 @@
 
 		<form action="recipedetail.php" method="POST">
 			<div id="dessertDishes" class="recipe_list">
+			</div>
+		</form> -->
+		<form action = "recipedetail.php" method = "POST">
+			<div id="profileDishes" class="recipe_list active">
 			</div>
 		</form>
 	</div>
@@ -378,22 +403,26 @@
 			type: "POST",
 			success: function(response) {
 				response.forEach(function(recipe, index) {
-					var cooktime = recipe.cook_time + ' mins';
-					if (recipe.cook_time > 60) {
-						cooktime = ' ' + Math.round(recipe.cook_time / 60) + ' hours';
-						if (recipe.cook_time % 60 > 0) {
-							cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
+					if (recipe.user_id == getCookie("id")){
+						var cooktime = recipe.cook_time + ' mins';
+						if (recipe.cook_time > 60) {
+							cooktime = ' ' + Math.round(recipe.cook_time / 60) + ' hours';
+							if (recipe.cook_time % 60 > 0) {
+								cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
+							}
 						}
-					}
 
-					if (recipe.category == "street") {
-						$("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
-					} else if (recipe.category == "dish") {
-						$("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
-					} else {
-						$("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
-					}
+						// if (recipe.category == "street") {
+						// 	$("#profileDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						// } else if (recipe.category == "dish") {
+						// 	$("#profileDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						// } else {
+						// 	$("#profileDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						// }
 
+						$("#profileDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+						$('#profileDishes').append('<input type="hidden" name="previouspage" value="./profilepage.php">');
+					}
 				});
 				for (let i = 0; i < response.length; i++) {
 					average = response[i].average;
@@ -409,7 +438,6 @@
 						$('#' + i + '').append('<span class = "fa fa-star" style = "color: black"></span>');
 					}
 				}
-
 			}
 		});
 	}

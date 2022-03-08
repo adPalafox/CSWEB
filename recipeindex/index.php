@@ -41,7 +41,7 @@
             </form>
         </nav>
 
-        <div class="recipes_container active">
+        <div class="recipes_container active" id = "recipesContainer">
             <div class="btn_container">
                 <button class="btn active" data-target="#streetDishes">Street Foods</button>
                 <button class="btn" data-target="#dishDishes">Dish</button>
@@ -96,15 +96,17 @@
                             cooktime += ' ' + (recipe.cook_time % 60) + ' mins';
                         }
                     }
-
                     if (recipe.category == "street") {
                         $("#streetDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $('#streetDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     } else if (recipe.category == "dish") {
                         $("#dishDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $('#dishDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     } else {
                         $("#dessertDishes").append('<div class = "recipe"><button class = "recipeButton" name = "button" value = ' + recipe.recipe_id + ' ><img src="./assets/' + recipe.img_name + '" class="img recipe-img"><p class = "Author">Author: ' + atob(recipe.firstname) + '</p> <div class = "flexStar" id = "' + index + '"> </div> <h5>' + recipe.recipe_name + '</h5><p> Cook time: ' + cooktime + '</p></button> </div>');
+                        $('#dessertDishes').append('<input type="hidden" name="previouspage" value="./index.php">');
                     }
-
+                    
                 });
                 for (let i = 0; i < response.length; i++) {
                     average = response[i].average;

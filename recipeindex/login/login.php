@@ -5,37 +5,6 @@
 	$expireResult = "";
 	$message = '';
 
-
-	//$message = '<div class="alert alert-danger"><span id = "time"> Attempt Limit Reached!</span></div>';
-
-	// function checkExpire($seconds)
-	// {
-	// 	$currentSeconds = time() - $seconds;
-
-	// 	$minutes = $currentSeconds / 60;
-	// 	$hours = $minutes / 60;
-	// 	$days = $hours / 24;
-
-	// 	return abs($days);
-	// }
-
-	// $sql = "SELECT * FROM users";
-	// $list = $conn->query($sql);
-	// if ($list->num_rows > 0) {
-	// 	$result = $list->fetch_all(MYSQLI_ASSOC);
-	// 	foreach ($result as $row) {
-	// 		$days = checkExpire($row['expire']);
-	// 		if ($days >= 20 and $days <= 30) {
-	// 			$daysleft = 30 - ((int)$days);
-	// 			$expireResult .= $row['email'] . ' is about to expire in (' . (int)$daysleft . ' days)<br>';
-	// 			$message = '<div class="alert alert-danger">' . $expireResult . ' </div>';
-	// 		} else if (checkExpire($row['expire']) > 30) {
-	// 			$expireResult .= $row['email'] . ' has expired (' . (int)$days . ' days)<br>';
-	// 			$message = '<div class="alert alert-danger">' . $expireResult . ' </div>';
-	// 		}
-	// 	}
-	// }
-
 	if (!isset($_COOKIE['page'])) {
 		setcookie("page", "login", time() + 3600);
 	}
@@ -215,29 +184,6 @@
 			if ($list->num_rows > 0) {
 				$result = $list->fetch_all(MYSQLI_ASSOC);
 				foreach ($result as $row) {
-					//$days = checkExpire($row['expire']);
-					// setcookie("DAYS", $days, time() + 3600);
-					// setcookie("Expiration", $passwordExpirationDays, time() + 3600);
-					// if ($days <= $passwordExpirationDays) {
-					// 	$hashedpassword = base64_encode($_POST['password']);
-					// 	if ($hashedpassword == $row['password']) {
-					// 		//Successful Login - ZenocyFox21234@
-					// 		$_SESSION['success'] = 'Login successful';
-					// 		unset($_SESSION['attempt']);
-					// 		setcookie("accountid", $row["id"], time() + 3600);
-					// 		header("location:../home/index.php");
-					// 	} else {
-					// 		$_SESSION['error'] = 'Password incorrect';
-					// 		$_SESSION['attempt'] += 1;
-					// 		if ($_SESSION['attempt'] == $maxattempts) {
-					// 			//5*60 = 5mins, 60*60 = 1hour, 2*60*60 = 2hours
-					// 			$_SESSION['attempt_again'] = time() + (5 * 60);
-					// 		}
-					// 		$message = '<div class="alert alert-danger"> Incorrect Login: (' . $_SESSION["attempt"] . "/" . $maxattempts . ')</div>';
-					// 	}
-					// } else {
-					// 	$message = '<div class="alert alert-danger"> Password has expired for ' . $row['email'] . '<br>' . (int) $days . ' days has passed</div>';
-					// }
 					$hashedpassword = base64_encode($_POST['password']);
 					if ($hashedpassword == $row['password']) {
 						$datenow = date('Y-m-d');
@@ -278,37 +224,6 @@
 			}
 		}
 	}
-
-
-	// function checkPasswords($checkemail, $conn){
-	// 	$prevPasswords = new SplFixedArray(6);
-	// 	$sql = "SELECT * FROM passwords WHERE email = '$checkemail'";
-	// 	$list = $conn->query($sql);
-	// 	if ($list->num_rows > 0){
-	// 		$result = $list->fetch_all(MYSQLI_ASSOC);
-	// 		foreach ($result as $row){
-	// 			// echo $row['email']."<br>";
-	// 			// echo $row['password1']."<br>";
-	// 			// echo $row['password2']."<br>";
-	// 			// echo $row['password3']."<br>";
-	// 			// echo $row['password4']."<br>";
-	// 			// echo $row['password5']."<br>";
-	// 			// echo $row['password6']."<br>";
-	// 			for($i = 1; $i <= 6; $i++){
-	// 				$counter = 'password'.$i;
-	// 				echo $row[$counter].'<br>';
-	// 				// if($row[$counter] != ""){
-	// 				// 	echo "fuck ".$row[$counter]." <br>";
-	// 				// }else{
-	// 				// 	echo "empty sht".$row[$counter]."<br>";
-	// 				// }
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	// checkPasswords("curfyfox@gmail.com", $conn);
-
 
 
 	if (isset($_POST["createAccount"])) {

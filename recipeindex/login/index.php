@@ -24,10 +24,6 @@
 <body>
 	<div class="mycontainer">
 		<div class="hero">
-			<div class="logo">
-				<img src="All-Tasty-.png" width="70px" alt="">
-				<h1>All Tasty</h1>
-			</div>
 			<img class="clipart" src="clipart.png" />
 		</div>
 		<?php include 'login.php'; ?>
@@ -100,5 +96,79 @@
 		bottom: 0;
 		height: auto;
 		width: 60%;
+	}
+
+	.container{
+		overflow: hidden;
+	}
+
+	.form-control{
+		padding: 10px;
+		border-width: 1.5px;
+	}
+
+	.form-control:hover{
+		border: 1.5px solid #4176fc;
+	}
+
+	.form-control:focus{
+		border: 1.5px solid #4176fc;
+		box-shadow: 0 0 0 3px #f2f5ff;
+	}
+
+	.form-label {
+		font-weight: bolder;
+	}
+
+	.btn-password {
+		border: none;
+		background: white;
+		font-size: 15px;
+		color: #6c757d;
+	}
+
+	.btn-password:hover{
+		text-decoration-color: #6c757d;
+		text-decoration: underline;
+    	text-underline-offset: .5px;
+	}
+
+	.buttons{
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.btnSquare{
+		border-radius: 20px;
+	}
+
+	.btn-signup{
+		border: none;
+		background: white;
+		color: #de0c19;
+		font-weight: bold;
+		font-size: 15px;
+	}
+
+	.class-two{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.policy{
+		font-size: 15px;
+		text-align: center;
+		color: #6f6f6f;
+		margin: 26px 0 0 0;
+		line-height: 18px;
+	}
+
+	.btn-login{
+		border: none;
+		background: white;
+		color: #de0c19;
+		font-weight: bold;
+		font-size: 15px;
 	}
 </style>
